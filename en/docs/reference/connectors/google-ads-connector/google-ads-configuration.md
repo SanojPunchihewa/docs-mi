@@ -93,7 +93,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual asset group listing group filters. Type: object (AssetGroupListingGroupFilterOperation)</td>
+            <td>The list of operations to perform on individual asset group listing group filters. Type: object [AssetGroupListingGroupFilterOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetGroupListingGroupFilterOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -103,10 +103,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignBidModifiers.mutate"
     Creates, updates, or removes campaign bid modifiers. Operation statuses are returned.
     <table>
@@ -122,7 +135,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign bid modifiers. Type: object (CampaignBidModifierOperation)</td>
+            <td>The list of operations to perform on individual campaign bid modifiers. Type: object [CampaignBidModifierOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignBidModifierOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -137,10 +150,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.searchAudienceInsightsAttributes"
     Searches for audience attributes that can be used to generate insights.
     <table>
@@ -155,8 +181,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>dimensions[]</td>
-            <td>The types of attributes to be returned. Type: enum (AudienceInsightsDimension)</td>
+            <td>dimensions</td>
+            <td>The types of attributes to be returned. Type: enum [AudienceInsightsDimension](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AudienceInsightsDimension)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -170,16 +196,29 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
         <tr>
-            <td>locationCountryFilters[]</td>
-            <td>If SUB_COUNTRY_LOCATION attributes are one of the requested dimensions and this field is present, then the SUB_COUNTRY_LOCATION attributes returned will be located in these countries. If this field is absent, then location attributes are not filtered by country. Setting this field when SUB_COUNTRY_LOCATION attributes are not requested will return an error. Type: object (LocationInfo)</td>
+            <td>locationCountryFilters</td>
+            <td>If SUB_COUNTRY_LOCATION attributes are one of the requested dimensions and this field is present, then the SUB_COUNTRY_LOCATION attributes returned will be located in these countries. If this field is absent, then location attributes are not filtered by country. Setting this field when SUB_COUNTRY_LOCATION attributes are not requested will return an error. Type: object [LocationInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/LocationInfo)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>youtubeReachLocation</td>
-            <td>If present, potential YouTube reach estimates within the specified market will be returned for attributes for which they are available. Reach is only available for the AGE_RANGE, GENDER, AFFINITY_USER_INTEREST and IN_MARKET_USER_INTEREST dimensions, and may not be available for every attribute of those dimensions in every market. Type: object (LocationInfo)</td>
+            <td>If present, potential YouTube reach estimates within the specified market will be returned for attributes for which they are available. Reach is only available for the AGE_RANGE, GENDER, AFFINITY_USER_INTEREST and IN_MARKET_USER_INTEREST dimensions, and may not be available for every attribute of those dimensions in every market. Type: object [LocationInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/LocationInfo)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "keywordThemeConstants.suggest"
     Returns KeywordThemeConstant suggestions by keyword themes.
     <table>
@@ -204,6 +243,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.remarketingActions.mutate"
     Creates or updates remarketing actions. Operation statuses are returned.
     <table>
@@ -219,7 +271,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual remarketing actions. Type: object (RemarketingActionOperation)</td>
+            <td>The list of operations to perform on individual remarketing actions. Type: object [RemarketingActionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/RemarketingActionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -233,6 +285,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.billingSetups.mutate"
     Creates a billing setup, or cancels an existing billing setup.
     <table>
@@ -248,10 +313,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform. Type: object (BillingSetupOperation)</td>
+            <td>The operation to perform. Type: object [BillingSetupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BillingSetupOperation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.AdGroupCriterionCustomizers.mutate"
     Creates, updates or removes ad group criterion customizers. Operation statuses are returned.
     <table>
@@ -267,7 +345,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group criterion customizers. Type: object (AdGroupCriterionCustomizerOperation)</td>
+            <td>The list of operations to perform on individual ad group criterion customizers. Type: object [AdGroupCriterionCustomizerOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupCriterionCustomizerOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -282,10 +360,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.extensionFeedItems.mutate"
     Creates, updates, or removes extension feed items. Operation statuses are returned.
     <table>
@@ -301,7 +392,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual extension feed items. Type: object (ExtensionFeedItemOperation)</td>
+            <td>The list of operations to perform on individual extension feed items. Type: object [ExtensionFeedItemOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ExtensionFeedItemOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -316,10 +407,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.batchJobs.run"
     Runs the batch job.
     <table>
@@ -334,6 +438,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.assetSets.mutate"
     Creates, updates or removes asset sets. Operation statuses are returned.
     <table>
@@ -349,7 +466,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual asset sets. Type: object (AssetSetOperation)</td>
+            <td>The list of operations to perform on individual asset sets. Type: object [AssetSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -364,10 +481,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.feedMappings.mutate"
     Creates or removes feed mappings. Operation statuses are returned.
     <table>
@@ -383,7 +513,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual feed mappings. Type: object (FeedMappingOperation)</td>
+            <td>The list of operations to perform on individual feed mappings. Type: object [FeedMappingOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FeedMappingOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -398,10 +528,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experiments.endExperiment"
     Immediately ends an experiment, changing the experiment's scheduled end date and without waiting for end of day. End date is updated to be the time of the request.
     <table>
@@ -421,6 +564,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignDrafts.mutate"
     Creates, updates, or removes campaign drafts. Operation statuses are returned.
     <table>
@@ -436,7 +592,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign drafts. Type: object (CampaignDraftOperation)</td>
+            <td>The list of operations to perform on individual campaign drafts. Type: object [CampaignDraftOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignDraftOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -451,10 +607,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.userLists.mutate"
     Creates or updates user lists. Operation statuses are returned.
     <table>
@@ -470,7 +639,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual user lists. Type: object (UserListOperation)</td>
+            <td>The list of operations to perform on individual user lists. Type: object [UserListOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/UserListOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -484,6 +653,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateKeywordIdeas"
     Returns a list of keyword ideas.
     <table>
@@ -495,10 +677,10 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>customerId</td>
             <td>The ID of the customer with the recommendation.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
         <tr>
-            <td>geoTargetConstants[]</td>
+            <td>geoTargetConstants</td>
             <td>The resource names of the location to target. Maximum is 10. An empty list MAY be used to specify all targeting geos. Type: string</td>
             <td>No</td>
         </tr>
@@ -519,22 +701,22 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>keywordPlanNetwork</td>
-            <td>Targeting network. If not set, Google Search And Partners Network will be used. Type: enum (KeywordPlanNetwork)</td>
+            <td>Targeting network. If not set, Google Search And Partners Network will be used. Type: enum [KeywordPlanNetwork](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanNetwork)</td>
             <td>No</td>
         </tr>
         <tr>
-            <td>keywordAnnotation[]</td>
-            <td>The keyword annotations to include in response. Type: enum (KeywordPlanKeywordAnnotation)</td>
+            <td>keywordAnnotation</td>
+            <td>The keyword annotations to include in response. Type: enum [KeywordPlanKeywordAnnotation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanKeywordAnnotation)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>aggregateMetrics</td>
-            <td>The aggregate fields to include in response. Type: object (KeywordPlanAggregateMetrics)</td>
+            <td>The aggregate fields to include in response. Type: object [KeywordPlanAggregateMetrics](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanAggregateMetrics)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>historicalMetricsOptions</td>
-            <td>The options for historical metrics data. Type: object (HistoricalMetricsOptions)</td>
+            <td>The options for historical metrics data. Type: object [HistoricalMetricsOptions](https://developers.google.com/google-ads/api/rest/reference/rest/v17/HistoricalMetricsOptions)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -544,25 +726,38 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>keywordAndUrlSeed</td>
-            <td>A Keyword and a specific Url to generate ideas from for example, cars, www.example.com/cars. Type: object (KeywordAndUrlSeed)</td>
+            <td>A Keyword and a specific Url to generate ideas from for example, cars, www.example.com/cars. Type: object [KeywordAndUrlSeed](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordAndUrlSeed)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>keywordSeed</td>
-            <td>A Keyword or phrase to generate ideas from, for example, cars. Type: object (KeywordSeed)</td>
+            <td>A Keyword or phrase to generate ideas from, for example, cars. Type: object [KeywordSeed](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordSeed)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>urlSeed</td>
-            <td>A specific url to generate ideas from, for example, www.example.com/cars. Type: object (UrlSeed)</td>
+            <td>A specific url to generate ideas from, for example, www.example.com/cars. Type: object [UrlSeed](https://developers.google.com/google-ads/api/rest/reference/rest/v17/UrlSeed)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>siteSeed</td>
-            <td>The site to generate ideas from, for example, www.example.com. Type: object (SiteSeed)</td>
+            <td>The site to generate ideas from, for example, www.example.com. Type: object [SiteSeed](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SiteSeed)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.smartCampaignSettings.getSmartCampaignStatus"
     Returns the status of the requested Smart campaign.
     <table>
@@ -577,6 +772,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.conversionValueRules.mutate"
     Creates, updates, or removes conversion value rules. Operation statuses are returned.
     <table>
@@ -592,7 +800,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual conversion value rules. Type: object (ConversionValueRuleOperation)</td>
+            <td>The list of operations to perform on individual conversion value rules. Type: object [ConversionValueRuleOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionValueRuleOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -607,10 +815,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.thirdPartyAppAnalyticsLinks.regenerateShareableLinkId"
     Regenerate ThirdPartyAppAnalyticsLink.shareable_link_id that should be provided to the third party when setting up app analytics.
     <table>
@@ -622,9 +843,22 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>resourceName</td>
             <td>Resource name of the third party app analytics link.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.productLinkInvitations.update"
     Update a product link invitation.
     <table>
@@ -640,7 +874,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>productLinkInvitationStatus</td>
-            <td>The product link invitation to be created. Type: enum (ProductLinkInvitationStatus)</td>
+            <td>The product link invitation to be created. Type: enum [ProductLinkInvitationStatus](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ProductLinkInvitationStatus)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -649,6 +883,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "googleAdsFields.get"
     Returns just the requested field.
     <table>
@@ -663,6 +910,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateShareablePreviews"
     Returns the requested Shareable Preview.
     <table>
@@ -677,11 +937,24 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>shareablePreviews[]</td>
-            <td>The list of shareable previews to generate. Type: object (ShareablePreview)</td>
+            <td>shareablePreviews</td>
+            <td>The list of shareable previews to generate. Type: object [ShareablePreview](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ShareablePreview)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignFeeds.mutate"
     Creates, updates, or removes campaign feeds. Operation statuses are returned.
     <table>
@@ -697,7 +970,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign feeds. Type: object (CampaignFeedOperation)</td>
+            <td>The list of operations to perform on individual campaign feeds. Type: object [CampaignFeedOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignFeedOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -712,10 +985,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerLifecycleGoal.configureCustomerLifecycleGoals"
     Process the given customer lifecycle configurations.
     <table>
@@ -731,7 +1017,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform customer lifecycle goal update. Type: object (CustomerLifecycleGoalOperation)</td>
+            <td>The operation to perform customer lifecycle goal update. Type: object [CustomerLifecycleGoalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerLifecycleGoalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -740,6 +1026,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerUserAccesses.mutate"
     Updates, removes permission of a user on a given customer. Operation statuses are returned.
     <table>
@@ -755,10 +1054,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on the customer Type: object (CustomerUserAccessOperation)</td>
+            <td>The operation to perform on the customer Type: object [CustomerUserAccessOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerUserAccessOperation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateAdGroupThemes"
     Returns a list of suggested AdGroups and suggested modifications (text, match type) for the given keywords.
     <table>
@@ -773,16 +1085,29 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>keywords[]</td>
+            <td>keywords</td>
             <td>A list of keywords to group into the provided AdGroups. Type: string</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>adGroups[]</td>
+            <td>adGroups</td>
             <td>A list of resource names of AdGroups to group keywords into.  Resource name format:customers/{customerId}/adGroups/{adGroupId} Type: string</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experimentArms.mutate"
     Creates, updates, or removes experiment arms. Operation statuses are returned.
     <table>
@@ -798,7 +1123,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual experiment arm. Type: object (ExperimentArmOperation)</td>
+            <td>The list of operations to perform on individual experiment arm. Type: object [ExperimentArmOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ExperimentArmOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -813,10 +1138,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adParameters.mutate"
     Creates, updates, or removes ad parameters. Operation statuses are returned.
     <table>
@@ -832,7 +1170,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad parameters. Type: object (AdParameterOperation)</td>
+            <td>The list of operations to perform on individual ad parameters. Type: object [AdParameterOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdParameterOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -847,10 +1185,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignCustomizers.mutate"
     Creates, updates or removes campaign customizers. Operation statuses are returned.
     <table>
@@ -866,7 +1217,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign customizers. Type: object (CampaignCustomizerOperation)</td>
+            <td>The list of operations to perform on individual campaign customizers. Type: object [CampaignCustomizerOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignCustomizerOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -881,10 +1232,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateReachForecast"
     Generates a reach forecast for a given targeting / product mix.
     <table>
@@ -900,27 +1264,27 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>campaignDuration</td>
-            <td>Campaign duration. Type: object (CampaignDuration)</td>
+            <td>Campaign duration. Type: object [CampaignDuration](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignDuration)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>cookieFrequencyCapSetting</td>
-            <td>Chosen cookie frequency cap to be applied to each planned product. This is equivalent to the frequency cap exposed in Google Ads when creating a campaign, it represents the maximum number of times an ad can be shown to the same user during a specified time interval. If not specified, a default of 0 (no cap) is applied. Type: object (FrequencyCap)</td>
+            <td>Chosen cookie frequency cap to be applied to each planned product. This is equivalent to the frequency cap exposed in Google Ads when creating a campaign, it represents the maximum number of times an ad can be shown to the same user during a specified time interval. If not specified, a default of 0 (no cap) is applied. Type: object [FrequencyCap](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FrequencyCap)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>targeting</td>
-            <td>The targeting to be applied to all products selected in the product mix. Type: object (Targeting)</td>
+            <td>The targeting to be applied to all products selected in the product mix. Type: object [Targeting](https://developers.google.com/google-ads/api/rest/reference/rest/v17/Targeting)</td>
             <td>No</td>
         </tr>
         <tr>
-            <td>plannedProducts[]</td>
-            <td>The products to be forecast. The max number of allowed planned products is 15. Type: object (PlannedProduct)</td>
+            <td>plannedProducts</td>
+            <td>The products to be forecast. The max number of allowed planned products is 15. Type: object [PlannedProduct](https://developers.google.com/google-ads/api/rest/reference/rest/v17/PlannedProduct)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>forecastMetricOptions</td>
-            <td>Controls the forecast metrics returned in the response. Type: object (ForecastMetricOptions)</td>
+            <td>Controls the forecast metrics returned in the response. Type: object [ForecastMetricOptions](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ForecastMetricOptions)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -940,7 +1304,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>effectiveFrequencyLimit</td>
-            <td>The highest minimum effective frequency (the number of times a person was exposed to the ad) value [1-10] to include in Forecast.effective_frequency_breakdowns. If not specified, Forecast.effective_frequency_breakdowns will not be provided. Type: object (EffectiveFrequencyLimit)</td>
+            <td>The highest minimum effective frequency (the number of times a person was exposed to the ad) value [1-10] to include in Forecast.effective_frequency_breakdowns. If not specified, Forecast.effective_frequency_breakdowns will not be provided. Type: object [EffectiveFrequencyLimit](https://developers.google.com/google-ads/api/rest/reference/rest/v17/EffectiveFrequencyLimit)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -949,6 +1313,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.uploadClickConversions"
     Processes the given click conversions.
     <table>
@@ -963,8 +1340,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>conversions[]</td>
-            <td>The conversions that are being uploaded. Type: object (ClickConversion)</td>
+            <td>conversions</td>
+            <td>The conversions that are being uploaded. Type: object [ClickConversion](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ClickConversion)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -988,6 +1365,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateSuggestedTargetingInsights"
     Returns a collection of targeting insights (e.g. targetable audiences) that are relevant to the requested audience.
     <table>
@@ -1003,12 +1393,12 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>audience</td>
-            <td>The audience of interest for which insights are being requested. Type: object (InsightsAudience)</td>
+            <td>The audience of interest for which insights are being requested. Type: object [InsightsAudience](https://developers.google.com/google-ads/api/rest/reference/rest/v17/InsightsAudience)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>baselineAudience</td>
-            <td>Optional. The baseline audience. The default, if unspecified, is all people in the same country as the audience of interest. Type: object (InsightsAudience)</td>
+            <td>Optional. The baseline audience. The default, if unspecified, is all people in the same country as the audience of interest. Type: object [InsightsAudience](https://developers.google.com/google-ads/api/rest/reference/rest/v17/InsightsAudience)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -1022,6 +1412,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.assetGroupAssets.mutate"
     Creates, updates or removes asset group assets. Operation statuses are returned.
     <table>
@@ -1037,7 +1440,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual asset group assets. Type: object (AssetGroupAssetOperation)</td>
+            <td>The list of operations to perform on individual asset group assets. Type: object [AssetGroupAssetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetGroupAssetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1051,6 +1454,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignConversionGoals.mutate"
     Creates, updates or removes campaign conversion goals. Operation statuses are returned.
     <table>
@@ -1066,7 +1482,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign conversion goal. Type: object (CampaignConversionGoalOperation)</td>
+            <td>The list of operations to perform on individual campaign conversion goal. Type: object [CampaignConversionGoalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignConversionGoalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1075,6 +1491,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customizerAttributes.mutate"
     Creates, updates or removes customizer attributes. Operation statuses are returned.
     <table>
@@ -1090,7 +1519,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customizer attributes. Type: object (CustomizerAttributeOperation)</td>
+            <td>The list of operations to perform on individual customizer attributes. Type: object [CustomizerAttributeOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomizerAttributeOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1105,10 +1534,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupAdLabels.mutate"
     Creates and removes ad group ad labels. Operation statuses are returned.
     <table>
@@ -1124,7 +1566,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on ad group ad labels. Type: object (AdGroupAdLabelOperation)</td>
+            <td>The list of operations to perform on ad group ad labels. Type: object [AdGroupAdLabelOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupAdLabelOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1138,6 +1580,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignAssetSets.mutate"
     Creates, updates or removes campaign asset sets. Operation statuses are returned.
     <table>
@@ -1153,7 +1608,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign asset sets. Type: object (CampaignAssetSetOperation)</td>
+            <td>The list of operations to perform on individual campaign asset sets. Type: object [CampaignAssetSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignAssetSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1168,10 +1623,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerUserAccessInvitations.mutate"
     Creates or removes an access invitation.
     <table>
@@ -1187,10 +1655,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on the access invitation Type: object (CustomerUserAccessInvitationOperation)</td>
+            <td>The operation to perform on the access invitation Type: object [CustomerUserAccessInvitationOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerUserAccessInvitationOperation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.uploadUserData"
     Uploads the given user data.
     <table>
@@ -1206,15 +1687,28 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to be done. Type: object (UserDataOperation)</td>
+            <td>The list of operations to be done. Type: object [UserDataOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/UserDataOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>customerMatchUserListMetadata</td>
-            <td>Metadata for data updates to a Customer Match user list. Type: object (CustomerMatchUserListMetadata)</td>
+            <td>Metadata for data updates to a Customer Match user list. Type: object [CustomerMatchUserListMetadata](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerMatchUserListMetadata)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.audiences.mutate"
     Creates audiences. Operation statuses are returned.
     <table>
@@ -1230,7 +1724,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual audiences. Type: object (AudienceOperation)</td>
+            <td>The list of operations to perform on individual audiences. Type: object [AudienceOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AudienceOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1245,10 +1739,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.operations.get"
     Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
     <table>
@@ -1260,9 +1767,22 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>name</td>
             <td>The name of the operation resource.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.suggestTravelAssets"
     Returns Travel Asset suggestions. Asset suggestions are returned on a best-effort basis. There are no guarantees that all possible asset types will be returned for any given hotel property.
     <table>
@@ -1282,11 +1802,24 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>placeIds[]</td>
+            <td>placeIds</td>
             <td>The Google Maps Place IDs of hotels for which assets are requested. Seehttps://developers.google.com/places/web-service/place-idfor more information. Type: string</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experiments.promoteExperiment"
     Promotes the trial campaign thus applying changes in the trial campaign to the base campaign. This method returns a long running operation that tracks the promotion of the experiment campaign. If it fails, a list of errors can be retrieved using the experiments.listExperimentAsyncErrors method. The operation's metadata will be a string containing the resource name of the created experiment.
     <table>
@@ -1306,6 +1839,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.productLinks.create"
     Creates a product link.
     <table>
@@ -1321,10 +1867,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>productLink</td>
-            <td>The product link to be created. Type: object (ProductLink)</td>
+            <td>The product link to be created. Type: object [ProductLink](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ProductLink)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.recommendations.apply"
     Applies given recommendations with corresponding apply parameters.
     <table>
@@ -1340,7 +1899,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to apply recommendations. If partialFailure=false all recommendations should be of the same type There is a limit of 100 operations per request. Type: object (ApplyRecommendationOperation)</td>
+            <td>The list of operations to apply recommendations. If partialFailure=false all recommendations should be of the same type There is a limit of 100 operations per request. Type: object [ApplyRecommendationOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ApplyRecommendationOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1349,6 +1908,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateInsightsFinderReport"
     Creates a saved report that can be viewed in the Insights Finder tool.
     <table>
@@ -1364,12 +1936,12 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>baselineAudience</td>
-            <td>A baseline audience for this report, typically all people in a region. Type: object (BasicInsightsAudience)</td>
+            <td>A baseline audience for this report, typically all people in a region. Type: object [BasicInsightsAudience](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BasicInsightsAudience)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>specificAudience</td>
-            <td>The specific audience of interest for this report. The insights in the report will be based on attributes more prevalent in this audience than in the report's baseline audience. Type: object (BasicInsightsAudience)</td>
+            <td>The specific audience of interest for this report. The insights in the report will be based on attributes more prevalent in this audience than in the report's baseline audience. Type: object [BasicInsightsAudience](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BasicInsightsAudience)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1378,6 +1950,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experiments.listExperimentAsyncErrors"
     Returns all errors that occurred during the last Experiment update (either scheduling or promotion). Supports standard list paging.
     <table>
@@ -1391,7 +1976,30 @@ To use the Google Ads connector, first create the connection with your configura
             <td>The name of the experiment from which to retrieve the async errors.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>pageToken</td>
+            <td>Token of the page to retrieve. If not specified, the first page of results will be returned. Use the value obtained fromnextPageTokenin the previous response in order to request the next page of results.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>pageSize</td>
+            <td>Number of elements to retrieve in a single page. When a page request is too large, the server may decide to further limit the number of returned resources. The maximum page size is 1000.</td>
+            <td>No</td>
+        </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.operations.wait"
     Waits until the specified long-running operation is done or reaches at most a specified timeout, returning the latest state. If the operation is already done, the latest state is immediately returned. If the timeout specified is greater than the default HTTP/RPC timeout, the HTTP/RPC timeout is used. If the server does not support this method, it returnsgoogle.rpc.Code.UNIMPLEMENTED. Note that this method is on a best-effort basis. It may return the latest state before the specified timeout (including immediately), meaning even an immediate response is no guarantee that the operation is done.
     <table>
@@ -1403,7 +2011,7 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>name</td>
             <td>The name of the operation resource to wait on.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
         <tr>
             <td>timeout</td>
@@ -1411,6 +2019,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.productLinkInvitations.remove"
     Remove a product link invitation.
     <table>
@@ -1430,6 +2051,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.assetGroupSignals.mutate"
     Creates or removes asset group signals. Operation statuses are returned.
     <table>
@@ -1445,7 +2079,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual asset group signals. Type: object (AssetGroupSignalOperation)</td>
+            <td>The list of operations to perform on individual asset group signals. Type: object [AssetGroupSignalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetGroupSignalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1460,10 +2094,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.feedItems.mutate"
     Creates, updates, or removes feed items. Operation statuses are returned.
     <table>
@@ -1479,7 +2126,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual feed items. Type: object (FeedItemOperation)</td>
+            <td>The list of operations to perform on individual feed items. Type: object [FeedItemOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FeedItemOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1494,10 +2141,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experiments.mutate"
     Creates, updates, or removes experiments. Operation statuses are returned.
     <table>
@@ -1513,7 +2173,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual experiments. Type: object (ExperimentOperation)</td>
+            <td>The list of operations to perform on individual experiments. Type: object [ExperimentOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ExperimentOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1527,6 +2187,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.googleAds.mutate"
     Creates, updates, or removes resources. This method supports atomic transactions with multiple types of resources. For example, you can atomically create a campaign and a campaign budget, or perform up to thousands of mutates atomically.
     <table>
@@ -1541,8 +2214,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>mutateoperations</td>
-            <td>The list of operations to perform on individual resources. Type: object (MutateOperation)</td>
+            <td>mutateOperations</td>
+            <td>The list of operations to perform on individual resources. Type: object [MutateOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/MutateOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1557,10 +2230,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. The mutable resource will only be returned if the resource has the appropriate response field. For example, MutateCampaignResult.campaign. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. The mutable resource will only be returned if the resource has the appropriate response field. For example, MutateCampaignResult.campaign. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.labels.mutate"
     Creates, updates, or removes labels. Operation statuses are returned.
     <table>
@@ -1576,7 +2262,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on labels. Type: object (LabelOperation)</td>
+            <td>The list of operations to perform on labels. Type: object [LabelOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/LabelOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1591,10 +2277,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerExtensionSettings.mutate"
     Creates, updates, or removes customer extension settings. Operation statuses are returned.
     <table>
@@ -1610,7 +2309,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer extension settings. Type: object (CustomerExtensionSettingOperation)</td>
+            <td>The list of operations to perform on individual customer extension settings. Type: object [CustomerExtensionSettingOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerExtensionSettingOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1625,10 +2324,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.assets.mutate"
     Creates assets. Operation statuses are returned.
     <table>
@@ -1644,7 +2356,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual assets. Type: object (AssetOperation)</td>
+            <td>The list of operations to perform on individual assets. Type: object [AssetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1654,7 +2366,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -1663,6 +2375,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.feedItemSets.mutate"
     Creates, updates or removes feed item sets. Operation statuses are returned.
     <table>
@@ -1678,7 +2403,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual feed item sets. Type: object (FeedItemSetOperation)</td>
+            <td>The list of operations to perform on individual feed item sets. Type: object [FeedItemSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FeedItemSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1692,6 +2417,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignCriteria.mutate"
     Creates, updates, or removes criteria. Operation statuses are returned.
     <table>
@@ -1707,7 +2445,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual criteria. Type: object (CampaignCriterionOperation)</td>
+            <td>The list of operations to perform on individual criteria. Type: object [CampaignCriterionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignCriterionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1722,10 +2460,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateAudienceOverlapInsights"
     Returns a collection of audience attributes along with estimates of the overlap between their potential YouTube reach and that of a given input attribute.
     <table>
@@ -1741,17 +2492,17 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>countryLocation</td>
-            <td>The country in which to calculate the sizes and overlaps of audiences. Type: object (LocationInfo)</td>
+            <td>The country in which to calculate the sizes and overlaps of audiences. Type: object [LocationInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/LocationInfo)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>primaryAttribute</td>
-            <td>The audience attribute that should be intersected with all other eligible audiences. This must be an Affinity or In-Market UserInterest, an AgeRange or a Gender. Type: object (AudienceInsightsAttribute)</td>
+            <td>The audience attribute that should be intersected with all other eligible audiences. This must be an Affinity or In-Market UserInterest, an AgeRange or a Gender. Type: object [AudienceInsightsAttribute](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AudienceInsightsAttribute)</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>dimensions[]</td>
-            <td>The types of attributes of which to calculate the overlap with the primaryAttribute. The values must be a subset of AFFINITY_USER_INTEREST, IN_MARKET_USER_INTEREST, AGE_RANGE and GENDER. Type: enum (AudienceInsightsDimension)</td>
+            <td>dimensions</td>
+            <td>The types of attributes of which to calculate the overlap with the primaryAttribute. The values must be a subset of AFFINITY_USER_INTEREST, IN_MARKET_USER_INTEREST, AGE_RANGE and GENDER. Type: enum [AudienceInsightsDimension](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AudienceInsightsDimension)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1760,6 +2511,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.listAccessibleCustomers"
     Returns resource names of customers directly accessible by the user authenticating the call.
     <table>
@@ -1769,6 +2533,19 @@ To use the Google Ads connector, first create the connection with your configura
             <th>Required</th>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.invoices.list"
     Returns all invoices associated with a billing setup, for a given month.
     <table>
@@ -1782,7 +2559,35 @@ To use the Google Ads connector, first create the connection with your configura
             <td>The ID of the customer to fetch invoices for.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>billingSetup</td>
+            <td>The billing setup resource name of the requested invoices.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>issueYear</td>
+            <td>The issue year to retrieve invoices, in yyyy format. Only invoices issued in 2019 or later can be retrieved.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>issueMonth</td>
+            <td>The issue month to retrieve invoices.</td>
+            <td>No</td>
+        </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.assetSetAssets.mutate"
     Creates, updates or removes asset set assets. Operation statuses are returned.
     <table>
@@ -1798,7 +2603,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual asset set assets. Type: object (AssetSetAssetOperation)</td>
+            <td>The list of operations to perform on individual asset set assets. Type: object [AssetSetAssetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetSetAssetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1813,10 +2618,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.uploadCallConversions"
     Processes the given call conversions.
     <table>
@@ -1831,8 +2649,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>conversions[]</td>
-            <td>The conversions that are being uploaded. Type: object (CallConversion)</td>
+            <td>conversions</td>
+            <td>The conversions that are being uploaded. Type: object [CallConversion](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CallConversion)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1846,6 +2664,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.sharedSets.mutate"
     Creates, updates, or removes shared sets. Operation statuses are returned.
     <table>
@@ -1861,7 +2692,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual shared sets. Type: object (SharedSetOperation)</td>
+            <td>The list of operations to perform on individual shared sets. Type: object [SharedSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SharedSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1876,10 +2707,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignSharedSets.mutate"
     Creates or removes campaign shared sets. Operation statuses are returned.
     <table>
@@ -1895,7 +2739,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign shared sets. Type: object (CampaignSharedSetOperation)</td>
+            <td>The list of operations to perform on individual campaign shared sets. Type: object [CampaignSharedSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignSharedSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -1910,10 +2754,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerSkAdNetworkConversionValueSchemas.mutate"
     Creates or updates the CustomerSkAdNetworkConversionValueSchema.
     <table>
@@ -1925,11 +2782,11 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>customerId</td>
             <td>The ID of the customer whose shared sets are being modified.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform. Type: object (CustomerSkAdNetworkConversionValueSchemaOperation)</td>
+            <td>The operation to perform. Type: object [CustomerSkAdNetworkConversionValueSchemaOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerSkAdNetworkConversionValueSchemaOperation)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -1943,6 +2800,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.createCustomerClient"
     Creates a new client under manager. The new client customer is returned.
     <table>
@@ -1958,12 +2828,12 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>customerClient</td>
-            <td>The new client customer to create. The resource name on this customer will be ignored. Type: object (Customer)</td>
+            <td>The new client customer to create. The resource name on this customer will be ignored. Type: object [Customer](https://developers.google.com/google-ads/api/rest/reference/rest/v17/Customer)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>accessRole</td>
-            <td>The proposed role of user on the created client customer. Accessible only to customers on the allow-list. Type: enum (AccessRole)</td>
+            <td>The proposed role of user on the created client customer. Accessible only to customers on the allow-list. Type: enum [AccessRole](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AccessRole)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -1977,6 +2847,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.productLinkInvitations.create"
     Creates a product link invitation.
     <table>
@@ -1992,10 +2875,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>productLinkInvitation</td>
-            <td>The product link invitation to be created. Type: object (ProductLinkInvitation)</td>
+            <td>The product link invitation to be created. Type: object [ProductLinkInvitation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ProductLinkInvitation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customConversionGoals.mutate"
     Creates, updates or removes custom conversion goals. Operation statuses are returned.
     <table>
@@ -2011,7 +2907,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual custom conversion goal. Type: object (CustomConversionGoalOperation)</td>
+            <td>The list of operations to perform on individual custom conversion goal. Type: object [CustomConversionGoalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomConversionGoalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2021,10 +2917,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerLabels.mutate"
     Creates and removes customer-label relationships. Operation statuses are returned.
     <table>
@@ -2040,7 +2949,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on customer-label relationships. Type: object (CustomerLabelOperation)</td>
+            <td>The list of operations to perform on customer-label relationships. Type: object [CustomerLabelOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerLabelOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2054,6 +2963,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerAssets.mutate"
     Creates, updates, or removes customer assets. Operation statuses are returned.
     <table>
@@ -2069,7 +2991,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer assets. Type: object (CustomerAssetOperation)</td>
+            <td>The list of operations to perform on individual customer assets. Type: object [CustomerAssetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerAssetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2084,10 +3006,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.ads.mutate"
     Updates ads. Operation statuses are returned. Updating ads is not supported for TextAd, ExpandedDynamicSearchAd, GmailAd and ImageAd.
     <table>
@@ -2103,7 +3038,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ads. Type: object (AdOperation)</td>
+            <td>The list of operations to perform on individual ads. Type: object [AdOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2113,7 +3048,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -2122,6 +3057,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experiments.graduateExperiment"
     Graduates an experiment to a full campaign.
     <table>
@@ -2136,8 +3084,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>campaignBudgetMappings[]</td>
-            <td>List of campaign budget mappings for graduation. Each campaign that appears here will graduate, and will be assigned a new budget that is paired with it in the mapping. The maximum size is one. Type: object (CampaignBudgetMapping)</td>
+            <td>campaignBudgetMappings</td>
+            <td>List of campaign budget mappings for graduation. Each campaign that appears here will graduate, and will be assigned a new budget that is paired with it in the mapping. The maximum size is one. Type: object [CampaignBudgetMapping](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignBudgetMapping)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2146,6 +3094,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.suggestSmartCampaignAd"
     Suggests a Smart campaign ad compatible with the Ad family of resources, based on data points such as targeting and the business to advertise.
     <table>
@@ -2161,10 +3122,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>suggestionInfo</td>
-            <td>Inputs used to suggest a Smart campaign ad. Required fields: finalUrl, languageCode, keywordThemes. Optional but recommended fields to improve the quality of the suggestion: business_setting and geo_target. Type: object (SmartCampaignSuggestionInfo)</td>
+            <td>Inputs used to suggest a Smart campaign ad. Required fields: finalUrl, languageCode, keywordThemes. Optional but recommended fields to improve the quality of the suggestion: business_setting and geo_target. Type: object [SmartCampaignSuggestionInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SmartCampaignSuggestionInfo)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.experiments.scheduleExperiment"
     Schedule an experiment. The in design campaign will be converted into a real campaign (called the experiment campaign) that will begin serving ads if successfully created.
     <table>
@@ -2184,6 +3158,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.feedItemSetLinks.mutate"
     Creates, updates, or removes feed item set links.
     <table>
@@ -2199,7 +3186,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual feed item set links. Type: object (FeedItemSetLinkOperation)</td>
+            <td>The list of operations to perform on individual feed item set links. Type: object [FeedItemSetLinkOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FeedItemSetLinkOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2213,6 +3200,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.biddingDataExclusions.mutate"
     Creates, updates, or removes data exclusions. Operation statuses are returned.
     <table>
@@ -2228,7 +3228,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual data exclusions. Type: object (BiddingDataExclusionOperation)</td>
+            <td>The list of operations to perform on individual data exclusions. Type: object [BiddingDataExclusionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BiddingDataExclusionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2243,10 +3243,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.productLinks.remove"
     Removes a product link.
     <table>
@@ -2271,6 +3284,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.recommendations.dismiss"
     Dismisses given recommendations.
     <table>
@@ -2286,7 +3312,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to dismiss recommendations. If partialFailure=false all recommendations should be of the same type There is a limit of 100 operations per request. Type: object (DismissRecommendationOperation)</td>
+            <td>The list of operations to dismiss recommendations. If partialFailure=false all recommendations should be of the same type There is a limit of 100 operations per request. Type: object [DismissRecommendationOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/DismissRecommendationOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2295,6 +3321,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.assetGroups.mutate"
     Creates, updates or removes asset groups. Operation statuses are returned.
     <table>
@@ -2310,7 +3349,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual asset groups. Type: object (AssetGroupOperation)</td>
+            <td>The list of operations to perform on individual asset groups. Type: object [AssetGroupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetGroupOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2319,6 +3358,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerClientLinks.mutate"
     Creates or updates a customer client link. Operation statuses are returned.
     <table>
@@ -2334,7 +3386,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on the individual CustomerClientLink. Type: object (CustomerClientLinkOperation)</td>
+            <td>The operation to perform on the individual CustomerClientLink. Type: object [CustomerClientLinkOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerClientLinkOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2343,6 +3395,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerFeeds.mutate"
     Creates, updates, or removes customer feeds. Operation statuses are returned.
     <table>
@@ -2358,7 +3423,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer feeds. Type: object (CustomerFeedOperation)</td>
+            <td>The list of operations to perform on individual customer feeds. Type: object [CustomerFeedOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerFeedOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2373,10 +3438,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.sharedCriteria.mutate"
     Creates or removes shared criteria. Operation statuses are returned.
     <table>
@@ -2392,7 +3470,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual shared criteria. Type: object (SharedCriterionOperation)</td>
+            <td>The list of operations to perform on individual shared criteria. Type: object [SharedCriterionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SharedCriterionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2407,10 +3485,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateAudienceCompositionInsights"
     Returns a collection of attributes that are represented in an audience of interest, with metrics that compare each attribute's share of the audience with its share of a baseline audience.
     <table>
@@ -2426,12 +3517,12 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>audience</td>
-            <td>The audience of interest for which insights are being requested. Type: object (InsightsAudience)</td>
+            <td>The audience of interest for which insights are being requested. Type: object [InsightsAudience](https://developers.google.com/google-ads/api/rest/reference/rest/v17/InsightsAudience)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>baselineAudience</td>
-            <td>The baseline audience to which the audience of interest is being compared. Type: object (InsightsAudience)</td>
+            <td>The baseline audience to which the audience of interest is being compared. Type: object [InsightsAudience](https://developers.google.com/google-ads/api/rest/reference/rest/v17/InsightsAudience)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -2440,8 +3531,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
         <tr>
-            <td>dimensions[]</td>
-            <td>The audience dimensions for which composition insights should be returned. Type: enum (AudienceInsightsDimension)</td>
+            <td>dimensions</td>
+            <td>The audience dimensions for which composition insights should be returned. Type: enum [AudienceInsightsDimension](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AudienceInsightsDimension)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2450,6 +3541,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.suggestKeywordThemes"
     Suggests keyword themes to advertise on.
     <table>
@@ -2465,10 +3569,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>suggestionInfo</td>
-            <td>Information to get keyword theme suggestions. Required fields: Type: object (SmartCampaignSuggestionInfo)</td>
+            <td>Information to get keyword theme suggestions. Required fields: Type: object [SmartCampaignSuggestionInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SmartCampaignSuggestionInfo)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.offlineUserDataJobs.addOperations"
     Adds operations to the offline user data job.
     <table>
@@ -2484,7 +3601,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to be done. Type: object (OfflineUserDataJobOperation)</td>
+            <td>The list of operations to be done. Type: object [OfflineUserDataJobOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/OfflineUserDataJobOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2503,6 +3620,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.batchJobs.listResults"
     Returns the results of the batch job. The job must be done. Supports standard list paging.
     <table>
@@ -2516,7 +3646,35 @@ To use the Google Ads connector, first create the connection with your configura
             <td>The resource name of the batch job whose results are being listed.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>pageToken</td>
+            <td>Token of the page to retrieve. If not specified, the first page of results will be returned. Use the value obtained fromnextPageTokenin the previous response in order to request the next page of results.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>pageSize</td>
+            <td>Number of elements to retrieve in a single page. When a page request is too large, the server may decide to further limit the number of returned resources.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>responseContentType</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned.</td>
+            <td>No</td>
+        </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.operations.cancel"
     Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returnsgoogle.rpc.Code.UNIMPLEMENTED. Clients can useOperations.GetOperationor other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with anOperation.errorvalue with agoogle.rpc.Status.codeof 1, corresponding toCode.CANCELLED.
     <table>
@@ -2528,9 +3686,22 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>name</td>
             <td>The name of the operation resource to be cancelled.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.googleAds.search"
     Returns all rows that match the search query.
     <table>
@@ -2571,10 +3742,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>summaryRowSetting</td>
-            <td>Determines whether a summary row will be returned. By default, summary row is not returned. If requested, the summary row will be sent in a response by itself after all other query results are returned. Type: enum (SummaryRowSetting)</td>
+            <td>Determines whether a summary row will be returned. By default, summary row is not returned. If requested, the summary row will be sent in a response by itself after all other query results are returned. Type: enum [SummaryRowSetting](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SummaryRowSetting)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerNegativeCriteria.mutate"
     Creates or removes criteria. Operation statuses are returned.
     <table>
@@ -2590,7 +3774,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual criteria. Type: object (CustomerNegativeCriterionOperation)</td>
+            <td>The list of operations to perform on individual criteria. Type: object [CustomerNegativeCriterionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerNegativeCriterionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2605,10 +3789,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateKeywordForecastMetrics"
     Returns metrics (such as impressions, clicks, total cost) of a keyword forecast for the given campaign.
     <table>
@@ -2620,16 +3817,16 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>customerId</td>
             <td>The ID of the customer.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
         <tr>
             <td>forecastPeriod</td>
-            <td>The date range for the forecast. The start date must be in the future and end date must be within 1 year from today. The reference timezone used is the one of the Google Ads account belonging to the customer. If not set, a default date range from next Sunday to the following Saturday will be used. Type: object (DateRange)</td>
+            <td>The date range for the forecast. The start date must be in the future and end date must be within 1 year from today. The reference timezone used is the one of the Google Ads account belonging to the customer. If not set, a default date range from next Sunday to the following Saturday will be used. Type: object [DateRange](https://developers.google.com/google-ads/api/rest/reference/rest/v17/DateRange)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>campaign</td>
-            <td>The campaign used in the forecast. Type: object (CampaignToForecast)</td>
+            <td>The campaign used in the forecast. Type: object [CampaignToForecast](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignToForecast)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2638,6 +3835,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.feedItemTargets.mutate"
     Creates or removes feed item targets. Operation statuses are returned.
     <table>
@@ -2653,7 +3863,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual feed item targets. Type: object (FeedItemTargetOperation)</td>
+            <td>The list of operations to perform on individual feed item targets. Type: object [FeedItemTargetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FeedItemTargetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2663,7 +3873,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -2672,6 +3882,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignBudgets.mutate"
     Creates, updates, or removes campaign budgets. Operation statuses are returned.
     <table>
@@ -2687,7 +3910,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign budgets. Type: object (CampaignBudgetOperation)</td>
+            <td>The list of operations to perform on individual campaign budgets. Type: object [CampaignBudgetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignBudgetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2702,10 +3925,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.suggestBrands"
     Rpc to return a list of matching brands based on a prefix for this customer.
     <table>
@@ -2720,7 +3956,7 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>selectedBrands[]</td>
+            <td>selectedBrands</td>
             <td>Optional. Ids of the brands already selected by advertisers. They will be excluded in response. These are expected to be brand ids not brand names. Type: string</td>
             <td>No</td>
         </tr>
@@ -2730,6 +3966,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignDrafts.listAsyncErrors"
     Returns all errors that occurred during CampaignDraft promote. Throws an error if called before campaign draft is promoted. Supports standard list paging.
     <table>
@@ -2743,7 +3992,30 @@ To use the Google Ads connector, first create the connection with your configura
             <td>The name of the campaign draft from which to retrieve the async errors.</td>
             <td>Yes</td>
         </tr>
+        <tr>
+            <td>pageToken</td>
+            <td>Token of the page to retrieve. If not specified, the first page of results will be returned. Use the value obtained fromnextPageTokenin the previous response in order to request the next page of results.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>pageSize</td>
+            <td>Number of elements to retrieve in a single page. When a page request is too large, the server may decide to further limit the number of returned resources.</td>
+            <td>No</td>
+        </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerManagerLinks.moveManagerLink"
     Moves a client customer to a new manager customer. This simplifies the complex request that requires two operations to move a client customer to a new manager, for example: 1. Update operation with Status INACTIVE (previous manager) and, 2. Update operation with Status ACTIVE (new manager).
     <table>
@@ -2773,6 +4045,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.generateKeywordHistoricalMetrics"
     Returns a list of keyword historical metrics.
     <table>
@@ -2784,10 +4069,10 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>customerId</td>
             <td>The ID of the customer with the recommendation.</td>
-            <td>No</td>
+            <td>Yes</td>
         </tr>
         <tr>
-            <td>keywords[]</td>
+            <td>keywords</td>
             <td>A list of keywords to get historical metrics. Not all inputs will be returned as a result of near-exact deduplication. For example, if stats for "car" and "cars" are requested, only "car" will be returned. A maximum of 10,000 keywords can be used. Type: string</td>
             <td>No</td>
         </tr>
@@ -2797,23 +4082,23 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
         <tr>
-            <td>geoTargetConstants[]</td>
+            <td>geoTargetConstants</td>
             <td>The resource names of the location to target. Maximum is 10. An empty list MAY be used to specify all targeting geos. Type: string</td>
             <td>No</td>
         </tr>
         <tr>
             <td>keywordPlanNetwork</td>
-            <td>Targeting network. If not set, Google Search And Partners Network will be used. Type: enum (KeywordPlanNetwork)</td>
+            <td>Targeting network. If not set, Google Search And Partners Network will be used. Type: enum [KeywordPlanNetwork](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanNetwork)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>aggregateMetrics</td>
-            <td>The aggregate fields to include in response. Type: object (KeywordPlanAggregateMetrics)</td>
+            <td>The aggregate fields to include in response. Type: object [KeywordPlanAggregateMetrics](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanAggregateMetrics)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>historicalMetricsOptions</td>
-            <td>The options for historical metrics data. Type: object (HistoricalMetricsOptions)</td>
+            <td>The options for historical metrics data. Type: object [HistoricalMetricsOptions](https://developers.google.com/google-ads/api/rest/reference/rest/v17/HistoricalMetricsOptions)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -2822,6 +4107,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.keywordPlanAdGroupKeywords.mutate"
     Creates, updates, or removes Keyword Plan ad group keywords. Operation statuses are returned.
     <table>
@@ -2837,7 +4135,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual Keyword Plan ad group keywords. Type: object (KeywordPlanAdGroupKeywordOperation)</td>
+            <td>The list of operations to perform on individual Keyword Plan ad group keywords. Type: object [KeywordPlanAdGroupKeywordOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanAdGroupKeywordOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2851,6 +4149,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerConversionGoals.mutate"
     Creates, updates or removes customer conversion goals. Operation statuses are returned.
     <table>
@@ -2866,7 +4177,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer conversion goal. Type: object (CustomerConversionGoalOperation)</td>
+            <td>The list of operations to perform on individual customer conversion goal. Type: object [CustomerConversionGoalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerConversionGoalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2875,6 +4186,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.recommendationSubscriptions.mutateRecommendationSubscription"
     Mutates given subscription with corresponding apply parameters.
     <table>
@@ -2890,7 +4214,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of create or update operations. Type: object (RecommendationSubscriptionOperation)</td>
+            <td>The list of create or update operations. Type: object [RecommendationSubscriptionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/RecommendationSubscriptionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2905,10 +4229,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. The mutable resource will only be returned if the resource has the appropriate response field. For example, MutateCampaignResult.campaign. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. The mutable resource will only be returned if the resource has the appropriate response field. For example, MutateCampaignResult.campaign. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.getIdentityVerification"
     Returns Identity Verification information.
     <table>
@@ -2923,6 +4260,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.conversionActions.mutate"
     Creates, updates or removes conversion actions. Operation statuses are returned.
     <table>
@@ -2938,7 +4288,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual conversion actions. Type: object (ConversionActionOperation)</td>
+            <td>The list of operations to perform on individual conversion actions. Type: object [ConversionActionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionActionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2953,10 +4303,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.smartCampaignSettings.mutate"
     Updates Smart campaign settings for campaigns.
     <table>
@@ -2972,7 +4335,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual Smart campaign settings. Type: object (SmartCampaignSettingOperation)</td>
+            <td>The list of operations to perform on individual Smart campaign settings. Type: object [SmartCampaignSettingOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SmartCampaignSettingOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -2987,10 +4350,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignDrafts.promote"
     Promotes the changes in a draft back to the base campaign.
     <table>
@@ -3010,6 +4386,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.startIdentityVerification"
     Starts Identity Verification for a given verification program type.  Statuses are returned.
     <table>
@@ -3025,10 +4414,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>verificationProgram</td>
-            <td>The verification program type for which we want to start the verification. Type: enum (IdentityVerificationProgram)</td>
+            <td>The verification program type for which we want to start the verification. Type: enum [IdentityVerificationProgram](https://developers.google.com/google-ads/api/rest/reference/rest/v17/IdentityVerificationProgram)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.biddingSeasonalityAdjustments.mutate"
     Creates, updates, or removes seasonality adjustments. Operation statuses are returned.
     <table>
@@ -3044,7 +4446,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual seasonality adjustments. Type: object (BiddingSeasonalityAdjustmentOperation)</td>
+            <td>The list of operations to perform on individual seasonality adjustments. Type: object [BiddingSeasonalityAdjustmentOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BiddingSeasonalityAdjustmentOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3059,10 +4461,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.accountLinks.mutate"
     Creates or removes an account link. From V5, create is not supported through AccountLinkService.MutateAccountLink. Use AccountLinkService.CreateAccountLink instead.
     <table>
@@ -3078,7 +4493,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on the link. Type: object (AccountLinkOperation)</td>
+            <td>The operation to perform on the link. Type: object [AccountLinkOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AccountLinkOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3092,6 +4507,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.googleAds.searchStream"
     Returns all rows that match the search stream query.
     <table>
@@ -3112,10 +4540,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>summaryRowSetting</td>
-            <td>Determines whether a summary row will be returned. By default, summary row is not returned. If requested, the summary row will be sent in a response by itself after all other query results are returned. Type: enum (SummaryRowSetting)</td>
+            <td>Determines whether a summary row will be returned. By default, summary row is not returned. If requested, the summary row will be sent in a response by itself after all other query results are returned. Type: enum [SummaryRowSetting](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SummaryRowSetting)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.batchJobs.mutate"
     Mutates a batch job.
     <table>
@@ -3131,10 +4572,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on an individual batch job. Type: object (BatchJobOperation)</td>
+            <td>The operation to perform on an individual batch job. Type: object [BatchJobOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BatchJobOperation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "geoTargetConstants.suggest"
     Returns GeoTargetConstant suggestions by location name or by resource name.
     <table>
@@ -3155,15 +4609,28 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>locationNames</td>
-            <td>The location names to search by. At most 25 names can be set. Type: object (LocationNames)</td>
+            <td>The location names to search by. At most 25 names can be set. Type: object [LocationNames](https://developers.google.com/google-ads/api/rest/reference/rest/v17/LocationNames)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>geoTargets</td>
-            <td>The geo target constant resource names to filter by. Type: object (GeoTargets)</td>
+            <td>The geo target constant resource names to filter by. Type: object [GeoTargets](https://developers.google.com/google-ads/api/rest/reference/rest/v17/GeoTargets)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "audienceInsights.listInsightsEligibleDates"
     Lists date ranges for which audience insights data can be requested.
     <table>
@@ -3173,6 +4640,19 @@ To use the Google Ads connector, first create the connection with your configura
             <th>Required</th>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupBidModifiers.mutate"
     Creates, updates, or removes ad group bid modifiers. Operation statuses are returned.
     <table>
@@ -3188,7 +4668,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group bid modifiers. Type: object (AdGroupBidModifierOperation)</td>
+            <td>The list of operations to perform on individual ad group bid modifiers. Type: object [AdGroupBidModifierOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupBidModifierOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3203,10 +4683,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.conversionGoalCampaignConfigs.mutate"
     Creates, updates or removes conversion goal campaign config. Operation statuses are returned.
     <table>
@@ -3222,7 +4715,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual conversion goal campaign config. Type: object (ConversionGoalCampaignConfigOperation)</td>
+            <td>The list of operations to perform on individual conversion goal campaign config. Type: object [ConversionGoalCampaignConfigOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionGoalCampaignConfigOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3232,10 +4725,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.accountBudgetProposals.mutate"
     Creates, updates, or removes account budget proposals. Operation statuses are returned.
     <table>
@@ -3251,7 +4757,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on an individual account-level budget proposal. Type: object (AccountBudgetProposalOperation)</td>
+            <td>The operation to perform on an individual account-level budget proposal. Type: object [AccountBudgetProposalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AccountBudgetProposalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3260,6 +4766,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerAssetSets.mutate"
     Creates, or removes customer asset sets. Operation statuses are returned.
     <table>
@@ -3275,7 +4794,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer asset sets. Type: object (CustomerAssetSetOperation)</td>
+            <td>The list of operations to perform on individual customer asset sets. Type: object [CustomerAssetSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerAssetSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3290,10 +4809,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupAds.mutate"
     Creates, updates, or removes ads. Operation statuses are returned.
     <table>
@@ -3309,7 +4841,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ads. Type: object (AdGroupAdOperation)</td>
+            <td>The list of operations to perform on individual ads. Type: object [AdGroupAdOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupAdOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3324,10 +4856,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.batchJobs.addOperations"
     Add operations to the batch job.
     <table>
@@ -3347,11 +4892,24 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
         <tr>
-            <td>mutateoperations</td>
-            <td>The list of mutates being added. Type: object (MutateOperation)</td>
+            <td>mutateOperations</td>
+            <td>The list of mutates being added. Type: object [MutateOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/MutateOperation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.accountLinks.create"
     Creates an account link.
     <table>
@@ -3367,10 +4925,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>accountLink</td>
-            <td>The account link to be created. Type: object (AccountLink)</td>
+            <td>The account link to be created. Type: object [AccountLink](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AccountLink)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.mutate"
     Updates a customer. Operation statuses are returned.
     <table>
@@ -3386,7 +4957,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform on the customer Type: object (CustomerOperation)</td>
+            <td>The operation to perform on the customer Type: object [CustomerOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3396,10 +4967,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.recommendations.generate"
     Generates Recommendations based off the requested recommendationTypes.
     <table>
@@ -3414,18 +4998,18 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>recommendationTypes[]</td>
-            <td>List of eligible recommendationTypes to generate. If the uploaded criteria isn't sufficient to make a recommendation, or the campaign is already in the recommended state, no recommendation will be returned for that type. Generally, a recommendation is returned if all required fields for that recommendationType are uploaded, but there are cases where this is still not sufficient. Type: enum (RecommendationType)</td>
+            <td>recommendationTypes</td>
+            <td>List of eligible recommendationTypes to generate. If the uploaded criteria isn't sufficient to make a recommendation, or the campaign is already in the recommended state, no recommendation will be returned for that type. Generally, a recommendation is returned if all required fields for that recommendationType are uploaded, but there are cases where this is still not sufficient. Type: enum [RecommendationType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/RecommendationType)</td>
             <td>Yes</td>
         </tr>
         <tr>
             <td>advertisingChannelType</td>
-            <td>Advertising channel type of the campaign. The following advertisingChannelTypes are supported for recommendation generation: PERFORMANCE_MAX and SEARCH Type: enum (AdvertisingChannelType)</td>
+            <td>Advertising channel type of the campaign. The following advertisingChannelTypes are supported for recommendation generation: PERFORMANCE_MAX and SEARCH Type: enum [AdvertisingChannelType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdvertisingChannelType)</td>
             <td>Yes</td>
         </tr>
         <tr>
-            <td>adGroupInfo[]</td>
-            <td>Optional. Current AdGroup Information. Supports information from a single AdGroup. This field is optional for the following recommendationTypes: KEYWORD Type: object (AdGroupInfo)</td>
+            <td>adGroupInfo</td>
+            <td>Optional. Current AdGroup Information. Supports information from a single AdGroup. This field is optional for the following recommendationTypes: KEYWORD Type: object [AdGroupInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupInfo)</td>
             <td>No</td>
         </tr>
         <tr>
@@ -3435,20 +5019,33 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>conversionTrackingStatus</td>
-            <td>Optional. Current conversion tracking status. This field is necessary for the following recommendationTypes: MAXIMIZE_CLICKS_OPT_IN, MAXIMIZE_CONVERSIONS_OPT_IN, MAXIMIZE_CONVERSION_VALUE_OPT_IN, SET_TARGET_CPA, SET_TARGET_ROAS, TARGET_CPA_OPT_IN, TARGET_ROAS_OPT_IN Type: enum (ConversionTrackingStatus)</td>
+            <td>Optional. Current conversion tracking status. This field is necessary for the following recommendationTypes: MAXIMIZE_CLICKS_OPT_IN, MAXIMIZE_CONVERSIONS_OPT_IN, MAXIMIZE_CONVERSION_VALUE_OPT_IN, SET_TARGET_CPA, SET_TARGET_ROAS, TARGET_CPA_OPT_IN, TARGET_ROAS_OPT_IN Type: enum [ConversionTrackingStatus](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionTrackingStatus)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>biddingInfo</td>
-            <td>Optional. Current bidding information of the campaign. This field is necessary for the following recommendationTypes: MAXIMIZE_CLICKS_OPT_IN, MAXIMIZE_CONVERSIONS_OPT_IN, MAXIMIZE_CONVERSION_VALUE_OPT_IN, SET_TARGET_CPA, SET_TARGET_ROAS, TARGET_CPA_OPT_IN, TARGET_ROAS_OPT_IN Type: object (BiddingInfo)</td>
+            <td>Optional. Current bidding information of the campaign. This field is necessary for the following recommendationTypes: MAXIMIZE_CLICKS_OPT_IN, MAXIMIZE_CONVERSIONS_OPT_IN, MAXIMIZE_CONVERSION_VALUE_OPT_IN, SET_TARGET_CPA, SET_TARGET_ROAS, TARGET_CPA_OPT_IN, TARGET_ROAS_OPT_IN Type: object [BiddingInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BiddingInfo)</td>
             <td>No</td>
         </tr>
         <tr>
             <td>seedInfo</td>
-            <td>Optional. Seed information for Keywords. This field is necessary for the following recommendationTypes: KEYWORD Type: object (SeedInfo)</td>
+            <td>Optional. Seed information for Keywords. This field is necessary for the following recommendationTypes: KEYWORD Type: object [SeedInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SeedInfo)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.userListCustomerTypes.mutate"
     Attach or remove user list customer types. Operation statuses are returned.
     <table>
@@ -3464,7 +5061,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on the user list customer types. Type: object (UserListCustomerTypeOperation)</td>
+            <td>The list of operations to perform on the user list customer types. Type: object [UserListCustomerTypeOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/UserListCustomerTypeOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3478,6 +5075,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupCriterionLabels.mutate"
     Creates and removes ad group criterion labels. Operation statuses are returned.
     <table>
@@ -3493,7 +5103,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on ad group criterion labels. Type: object (AdGroupCriterionLabelOperation)</td>
+            <td>The list of operations to perform on ad group criterion labels. Type: object [AdGroupCriterionLabelOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupCriterionLabelOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3507,6 +5117,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customInterests.mutate"
     Creates or updates custom interests. Operation statuses are returned.
     <table>
@@ -3522,7 +5145,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual custom interests. Type: object (CustomInterestOperation)</td>
+            <td>The list of operations to perform on individual custom interests. Type: object [CustomInterestOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomInterestOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3531,6 +5154,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.keywordPlanAdGroups.mutate"
     Creates, updates, or removes Keyword Plan ad groups. Operation statuses are returned.
     <table>
@@ -3546,7 +5182,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual Keyword Plan ad groups. Type: object (KeywordPlanAdGroupOperation)</td>
+            <td>The list of operations to perform on individual Keyword Plan ad groups. Type: object [KeywordPlanAdGroupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanAdGroupOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3560,6 +5196,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.keywordPlans.mutate"
     Creates, updates, or removes keyword plans. Operation statuses are returned.
     <table>
@@ -3575,7 +5224,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual keyword plans. Type: object (KeywordPlanOperation)</td>
+            <td>The list of operations to perform on individual keyword plans. Type: object [KeywordPlanOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3589,6 +5238,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.paymentsAccounts.list"
     Returns all payments accounts associated with all managers between the login customer ID and specified serving customer in the hierarchy, inclusive.
     <table>
@@ -3603,6 +5265,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupAds.removeAutomaticallyCreatedAssets"
     Remove automatically created assets from an ad.
     <table>
@@ -3617,11 +5292,24 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>assetsWithFieldType[]</td>
-            <td>List of assets with field type to be removed from the AdGroupAd. Type: object (AssetsWithFieldType)</td>
+            <td>assetsWithFieldType</td>
+            <td>List of assets with field type to be removed from the AdGroupAd. Type: object [AssetsWithFieldType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AssetsWithFieldType)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.conversionValueRuleSets.mutate"
     Creates, updates or removes conversion value rule sets. Operation statuses are returned.
     <table>
@@ -3637,7 +5325,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual conversion value rule sets. Type: object (ConversionValueRuleSetOperation)</td>
+            <td>The list of operations to perform on individual conversion value rule sets. Type: object [ConversionValueRuleSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionValueRuleSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3652,10 +5340,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.suggestSmartCampaignBudgetOptions"
     Returns BudgetOption suggestions.
     <table>
@@ -3676,10 +5377,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>suggestionInfo</td>
-            <td>Information needed to get budget options Type: object (SmartCampaignSuggestionInfo)</td>
+            <td>Information needed to get budget options Type: object [SmartCampaignSuggestionInfo](https://developers.google.com/google-ads/api/rest/reference/rest/v17/SmartCampaignSuggestionInfo)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customerManagerLinks.mutate"
     Updates customer manager links. Operation statuses are returned.
     <table>
@@ -3695,7 +5409,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer manager links. Type: object (CustomerManagerLinkOperation)</td>
+            <td>The list of operations to perform on individual customer manager links. Type: object [CustomerManagerLinkOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerManagerLinkOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3704,6 +5418,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignLifecycleGoal.configureCampaignLifecycleGoals"
     Process the given campaign lifecycle configurations.
     <table>
@@ -3719,7 +5446,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform campaign lifecycle goal update. Type: object (CampaignLifecycleGoalOperation)</td>
+            <td>The operation to perform campaign lifecycle goal update. Type: object [CampaignLifecycleGoalOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignLifecycleGoalOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3728,6 +5455,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "listPlannableLocations"
     Returns the list of plannable locations (for example, countries).
     <table>
@@ -3737,6 +5477,19 @@ To use the Google Ads connector, first create the connection with your configura
             <th>Required</th>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.feeds.mutate"
     Creates, updates, or removes feeds. Operation statuses are returned.
     <table>
@@ -3752,7 +5505,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual feeds. Type: object (FeedOperation)</td>
+            <td>The list of operations to perform on individual feeds. Type: object [FeedOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/FeedOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3767,10 +5520,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroups.mutate"
     Creates, updates, or removes ad groups. Operation statuses are returned.
     <table>
@@ -3786,7 +5552,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad groups. Type: object (AdGroupOperation)</td>
+            <td>The list of operations to perform on individual ad groups. Type: object [AdGroupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3801,10 +5567,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignLabels.mutate"
     Creates and removes campaign-label relationships. Operation statuses are returned.
     <table>
@@ -3820,7 +5599,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on campaign-label relationships. Type: object (CampaignLabelOperation)</td>
+            <td>The list of operations to perform on campaign-label relationships. Type: object [CampaignLabelOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignLabelOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3834,6 +5613,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.keywordPlanCampaigns.mutate"
     Creates, updates, or removes Keyword Plan campaigns. Operation statuses are returned.
     <table>
@@ -3849,7 +5641,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual Keyword Plan campaigns. Type: object (KeywordPlanCampaignOperation)</td>
+            <td>The list of operations to perform on individual Keyword Plan campaigns. Type: object [KeywordPlanCampaignOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanCampaignOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3863,6 +5655,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.offlineUserDataJobs.create"
     Creates an offline user data job.
     <table>
@@ -3878,7 +5683,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>job</td>
-            <td>The offline user data job to be created. Type: object (OfflineUserDataJob)</td>
+            <td>The offline user data job to be created. Type: object [OfflineUserDataJob](https://developers.google.com/google-ads/api/rest/reference/rest/v17/OfflineUserDataJob)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3892,6 +5697,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignAssets.mutate"
     Creates, updates, or removes campaign assets. Operation statuses are returned.
     <table>
@@ -3907,7 +5725,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign assets. Type: object (CampaignAssetOperation)</td>
+            <td>The list of operations to perform on individual campaign assets. Type: object [CampaignAssetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignAssetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3922,10 +5740,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.uploadConversionAdjustments"
     Processes the given conversion adjustments.
     <table>
@@ -3940,8 +5771,8 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>conversionAdjustments[]</td>
-            <td>The conversion adjustments that are being uploaded. Type: object (ConversionAdjustment)</td>
+            <td>conversionAdjustments</td>
+            <td>The conversion adjustments that are being uploaded. Type: object [ConversionAdjustment](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionAdjustment)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3960,6 +5791,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.biddingStrategies.mutate"
     Creates, updates, or removes bidding strategies. Operation statuses are returned.
     <table>
@@ -3975,7 +5819,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual bidding strategies. Type: object (BiddingStrategyOperation)</td>
+            <td>The list of operations to perform on individual bidding strategies. Type: object [BiddingStrategyOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BiddingStrategyOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -3990,10 +5834,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.offlineUserDataJobs.run"
     Runs the offline user data job.
     <table>
@@ -4013,6 +5870,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignGroups.mutate"
     Creates, updates, or removes campaign groups. Operation statuses are returned.
     <table>
@@ -4028,7 +5898,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign groups. Type: object (CampaignGroupOperation)</td>
+            <td>The list of operations to perform on individual campaign groups. Type: object [CampaignGroupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignGroupOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4043,10 +5913,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupCriteria.mutate"
     Creates, updates, or removes criteria. Operation statuses are returned.
     <table>
@@ -4062,7 +5945,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual criteria. Type: object (AdGroupCriterionOperation)</td>
+            <td>The list of operations to perform on individual criteria. Type: object [AdGroupCriterionOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupCriterionOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4077,10 +5960,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "listPlannableProducts"
     Returns the list of per-location plannable YouTube ad formats with allowed targeting.
     <table>
@@ -4095,6 +5991,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupLabels.mutate"
     Creates and removes ad group labels. Operation statuses are returned.
     <table>
@@ -4110,7 +6019,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on ad group labels. Type: object (AdGroupLabelOperation)</td>
+            <td>The list of operations to perform on ad group labels. Type: object [AdGroupLabelOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupLabelOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4124,6 +6033,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupFeeds.mutate"
     Creates, updates, or removes ad group feeds. Operation statuses are returned.
     <table>
@@ -4139,7 +6061,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group feeds. Type: object (AdGroupFeedOperation)</td>
+            <td>The list of operations to perform on individual ad group feeds. Type: object [AdGroupFeedOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupFeedOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4154,10 +6076,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "googleAdsFields.search"
     Returns all fields that match the search query.
     <table>
@@ -4182,6 +6117,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupAssets.mutate"
     Creates, updates, or removes ad group assets. Operation statuses are returned.
     <table>
@@ -4197,7 +6145,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group assets. Type: object (AdGroupAssetOperation)</td>
+            <td>The list of operations to perform on individual ad group assets. Type: object [AdGroupAssetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupAssetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4212,10 +6160,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.customAudiences.mutate"
     Creates or updates custom audiences. Operation statuses are returned.
     <table>
@@ -4231,7 +6192,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual custom audiences. Type: object (CustomAudienceOperation)</td>
+            <td>The list of operations to perform on individual custom audiences. Type: object [CustomAudienceOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomAudienceOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4240,6 +6201,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupAssetSets.mutate"
     Creates, or removes ad group asset sets. Operation statuses are returned.
     <table>
@@ -4255,7 +6229,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group asset sets. Type: object (AdGroupAssetSetOperation)</td>
+            <td>The list of operations to perform on individual ad group asset sets. Type: object [AdGroupAssetSetOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupAssetSetOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4270,10 +6244,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupCustomizers.mutate"
     Creates, updates or removes ad group customizers. Operation statuses are returned.
     <table>
@@ -4289,7 +6276,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group customizers. Type: object (AdGroupCustomizerOperation)</td>
+            <td>The list of operations to perform on individual ad group customizers. Type: object [AdGroupCustomizerOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupCustomizerOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4304,10 +6291,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.localServices.appendLeadConversation"
     RPC to append Local Services Lead Conversation resources to Local Services Lead resources.
     <table>
@@ -4322,11 +6322,24 @@ To use the Google Ads connector, first create the connection with your configura
             <td>Yes</td>
         </tr>
         <tr>
-            <td>conversations[]</td>
-            <td>Conversations that are being appended. Type: object (Conversation)</td>
+            <td>conversations</td>
+            <td>Conversations that are being appended. Type: object [Conversation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/Conversation)</td>
             <td>Yes</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.conversionCustomVariables.mutate"
     Creates or updates conversion custom variables. Operation statuses are returned.
     <table>
@@ -4342,7 +6355,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual conversion custom variables. Type: object (ConversionCustomVariableOperation)</td>
+            <td>The list of operations to perform on individual conversion custom variables. Type: object [ConversionCustomVariableOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ConversionCustomVariableOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4357,10 +6370,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.adGroupExtensionSettings.mutate"
     Creates, updates, or removes ad group extension settings. Operation statuses are returned.
     <table>
@@ -4376,7 +6402,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual ad group extension settings. Type: object (AdGroupExtensionSettingOperation)</td>
+            <td>The list of operations to perform on individual ad group extension settings. Type: object [AdGroupExtensionSettingOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/AdGroupExtensionSettingOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4390,6 +6416,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.CustomerCustomizers.mutate"
     Creates, updates or removes customer customizers. Operation statuses are returned.
     <table>
@@ -4405,7 +6444,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual customer customizers. Type: object (CustomerCustomizerOperation)</td>
+            <td>The list of operations to perform on individual customer customizers. Type: object [CustomerCustomizerOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CustomerCustomizerOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4420,10 +6459,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaigns.mutate"
     Creates, updates, or removes campaigns. Operation statuses are returned.
     <table>
@@ -4439,7 +6491,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaigns. Type: object (CampaignOperation)</td>
+            <td>The list of operations to perform on individual campaigns. Type: object [CampaignOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4454,10 +6506,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.campaignExtensionSettings.mutate"
     Creates, updates, or removes campaign extension settings. Operation statuses are returned.
     <table>
@@ -4473,7 +6538,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual campaign extension settings. Type: object (CampaignExtensionSettingOperation)</td>
+            <td>The list of operations to perform on individual campaign extension settings. Type: object [CampaignExtensionSettingOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/CampaignExtensionSettingOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4488,10 +6553,23 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>responseContentType</td>
-            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum (ResponseContentType)</td>
+            <td>The response content type setting. Determines whether the mutable resource or just the resource name should be returned post mutation. Type: enum [ResponseContentType](https://developers.google.com/google-ads/api/rest/reference/rest/v17/ResponseContentType)</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.keywordPlanCampaignKeywords.mutate"
     Creates, updates, or removes Keyword Plan campaign keywords. Operation statuses are returned.
     <table>
@@ -4507,7 +6585,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operations</td>
-            <td>The list of operations to perform on individual Keyword Plan campaign keywords. Type: object (KeywordPlanCampaignKeywordOperation)</td>
+            <td>The list of operations to perform on individual Keyword Plan campaign keywords. Type: object [KeywordPlanCampaignKeywordOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/KeywordPlanCampaignKeywordOperation)</td>
             <td>Yes</td>
         </tr>
         <tr>
@@ -4521,6 +6599,19 @@ To use the Google Ads connector, first create the connection with your configura
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
+
 ??? note "customers.operations.list"
     Lists operations that match the specified filter in the request. If the server doesn't support this method, it returnsUNIMPLEMENTED.
     <table>
@@ -4532,6 +6623,33 @@ To use the Google Ads connector, first create the connection with your configura
         <tr>
             <td>name</td>
             <td>The name of the operation's parent resource.</td>
+            <td>Yes</td>
+        </tr>
+        <tr>
+            <td>filter</td>
+            <td>The standard list filter.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>pageSize</td>
+            <td>The standard list page size.</td>
+            <td>No</td>
+        </tr>
+        <tr>
+            <td>pageToken</td>
+            <td>The standard list page token.</td>
             <td>No</td>
         </tr>
     </table>
+
+    **Sample configuration**
+
+    ```xml
+    <>
+    ```
+ 
+    **Sample request**
+
+    ```json
+    {}
+    ```
