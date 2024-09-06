@@ -313,7 +313,7 @@ To use the Google Ads connector, first create the connection with your configura
         </tr>
         <tr>
             <td>operation</td>
-            <td>The operation to perform. Type: object [BillingSetupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/BillingSetupOperation)</td>
+            <td>The operation to perform. Type: object [BillingSetupOperation](https://developers.google.com/google-ads/api/rest/reference/rest/v17/customers.billingSetups/mutate#BillingSetupOperation)</td>
             <td>Yes</td>
         </tr>
     </table>
@@ -657,13 +657,34 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.userLists.mutate configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.customer_id)}</customerId>
+        <operations>{json-eval($.operations)}</operations>
+    </googleAdNetwork.customers.userLists.mutate>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "customer_id": "3411480876",
+        "operations": [
+            {
+                "create": {
+                    "type": "UNSPECIFIED",
+                    "name": "User list 1",
+                    "readOnly": true,
+                    "basicUserList": {
+                        "actions": [
+                            {
+                                "conversionAction": "customers/3411480876/conversionActions/6878226201"
+                            }
+                        ]
+                    }
+                }
+            }
+        ]
+    }
     ```
 
 ??? note "customers.generateKeywordIdeas"
@@ -2526,18 +2547,11 @@ To use the Google Ads connector, first create the connection with your configura
 
 ??? note "customers.listAccessibleCustomers"
     Returns resource names of customers directly accessible by the user authenticating the call.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-    </table>
 
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.listAccessibleCustomers configKey="GOOGLE_AD_NETWORK_CONNECTION_1"/>
     ```
  
     **Sample request**
@@ -2851,13 +2865,29 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.createCustomerClient configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.account_id)}</customerId>
+        <customerClient>{json-eval($.client_data)}</customerClient>
+        <accessRole>{json-eval($.accessRole)}</accessRole>
+        <validateOnly>{json-eval($.validateOnly)}</validateOnly>
+        <emailAddress>{json-eval($.emailAddress)}</emailAddress>
+    </googleAdNetwork.customers.createCustomerClient>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "account_id":"7786178578",
+        "accessRole": "STANDARD",
+        "validateOnly": "true",
+        "emailAddress":"test@test.com",
+        "client_data":{
+            "descriptiveName": "Client 1",
+            "currencyCode": "USD",
+            "timeZone": "America/New_York"
+        }
+    }
     ```
 
 ??? note "customers.productLinkInvitations.create"
@@ -3933,13 +3963,29 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.campaignBudgets.mutate configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.customer_id)}</customerId>
+        <operations>{json-eval($.operations)}</operations>
+    </googleAdNetwork.customers.campaignBudgets.mutate>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "customer_id": "2219111829",
+        "validateOnly": false,
+        "operations": [
+            {
+                "create": {
+                    "status": "UNSPECIFIED",
+                    "type": "STANDARD",
+                    "name": "Budget 1",
+                    "amountMicros":"10000"
+                }
+            }
+        ]
+    }
     ```
 
 ??? note "customers.suggestBrands"
@@ -4311,13 +4357,27 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.conversionActions.mutate configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.customer_id)}</customerId>
+        <operations>{json-eval($.operations)}</operations>
+    </googleAdNetwork.customers.conversionActions.mutate>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "customer_id": "5500480119",
+        "operations": [
+            {
+                "create": {
+                    "status": "ENABLED",
+                    "type": "AD_CALL",
+                    "name": "Conversion action 1"
+                }
+            }
+        ]
+    }
     ```
 
 ??? note "customers.smartCampaignSettings.mutate"
@@ -4622,29 +4682,30 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.geoTargetConstants.suggest configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <locationNames>{json-eval($.location_names)}</locationNames>
+    </googleAdNetwork.geoTargetConstants.suggest>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "location_names": {
+            "names":[
+                "Colombo"
+            ]
+        }
+    }
     ```
 
 ??? note "audienceInsights.listInsightsEligibleDates"
     Lists date ranges for which audience insights data can be requested.
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-    </table>
 
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.audienceInsights.listInsightsEligibleDates configKey="GOOGLE_AD_NETWORK_CONNECTION_1"/>
     ```
  
     **Sample request**
@@ -4975,13 +5036,27 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.mutate configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.customer_id)}</customerId>
+        <operation>{json-eval($.operation)}</operation>
+        <validateOnly>{json-eval($.validate_only)}</validateOnly>
+    </googleAdNetwork.customers.mutate>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "customer_id": "2219900119",
+        "validate_only": false,
+        "operation": {
+            "update": {
+                "resourceName": "customers/2219900119",
+                "descriptiveName": "MyClient Updated"
+            },
+            "updateMask": "descriptiveName"
+        }
+    }
     ```
 
 ??? note "customers.recommendations.generate"
@@ -5200,7 +5275,11 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.adGroups.mutate configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.customer_id)}</customerId>
+        <operations>{json-eval($.operations)}</operations>
+        <validateOnly>{json-eval($.validateOnly)}</validateOnly>
+    </googleAdNetwork.customers.adGroups.mutate>
     ```
  
     **Sample request**
@@ -5470,18 +5549,11 @@ To use the Google Ads connector, first create the connection with your configura
 
 ??? note "listPlannableLocations"
     Returns the list of plannable locations (for example, countries).
-    <table>
-        <tr>
-            <th>Parameter Name</th>
-            <th>Description</th>
-            <th>Required</th>
-        </tr>
-    </table>
 
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.listPlannableLocations configKey="GOOGLE_AD_NETWORK_CONNECTION_1"/>
     ```
  
     **Sample request**
@@ -5842,13 +5914,30 @@ To use the Google Ads connector, first create the connection with your configura
     **Sample configuration**
 
     ```xml
-    <>
+    <googleAdNetwork.customers.biddingStrategies.mutate configKey="GOOGLE_AD_NETWORK_CONNECTION_1">
+        <customerId>{json-eval($.customer_id)}</customerId>
+        <operations>{json-eval($.operations)}</operations>
+    </googleAdNetwork.customers.biddingStrategies.mutate>
     ```
  
     **Sample request**
 
     ```json
-    {}
+    {
+        "customer_id": "5519120659",
+        "operations": [
+            {
+                "create": {
+                    "name": "Test Bidding strategy 1",
+                    "maximizeConversionValue":{
+                        "targetRoas":5,
+                        "cpcBidCeilingMicros":"100000",
+                        "cpcBidFloorMicros":"80000"
+                    }
+                }
+            }
+        ]
+    }
     ```
 
 ??? note "customers.offlineUserDataJobs.run"
