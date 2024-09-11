@@ -694,6 +694,9 @@ nav:
               - Jira Connector Overview: reference/connectors/jira-connector/jira-connector-overview.md
               - Jira Connector Example: reference/connectors/jira-connector/jira-connector-example.md
               - Jira Connector Reference: reference/connectors/jira-connector/jira-connector-config.md
+          - Facebook Ads Connector:
+              - Facebook Ads Overview: reference/connectors/facebook-ads-connector/facebook-ads-overview.md
+              - Facebook Ads Reference: reference/connectors/facebook-ads-connector/facebook-ads-configuration.md
           - FHIR Connector:
               - FHIR Overview: reference/connectors/fhir-connector/fhir-connector-overview.md
               - FHIR Example: reference/connectors/fhir-connector/fhir-connector-example.md
@@ -1053,6 +1056,6 @@ extra:
       version: 1.2.0-1
       git_tag: v1.2.0.1
   site_version: 4.3.0
-  #base_path: http://localhost:8000/en/latest
-  base_path: https://mi.docs.wso2.com/en/4.3.0
+  base_path: http://localhost:8000/en/latest
+  #base_path: https://mi.docs.wso2.com/en/4.3.0
   envoy_path: https://www.envoyproxy.io/docs/envoy/v1.24.1
