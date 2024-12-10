@@ -1,15 +1,12 @@
 # Elastic Stack-Based Operational Analytics for Micro Integrator
 
-As an alternative for WSO2 EI Analytics, from version 4.2.0 onwards, Micro Integrator now supports publishing operational analytics for Elastic Stack. As a part of the feature, WSO2 will provide some dashboards that include operational data from the following entities.
+WSO2 Micro Integrator now supports publishing operational analytics for Elastic Stack. As a part of the feature, WSO2 will provide some dashboards that include operational data from the following entities.
 
 - APIs
 - Sequences
 - Endpoints
 - Inbound Endpoints
 - Proxy Services
-
-!!! note 
-    Enabling Elasticsearch analytics will disable data publishing to WSO2 EI Analytics. 
 
 ## Required components from Elastic Stack
 
@@ -194,7 +191,7 @@ inbound_endpoint_analytics.enabled = true
 
 ### Creating Log Appender
 
-Open the `<MI_HOME>/repository/conf` directory and edit the `log4j2.properties` file following the instructions given below.
+Open the `<MI_HOME>/conf` directory and edit the `log4j2.properties` file following the instructions given below.
 
 1. Add `ELK_ANALYTICS_APPENDER` to the appenders list.
 

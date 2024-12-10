@@ -64,9 +64,7 @@ This section describes the error codes for endpoint failures. For more informati
 
 | **Error Code** | **Detail**                                    |
 |----------------|-----------------------------------------------|
-| 303000         | Load Balance endpoint is not ready to connect |
-| 303000         | Recipient List Endpoint is not ready          |
-| 303000         | Failover endpoint is not ready to connect     |
+| 303000         | <ul><li>Load Balance endpoint is not ready to connect</li><li>Recipient List Endpoint is not ready</li><li>Failover endpoint is not ready to connect</li></ul> |
 | 303001         | Address Endpoint is not ready to connect      |
 | 303002         | WSDL Address is not ready to connect          |
 
@@ -99,8 +97,53 @@ This section describes the error codes for endpoint failures. For more informati
 | 401001         | Blocking call operation failed (from the Call mediator when you have enabled blocking in it).   |
 | 401002         | Blocking sender operation failed (from the Call mediator when you have enabled blocking in it). |
 
-## Custom Error Codes
+### XML / JSON parsing errors
+
+| **Error Code** | **Detail**                   |
+|----------------|------------------------------|
+| 601000         | Malform XML or JSON received |
+
+## Custom error codes
 
 | **Error Code** |   **Detail**                                                                                    |
 |----------------|-------------------------------------------------------------------------------------------------|
 | 500000         | Endpoint Custom Error - This error is triggered when the endpoint is prefixed by `<property>name="FORCE_ERROR_ON_SOAP_FAULT" value="true"/>`, which enhances the failover logic by marking an endpoint as suspended when the response is a SOAP fault. |
+
+## Data service error codes
+
+<table>
+    <tr>
+        <th>Error Code</th>
+        <th>Detail</th>
+    </tr>
+    <tr>
+        <td><code>DATABASE_ERROR</code></td>
+        <td>This exception is thrown at the point of invoking a request if there are errors occurring while querying the database or while processing the result of a query. For example, a syntax error thrown from the database, a primary key constraint violation, etc.</td>
+    </tr>
+    <tr>
+        <td><code>CONNECTION_UNAVAILABLE_ERROR</code></td>
+        <td>This error occurs at the point of <a href="{{base_path}}/develop/creating-artifacts/data-services/creating-data-services">creating a data service</a> if the connection to the datasource cannot be established.</td>
+    </tr>
+    <tr>
+        <td><code>VALIDATION_ERROR</code></td>
+        <td>This error occurs when an input parameter in the request for a query fails the <a href="{{base_path}}/reference/synapse-properties/data-services/input-validators">validation</a> defined for that parameter. See the <a href="{{base_path}}/learn/examples/data-integration/data-input-validator">example on validators</a> to understand how validations work.</td>
+    </tr>
+    <tr>
+        <td><code>INCOMPATIBLE_PARAMETERS_ERROR</code></td>
+        <td>This error occurs in the following instances:
+        <ul>
+            <li>When a request is invoked, the number of parameters passed in the request should match the number of input parameters defined in the query. Otherwise, there need to be <a href="{{base_path}}/reference/synapse-properties/data-services/query-parameters/#input-parameters">default values</a> specified in the corresponding query for the parameters that are not passed in the request. If either of these requirements is not fulfilled, this error will occur when invoking the request.</li>
+            <li>When a request is invoked, the list of parameters given for the operation defined in your data service should match the input parameters given in the corresponding query definition. If there is a mismatch, this error will occur.</li>
+        </ul>
+        </td>
+    </tr>
+    <tr>
+        <td><code>UNKNOWN_ERROR</code></td>
+        <td>For all other types of errors.</td>
+    </tr>
+</table>
+
+!!! Note
+    When logging the errors by default it prints the service name, operation or resource, parameters, error code, and the exception. You can use the following system property to avoid printing request parameters in the logs.
+    
+    `-Ddss.disable.current.params=true`

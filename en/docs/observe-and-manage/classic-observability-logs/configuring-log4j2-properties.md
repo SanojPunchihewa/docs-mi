@@ -384,10 +384,41 @@ See the instructions on [using wire logs to debug]({{base_path}}/develop/using-w
 
 Access logs related to service/API invocations are enabled by default in the Micro Integrator. Access logs for the PassThrough transport will record the request and the response on **two** separate log lines.
 
-By default, access logs are printed to the `http_acces_.log` file (stored in the `<MI_HOME>/repository/logs` folder). If required, you can use the log4j2 configurations to print the access logs to other destinations. Simply apply the following [logger](#log4j2-loggers) with an [appender](#log4j2-appenders).
+By default, access logs are printed to the `http_access.log` file (stored in the `<MI_HOME>/repository/logs` folder). If required, you can use the log4j2 configurations to print the access logs to other destinations. Simply apply the following [logger](#log4j2-loggers) with an [appender](#log4j2-appenders).
 
--   <b>Logger Name</b>: PassThroughAccess
--   <b>Logger Class</b>: org.apache.synapse.transport.http.access
+-   <b>Logger Name</b>: `PassThroughAccess`
+-   <b>Logger Class</b>: `org.apache.synapse.transport.http.access.logs`
+
+Given below is the default log4j2 configuration for the access logs. 
+
+```
+logger.PassThroughAccess.name = org.apache.synapse.transport.http.access.logs
+logger.PassThroughAccess.level = DEBUG
+logger.PassThroughAccess.appenderRef.HTTP_ACCESS_LOGFILE.ref = HTTP_ACCESS_LOGFILE
+logger.PassThroughAccess.additivity = false
+
+# Appender config to HTTP access logs
+appender.HTTP_ACCESS_LOGFILE.type = RollingFile
+appender.HTTP_ACCESS_LOGFILE.name = HTTP_ACCESS_LOGFILE
+appender.HTTP_ACCESS_LOGFILE.fileName = ${sys:logfiles.home}/http_access.log
+appender.HTTP_ACCESS_LOGFILE.filePattern = ${sys:logfiles.home}/http_access_%d{yyyy-MM-dd}.log
+appender.HTTP_ACCESS_LOGFILE.layout.type = PatternLayout
+appender.HTTP_ACCESS_LOGFILE.layout.pattern = %msg%n
+appender.HTTP_ACCESS_LOGFILE.policies.type = Policies
+appender.HTTP_ACCESS_LOGFILE.policies.time.type = TimeBasedTriggeringPolicy
+appender.HTTP_ACCESS_LOGFILE.policies.time.interval = 1
+appender.HTTP_ACCESS_LOGFILE.policies.time.modulate = true
+appender.HTTP_ACCESS_LOGFILE.policies.size.type = SizeBasedTriggeringPolicy
+appender.HTTP_ACCESS_LOGFILE.policies.size.size=1MB
+appender.HTTP_ACCESS_LOGFILE.strategy.type = DefaultRolloverStrategy
+appender.HTTP_ACCESS_LOGFILE.strategy.max = 20
+appender.HTTP_ACCESS_LOGFILE.filter.threshold.type = ThresholdFilter
+appender.HTTP_ACCESS_LOGFILE.filter.threshold.level = DEBUG
+```
+
+To disable the access logs, set the log level of `logger.PassThroughAccess.level` to `OFF` or `WARN`.
+
+The output file name and the file pattern can be customized as required by changing the `fileName` and `filePattern` attributes of the `HTTP_ACCESS_LOGFILE` appender.
 
 ### Customizing the Access Log format
 
@@ -397,40 +428,6 @@ You can customize the format of this access log by changing the following proper
 
     <table>
     <tbody>
-      <tr class="odd">
-         <td>access_log_directory</td>
-         <td>Add this property ONLY if you want to change the default location of the log file. By default, the product is configured to store access logs in the <code>MI_HOME/repository/logs</code> directory.</td>
-      </tr>
-      <tr class="even">
-         <td>access_log_prefix</td>
-         <td>
-            <div class="content-wrapper">
-               <p>The prefix added to the log file's name. The default value is as follows:</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb1" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb1-1"><a href="#cb1-1"></a>access_log_prefix=http_access_</span></code></pre>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
-      <tr class="odd">
-         <td>access_log_suffix</td>
-         <td>
-            <div class="content-wrapper">
-               <p>The suffix added to the log file's name. The default value is as follows:</p>
-               <div class="code panel pdl" style="border-width: 1px;">
-                  <div class="codeContent panelContent pdl">
-                     <div class="sourceCode" id="cb2" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence" style="brush: java; gutter: false; theme: Confluence">
-                        <pre class="sourceCode java"><code class="sourceCode java"><span id="cb2-1"><a href="#cb2-1"></a>access_log_suffix=.<span class="fu">log</span></span></code></pre>
-                     </div>
-                  </div>
-               </div>
-            </div>
-         </td>
-      </tr>
       <tr class="even">
          <td>access_log_file_date_format</td>
          <td>
@@ -496,10 +493,7 @@ You can customize the format of this access log by changing the following proper
     </table>
 
 3.  Restart the server.
-4.  Invoke a proxy service or REST API that is deployed in the Micro Integrator. The access log file for the service/API will be created in the `<MI_HOME>/repository/logs` directory. The default name of the log file is `http_access_.log`.
-
-    !!! Tip
-        Note that there will be a delay in printing the logs to the log file.
+4.  Invoke a proxy service or REST API that is deployed in the Micro Integrator. The access log file for the service/API will be created in the `<MI_HOME>/repository/logs` directory. The default name of the log file is `http_access.log`.
 
 ### Supported log pattern formats
 
@@ -616,7 +610,7 @@ You can customize the format of this access log by changing the following proper
 
 ## Updating the Log4j2 Log level
 
-You can <b>dynamically</b> update the log level for a specific logger by using the Micro Integrator [dashboard](#viewing-logs-via-the-dashboard) or [CLI](#viewing-logs-via-the-cli). If you change the wire log configuration directly from the `log4j2.properties` file (without using the dashboard or CLI), the Micro Integrator needs to be restarted for the changes to become effective.
+You can <b>dynamically</b> update the log level for a specific logger by using the [Integration Control Plane](#viewing-logs-via-the-integration-control-plane) or [CLI](#viewing-logs-via-the-cli). If you change the wire log configuration directly from the `log4j2.properties` file (without using the ICP or CLI), the Micro Integrator needs to be restarted for the changes to become effective.
 
 ??? Info "Log Levels"
     The following table explains the log4j2 log levels you can use. Refer <b>Log4j2 documentation</b> for more information.
@@ -631,20 +625,20 @@ You can <b>dynamically</b> update the log level for a specific logger by using t
     | DEBUG | Provides detailed information on the flow through the system. This information is expected to be written to logs only. Generally, most lines logged by your application should be written as DEBUG logs.                                                                        |
     | TRACE | Provides additional details on the behavior of events and services. This information is expected to be written to logs only.                                                                                                                                                    |
 
-### Viewing logs via the dashboard
+### Viewing logs via the integration control plane
 
-1.  Sign in to the [Micro Integrator dashboard]({{base_path}}/observe-and-manage/working-with-monitoring-dashboard).
+1.  Sign in to the [Integration Control Plane]({{base_path}}/observe-and-manage/working-with-integration-control-plane).
 2.  Click <b>Log Configs</b> on the left-hand navigator to open the <b>Logging Management</b> window.
 
-    <img alt="change log level from dashboard" src="{{base_path}}/assets/img/integrate/monitoring-dashboard/change-log-level-dashboard.png">
+    <img alt="change log level from ICP" src="{{base_path}}/assets/img/integrate/monitoring-dashboard/change-log-level-dashboard.png">
 
 3.  Use the <b>Search</b> option to find the required logger, and change the log level as shown above.
 
 ### Viewing logs via the CLI
 
-1.  Download and set up the [API Controller]({{base_path}}/observe-and-manage/managing-integrations-with-apictl/#download-and-initialize-the-apictl).
+1.  Download and set up the [MI CLI]({{base_path}}/observe-and-manage/managing-integrations-with-micli/#download-and-initialize-the-mi-cli).
 
-2.  Issue commands to view logs for the required Micro Integrator artifacts. For more information, see [Managing Integrations with apictl]({{base_path}}/observe-and-manage/managing-integrations-with-apictl).
+2.  Issue commands to view logs for the required Micro Integrator artifacts. For more information, see [Managing Integrations with MI CLI]({{base_path}}/observe-and-manage/managing-integrations-with-micli).
 
 
 ## Updating the threshold Level

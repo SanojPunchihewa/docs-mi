@@ -1,29 +1,11 @@
 # Sequence Mediator
 
-The **Sequence Mediator** refers to an already defined sequence element,
-which is used to invoke a named sequence of mediators. This is useful
-when you need to use a particular set on mediators in a given order
-repeatedly.
-
-You can alternatively select a predefined sequence from the Registry as
-the in/out/fault sequence for a proxy service or a REST service without
-adding any mediator configurations inline. The difference between these
-two options are described in the table below.
-
-| Attribute                                         | Picking a predefined sequence as in/out/fault sequence                                                                                                                                                                                                                  | Referring to a predefined sequence via the Sequence mediator                                                                                                                                                                                                        |
-|---------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Adding other mediators                            | Other mediator configurations that are not already included in the predefined sequence cannot be added to the in/out/fault sequence.                                                                                                                                    | Other mediator configurations that are not already included in the predefined sequence can be added to the in/out/fault sequence                                                                                                                                    |
-| Applying changes done to the predefined sequence | Any changes done to the sequence saved in the **Registry** after it was selected as the in/out/fault sequence will not be considered when carrying out mediation. | Any changes done to the sequence saved in the **Registry** after it was selected as the in/out/fault sequence will be considered when carrying out mediation. |
-
-!!! Info
-    The Sequence mediator is a [content-unaware]({{base_path}}/reference/mediators/about-mediators/#classification-of-mediators) mediator.
+The Sequence mediator is used to invoke an already configured [named sequence of mediators]({{base_path}}/reference/mediation-sequences/#named-sequences). This is useful when you need to reuse a particular set of mediators in a given order.
 
 ## Syntax
 
-A sequence ref token refers to a \< `         sequence        ` \>
-element, which is used to invoke a named sequence of mediators.
 
-``` java
+```xml
 <sequence key="name"/>
 ```
 
@@ -32,10 +14,6 @@ element, which is used to invoke a named sequence of mediators.
 The parameters available to configure the Sequence mediator are as follows.
 
 <table>
-<colgroup>
-<col style="width: 50%" />
-<col style="width: 50%" />
-</colgroup>
 <thead>
 <tr class="header">
 <th>Parameter Name</th>
@@ -43,56 +21,107 @@ The parameters available to configure the Sequence mediator are as follows.
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td><strong>Key Type</strong></td>
-<td><p>This parameter defines whether the key to access the required sequence is a static key or a dynamic key. Possible values are as follows.</p>
-<ul>
-<li><strong>Static Key</strong>: If this is selected, the key to access the sequence is a static value. You can click either <strong>Configuration Registry</strong> or <strong>Governance Registry</strong> as relevant to select the require key from the resource tree for the <strong>Referring Sequence</strong> parameter.</li>
-<li><strong>Dynamic Key</strong>: If this is selected, you can define the key to access the sequence as a dynamic value by entering an XPath expression in the <strong>Referring Sequence</strong> parameter.</li>
-</ul></td>
-</tr>
 <tr class="even">
 <td><strong>Referring sequence</strong></td>
 <td><div class="content-wrapper">
-<p>The key to access the sequence saved in the registry. You can enter a static value selected from the resource tree, or an XPath expression based on the option you selected for the <strong>Key Type</strong> parameter.</p>
-<b>Tip</b>:
-<p>You can click <strong>NameSpaces</strong> to add namespaces if you are providing an expression. Then the <strong>Namespace Editor</strong> panel would appear where you can provide any number of namespace prefixes and URLs used in the XPath expression.</p>
-</div></td>
+<p>This is the reference key of the already configured sequence. Possible values are as follows.</p>
+<li>the name of the referring sequence as the key.</li>
+<li>if the sequence is configured in the <a href="{{base_path}}/get-started/key-concepts/#registry">registry</a>, give the registry path as the key.</li>
+<li>a dynamic value by entering an <a href="{{base_path}}/reference/synapse-properties/expressions">expression</a> as the key.</li>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
 
 ## Examples
 
-In this example, the following sequence named `         StoreSend        ` is saved in the Configuration registry. It includes a [Store Mediator]({{base_path}}/reference/mediators/store-Mediator) to store the request in a message store named `         JMSMS        ` and a [Send Mediator]({{base_path}}/reference/mediators/send-mediator) to send it to an endpoint afterwards.
+In this example, the following sequence named `StoreSend` includes a [store mediator]({{base_path}}/reference/mediators/store-mediator) to store the request in a message store named `JMSMS` and a [call mediator]({{base_path}}/reference/mediators/call-mediator) to send it to an endpoint afterwards.
 
-``` xml
-<sequence xmlns="http://ws.apache.org/ns/synapse" name="conf:/StoreSend">
-   <axis2ns4:store xmlns:axis2ns4="http://ws.apache.org/ns/synapse" messageStore="JMSMS" sequence="conf:/repository/components/org.wso2.carbon.throttle/templates"></axis2ns4:store>
-   <send>
-      <endpoint>
-         <address uri="http://localhost:9000/services/SimpleStockQuoteService"></address>
-      </endpoint>
-   </send>
-</sequence>
+=== "Sequence"
+    ```xml
+    <sequence name="StoreSend" trace="disable" xmlns="http://ws.apache.org/ns/synapse">
+        <store messageStore="JMSMS"/>
+        <call>
+            <endpoint key="simplestockep"/>
+        </call>
+    </sequence>
+    ```
+=== "Endpoint"
+    ```xml
+    <?xml version="1.0" encoding="UTF-8"?>
+    <endpoint name="simplestockep" xmlns="http://ws.apache.org/ns/synapse">
+        <address uri="http://localhost:9000/services/SimpleStockQuoteService">
+            <suspendOnFailure>
+                <initialDuration>-1</initialDuration>
+                <progressionFactor>1</progressionFactor>
+            </suspendOnFailure>
+            <markForSuspension>
+                <retriesBeforeSuspension>0</retriesBeforeSuspension>
+            </markForSuspension>
+        </address>
+    </endpoint>
+    ```
+
+The Sequence mediator configuration can be as follows to invoke the `StoreSend` sequence after using a [payloadFactory mediator]({{base_path}}/reference/mediators/payloadfactory-mediator) to transform the contents of the request.
+
+### Example 1: If the `StoreSend` sequence configured in registry
+
+```xml 
+<inSequence>
+    <payloadFactory media-type="xml" template-type="default">
+        <format>
+            <m:checkpriceresponse xmlns:m="http://services.samples/xsd">
+                <m:code>$1</m:code>
+                <m:price>$2</m:price>
+            </m:checkpriceresponse>
+        </format>
+        <args>
+            <arg expression="//m0:symbol" evaluator="xml" xmlns:m0="http://services.samples/xsd"/>
+            <arg expression="//m0:last" evaluator="xml" xmlns:m0="http://services.samples/xsd"/>
+        </args>
+    </payloadFactory>
+    <sequence key="conf:StoreSend.xml"/>
+</inSequence>
 ```
 
-The Sequence mediator configuration can be as follows to invoke the `StoreSend` sequence after using a [PayloadFactory mediator]({{base_path}}/reference/mediators/payloadFactory-Mediator) to transform the contents of the request.
+### Example 2: If the `StoreSend` sequence configured as a named sequence
 
-``` 
-<inSequence xmlns="http://ws.apache.org/ns/synapse">
-    <payloadFactory media-type="xml">
-      <format>
-           <m:checkpriceresponse xmlns:m="http://services.samples/xsd">
-               <m:code>$1</m:code>
-               <m:price>$2</m:price>
-           </m:checkpriceresponse>
-      </format>
-      <args>
-           <arg expression="//m0:symbol" xmlns:m0="http://services.samples/xsd">
-           <arg expression="//m0:last" xmlns:m0="http://services.samples/xsd">
-      </arg></arg></args>
+```xml 
+<inSequence>
+    <payloadFactory media-type="xml" template-type="default">
+        <format>
+            <m:checkpriceresponse xmlns:m="http://services.samples/xsd">
+                <m:code>$1</m:code>
+                <m:price>$2</m:price>
+            </m:checkpriceresponse>
+        </format>
+        <args>
+            <arg expression="//m0:symbol" evaluator="xml" xmlns:m0="http://services.samples/xsd"/>
+            <arg expression="//m0:last" evaluator="xml" xmlns:m0="http://services.samples/xsd"/>
+        </args>
     </payloadFactory>
-    <sequence key="conf:/StoreSend"></sequence>
+    <sequence key="StoreSend"/>
+</inSequence>
+```
+
+### Example 3: If the `StoreSend` sequence can be derived dynamically
+
+```xml 
+<inSequence>
+    <payloadFactory media-type="xml" template-type="default">
+        <format>
+            <m:checkpriceresponse xmlns:m="http://services.samples/xsd">
+                <m:code>$1</m:code>
+                <m:price>$2</m:price>
+            </m:checkpriceresponse>
+        </format>
+        <args>
+            <arg expression="//m0:symbol" evaluator="xml" xmlns:m0="http://services.samples/xsd"/>
+            <arg expression="//m0:last" evaluator="xml" xmlns:m0="http://services.samples/xsd"/>
+        </args>
+    </payloadFactory>
+    <property name="seqName" value="StoreSend"/>
+	<sequence key="{$ctx:seqName}"/>
 </inSequence>
 ```

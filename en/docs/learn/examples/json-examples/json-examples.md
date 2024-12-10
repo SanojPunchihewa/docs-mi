@@ -1,8 +1,8 @@
-# Working with JSON Message Payloads
+# How to Work with JSON Message Payloads
 
 WSO2 Micro Integrator provides support for [JavaScript Object Notation (JSON)](http://www.json.org/) payloads in messages. The following sections describe how to work with JSON via the Micro Integrator.
 
-## Handling JSON to XML conversion
+## Handle JSON to XML conversion
 
 When building the XML tree, JSON builders attach the converted XML infoset to a special XML element that acts as the root element of the
 final XML tree. If the original JSON payload is of type `object` , the special element is `<jsonObject/>`. If it is an `array`, the special element is `<jsonArray/>`. Following are examples of JSON and XML representations of various objects and arrays.
@@ -162,7 +162,7 @@ When building XML elements, the EI handles the `$` character and digits in a spe
     </jsonObject>
     ```
 
-## Converting spaces
+## Convert spaces
 
 Although you can have spaces in JSON elements, [you cannot have them when converted to XML](https://www.w3.org/TR/REC-xml/#sec-common-syn). Therefore, you can handle spaces when converting JSON message payloads to XML, by adding the following property to the `MI_HOME/conf/deployment.toml` file in the `[mediation]` section:
 `synapse.build_valid_nc_name`
@@ -248,7 +248,7 @@ If you set the `synapse.enable_xml_nil=true` property in the `deployment.toml` f
 {"object":null}
 ```
 
-### Converting a payload between XML and JSON
+### Convert a payload between XML and JSON
 
 To convert an XML payload to JSON, set the `messageType` property to `application/json` in the axis2 scope before sending message to an endpoint. Similarly, to convert a JSON payload to XML, set the `messageType` property to `application/xml` or `text/xml`. For example:
 
@@ -330,7 +330,7 @@ Note that we have used the [Property mediator]({{base_path}}/reference/mediators
     <messageFormatter contentType="text/javascript" class="org.apache.axis2.json.JSONBadgerfishMessageFormatter"/> 
     ```
     
-### Accessing content from JSON payloads
+### Access content from JSON payloads
 
 There are two ways to access the content of a JSON payload within the MI.
 
@@ -423,97 +423,9 @@ You can use JSON path expressions with following mediators:
 </tbody>
 </table>
 
-#### JSON path syntax
+#### JSONpath syntax
 
-Suppose we have the following payload:
-
-```
-{ 
-  "id": 12345,
-  "id_str": "12345",
-  "array": [ 1, 2, [ [], [{"inner_id": 6789}] ] ],
-  "name": null,
-  "object": {},
-  "$schema_location": "unknown",
-  "12X12": "image12x12.png"
-}
-```
-
-The following table summarizes sample JSONPath expressions and their outputs:
-
-<table>
-<thead>
-<tr class="header">
-<th>Expression</th>
-<th>Result</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><pre><code>$.</code></pre></td>
-<td><pre><code>{ &quot;id&quot;:12345, &quot;id_str&quot;:&quot;12345&quot;, &quot;array&quot;:[1, 2, [[],[{&quot;inner_id&quot;:6789}]]], &quot;name&quot;:null, &quot;object&quot;:{}, &quot;$schema_location&quot;:&quot;unknown&quot;, &quot;12X12&quot;:&quot;image12x12.png&quot;}</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>$.id</code></pre></td>
-<td><pre><code>12345</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>$.name</code></pre></td>
-<td><pre><code>null</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>$.object</code></pre></td>
-<td><pre><code>{}</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>$.[&#39;$schema_location&#39;]</code></pre></td>
-<td><pre><code>unknown</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>$.12X12</code></pre></td>
-<td><pre><code>image12x12.png</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>$.array</code></pre></td>
-<td><pre><code>[1, 2, [[],[{&quot;inner_id&quot;:6789}]]]</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>$.array[2][1][0].inner_id</code></pre></td>
-<td><pre><code>6789</code></pre></td>
-</tr>
-</tbody>
-</table>
-
-!!! Info
-    During mediation, evaluating expressions against a property does not modify the original payload. The changes will be reflected within the property itself and hence, it cannot be expected to get applied for the rest of the mediation similar to payload modification.
-    
-We can also evaluate a JSONPath expression against a property that contains a JSON payload.
-
-To evaluate a JSONPath expression against a  property, use the following syntax.
-
-```json
-json-eval(<scope_of_the_property>:<property_name>.<JSONPath_expression>)
-```
-
-Example 1: When the property is in the synapse message context.
-
-```json
-json-eval($ctx:propertyName.student.name)
-```
-
-Example 2: When the property is in the axis2 message context.
-
-```json
-json-eval($axis2:propertyName.student.name)
-```
-
-Example 3: When the property is in the transport scope.
-
-```json
-json-eval($trp:propertyName.student.name)
-```
-
-Learn more about [JSONPath syntax](http://goessner.net/articles/JsonPath/).
+JSONPath provides a way to navigate, filter, and extract data from JSON structures. To learn more about how to use JSONPath as an expression, see the [JSONPath expressions]({{base_path}}/reference/synapse-properties/expressions/#jsonpath-expressions) documentation.
 
 ### Logging JSON payloads
 
@@ -537,7 +449,7 @@ To log JSON payloads as XML, use the Log mediator as shown below:
 
 For more information on logging, see [Troubleshooting, debugging, and logging]({{base_path}}/learn/examples/json-examples/json-examples/#validating-json-messages) below.
 
-### Constructing and transforming JSON payloads
+### Construct and transforming JSON payloads
 
 To construct and transform JSON payloads, you can use the PayloadFactory
 mediator or Script mediator as described in the rest of this section.
@@ -634,7 +546,7 @@ Note the following aspects of the proxy service configuration:
 -   The `          media-type         ` attribute is set to `          json         ` .
 -   Because JSONPath expressions are used in arguments, the `          json         ` evaluators are specified.
 
-##### Configuring the payload format
+##### Configure the payload format
 
 The `<format>` section of the proxy service
 configuration defines the format of the response. Notice that in the
@@ -1149,7 +1061,7 @@ An example for a valid JSON payload request is given below.
 }
 ```
 
-## Troubleshooting, debugging, and logging
+## Troubleshoot, debug, and log
 
 To assist with troubleshooting, you can enable debug logging at several stages of the mediation of a JSON payload by adding one or more of the following loggers to the `MI_HOME/conf/log4j2.properties` file and restarting the MI.
 

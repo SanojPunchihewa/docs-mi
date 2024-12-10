@@ -1,6 +1,7 @@
-# Using Inbound Endpoints with the Registry
+# How to Use an Inbound Endpoints with Registry
+
 Other than specifying parameter values inline, you can also
-specify parameter values as registry entries. The advantage of
+specify parameter values as registry entries. The advantage of
 specifying a parameter value as a registry entry is that the same
 inbound endpoint configuration can be used in different environments
 simply by changing the registry entry value.
@@ -49,7 +50,6 @@ Following are the integration artifacts that we can used to implement this scena
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio]({{base_path}}/develop/installing-wso2-integration-studio).
-2. [Create an integration project]({{base_path}}/develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
+{!includes/build-and-run.md!}
 3. See the instructions on [creating an inbound endpoint]({{base_path}}/develop/creating-artifacts/creating-an-inbound-endpoint) to define the inbound endpoint given above.
 4. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.

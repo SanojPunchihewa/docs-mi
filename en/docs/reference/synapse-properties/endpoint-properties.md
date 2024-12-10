@@ -32,7 +32,7 @@ Indirect endpoints are useful when the actual endpoints are stored in the regist
 
 ### Resolving Endpoints
 
-The resolving endpoint refers to an actual endpoint using a dynamic key (which is an XPath expression). The XPath expression dynamically calls another endpoint at runtime. The XPath is evaluated against the current message and the key-expression is calculated at runtime. The resolving endpoint then fetches the actual endpoint using the calculated key and delegates the message sending to the actual endpoint. Shown below is an example of a resolving endpoint.
+The resolving endpoint refers to an actual endpoint using a dynamic key (which is an XPath expression). The [XPath expression]({{base_path}}/reference/synapse-properties/expressions/#xpath-expressions) dynamically calls another endpoint at runtime. The XPath is evaluated against the current message and the key-expression is calculated at runtime. The resolving endpoint then fetches the actual endpoint using the calculated key and delegates the message sending to the actual endpoint. Shown below is an example of a resolving endpoint.
 
 ```xml
 <send>
@@ -859,7 +859,7 @@ Messages can fail or be lost due to various reasons in a real TCP network. When 
 
 To avoid message loss, you configure error handling at the [endpoint]({{base_path}}/reference/synapse-properties/endpoint-properties) level. You should also run a few long-running load tests to discover errors and fine-tune the endpoint configurations for errors that can occur intermittently due to various reasons.
 
-At any given time, the state of the endpoint can be one of the following. During an endpoint error, the endpoint will transition between these states and, if required, will initiate a [fault sequence]({{base_path}}/reference/synapse-properties/sequence-properties/#fault-sequences).
+At any given time, the state of the endpoint can be one of the following. During an endpoint error, the endpoint will transition between these states and, if required, will initiate a [fault sequence]({{base_path}}/reference/mediation-sequences/#fault-sequences).
 
 <table>
   <tr>
@@ -969,7 +969,7 @@ The `timeout` element contains the following parameters that are used to conside
                <li><b>Discard</b>:  If this is selected, the responses which arrive after the endpoint has timed out will be discarded.</li>
                <li><b>Fault</b>: If this is selected, a fault sequence is triggered when the endpoint is timed out.</li>
             </ul>
-            <b>Note</b>: You can specify a value that is 1 millisecond less than the time duration you specify for the endpoint time out for the <code>synapse.timeout_handler_interval</code> property in the <code>MI_Home/conf/ei.toml</code> file. This would minimise the number of late responses from the backend.
+            <b>Note</b>: You can specify a value that is 1 millisecond less than the time duration you specify for the endpoint time out for the <code>'synapse.timeout_handler_interval'</code> property under <code>[synapse_properties]</code> in the <code>MI_Home/conf/deployment.toml</code> file. This would minimise the number of late responses from the backend.
             </ul>
          </td>
       </tr>

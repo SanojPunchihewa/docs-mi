@@ -1,4 +1,4 @@
-# Invoking Multiple Operations via Request Box
+# How to Invoke Multiple Operations as a Request Box
 
 This example demonstrates how a data service can invoke request
 box operations. The **request box** feature allows you to invoke
@@ -100,16 +100,18 @@ Given below is the data service configuration you need to build. See the instruc
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio]({{base_path}}/develop/installing-wso2-integration-studio). The path to this folder is referred to as `MI_TOOLING_HOME` throughout this tutorial.
-2.  Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/) and copy it to the `MI_TOOLING_HOME/Contents/Eclipse/runtime/microesb/lib/` (for MacOS) or 
-`MI_TOOLING_HOME/runtime/microesb/lib/` (for Windows) directory. 
+{!includes/build-and-run.md!}
+
+3. [Create the data service]({{base_path}}/develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
+
+4. Download the JDBC driver for MySQL from [here](http://dev.mysql.com/downloads/connector/j/).
+
+5. Switch to the **EXPLORER** view in VS Code and copy the downloaded driver to the `<PROJECT_NAME>/deployment/lib/` directory in the project structure.
 
     !!! Note
-        If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Cannot load JDBC driver class com.mysql.jdbc.Driver`.
-        
-3. [Create a Data Service project]({{base_path}}/develop/create-data-services-configs).
-4. [Create the data service]({{base_path}}/develop/creating-artifacts/data-services/creating-data-services) with the configurations given above.
-5. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
+        If the driver class does not exist in the relevant folders when you create the datasource, you will get an exception such as `Unable to load class: com.mysql.jdbc.Driver`.
+
+6. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
 
 Let's send a request with multiple transactions to the data service:
 
@@ -121,31 +123,31 @@ Let's send a request with multiple transactions to the data service:
 
 3. Invoke the **request_box** under **request_box_exampleSOAP12Binding** with the following request body:
 
-         !!! Tip
-             Note that we are sending two transactions with details of two employees.
+    !!! Tip
+        Note that we are sending two transactions with details of two employees.
 
-         ```xml
-         <dat:request_box xmlns:p="http://ws.wso2.org/dataservice">
-            <!--Exactly 1 occurrence-->
-            <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-                  <!--Exactly 1 occurrence-->
-                  <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-                  <!--Exactly 1 occurrence-->
-                  <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
-                  <!--Exactly 1 occurrence-->
-                  <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
-                  <!--Exactly 1 occurrence-->
-                  <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
-                  <!--Exactly 1 occurrence-->
-                  <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
-            </addEmployeeOp>
-            <!--Exactly 1 occurrence-->
-            <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
-                  <!--Exactly 1 occurrence-->
-                  <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
-            </selectEmployeeOp>
-         </dat:request_box>
-         ```
+    ```xml
+    <dat:request_box xmlns:p="http://ws.wso2.org/dataservice">
+       <!--Exactly 1 occurrence-->
+       <addEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+             <!--Exactly 1 occurrence-->
+             <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+             <!--Exactly 1 occurrence-->
+             <xs:FirstName xmlns:xs="http://ws.wso2.org/dataservice">Chris</xs:FirstName>
+             <!--Exactly 1 occurrence-->
+             <xs:LastName xmlns:xs="http://ws.wso2.org/dataservice">Sam</xs:LastName>
+             <!--Exactly 1 occurrence-->
+             <xs:Email xmlns:xs="http://ws.wso2.org/dataservice">chris@sam.com</xs:Email>
+             <!--Exactly 1 occurrence-->
+             <xs:OfficeCode xmlns:xs="http://ws.wso2.org/dataservice">1</xs:OfficeCode>
+       </addEmployeeOp>
+       <!--Exactly 1 occurrence-->
+       <selectEmployeeOp xmlns="http://ws.wso2.org/dataservice">
+             <!--Exactly 1 occurrence-->
+             <xs:EmployeeNumber xmlns:xs="http://ws.wso2.org/dataservice">1003</xs:EmployeeNumber>
+       </selectEmployeeOp>
+    </dat:request_box>
+    ```
 
 You will see the following response received by SoapUI:
 
@@ -166,3 +168,54 @@ You will see the following response received by SoapUI:
 </soapenv:Body>
 </soapenv:Envelope>
 ```
+
+!!! Note
+    Additionally, you can add resources to call the queries to invoke request_box as a REST service invocation. For that you have to append `request_box` to the URL when invoking. See the [how to post data using request box]({{base_path}}/learn/examples/data-integration/json-with-data-service/#post-data-using-request-box) documentation for more information.
+
+    Sample resource configuration:
+
+    ```
+    <resource method="POST" path="employee">
+        <call-query href="addEmployeeQuery">
+            <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
+            <with-param name="FirstName" query-param="FirstName"/>
+            <with-param name="LastName" query-param="LastName"/>
+            <with-param name="Email" query-param="Email"/>
+            <with-param name="JobTitle" query-param="JobTitle"/>
+            <with-param name="Officecode" query-param="Officecode"/>
+        </call-query>
+    </resource>
+    <resource method="GET" path="employee/{EmployeeNumber}">
+        <call-query href="selectEmployeebyIDQuery">
+            <with-param name="EmployeeNumber" query-param="EmployeeNumber"/>
+        </call-query>
+    </resource>
+    ```
+
+    Request:
+    
+    1. First, create a file named `employee-request-box-payload.json`, and define the JSON payload for posting the request box as shown below.
+    
+        ```
+        {
+            "request_box"  : {
+                "_postemployee" : {
+                    "EmployeeNumber"  : "14005",
+                    "LastName" :  "Smith" ,
+                    "FirstName" :  "Will" ,
+                    "Email" :  "will@google.com" ,
+                    "JobTitle": "Consultant",
+                    "Officecode": "01"
+                },
+                "_getemployee_employeenumber":{
+                    "EmployeeNumber"  : "14005"
+                }
+            }
+        }
+        ```
+    
+    2. On the terminal, navigate to the location where the `employee-request-box-payload.json` file is stored, and execute the following HTTP request:
+    
+        ```
+        curl -X POST -H 'Accept: application/json'  -H 'Content-Type: application/json' --data "@employee-request-box-payload.json" http://localhost:8290/services/request_box_example/request_box
+        ```

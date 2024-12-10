@@ -1,266 +1,216 @@
 # Quick Start Guide
 
-Let's get started with WSO2 Micro Integrator by running a simple integration use case in your local environment. 
+Welcome to the WSO2 Micro Integrator Quick Start Guide, your step-by-step tutorial for getting started with WSO2 Micro Integrator (MI). WSO2 MI enables you to build, deploy, and manage integration solutions with ease, providing flexibility and scalability to connect applications, services, and systems.
 
-## Before you begin...
+In this guide, you'll learn the basics of setting up and using WSO2 MI to create and deploy a basic integration flow with minimal hassle.
 
-1. Install Java SE Development Kit (JDK) version 11.
-2. In the environment variables, set the `JAVA_HOME` environment variable.
+## Prerequisites
+
+The following software and configurations are required to proceed with this tutorial:
+
+- **Java Development Kit (JDK) 17**
+
+    1. Download and install Java SE Development Kit (JDK) version 17. For more information on compatible JDK versions, see the [Tested JDKs]({{base_path}}/install-and-setup/setup/reference/product-compatibility/#tested-jdks) documentation.
+    2. Set the `JAVA_HOME` environment variable in the system settings. For more information on setting `JAVA_HOME`, see the [Install and Setup]({{base_path}}/install-and-setup/install/installing-mi/#setting-up-java_home) documentation.
+
+- **Apache Maven:** Ensure <a target="_blank" href="https://maven.apache.org/download.cgi">Apache Maven</a> is installed (version 3.6.0 onwards) and its path is correctly set within the system's PATH environment variable.
+
+    !!! info
+        For more information on installing Apache Maven, see the <a target="_blank" href="https://maven.apache.org/install.html">Apache Maven documentation</a>.
+
+- **WSO2 Micro Integrator 4.3.0 Runtime:** Set up WSO2 Micro Integrator 4.3.0 runtime on your machine.
+    1. Download the Micro Integrator 4.3.0 distribution as a ZIP file from <a target="_blank" href="https://github.com/wso2/micro-integrator/releases/download/v4.3.0/wso2mi-4.3.0.zip">here</a>.
+    2. Extract the ZIP file. Hereafter, this extracted folder will be referred to as the `<MI_HOME>` folder.
+  
+- **Visual Studio Code (VS Code):** with the <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=WSO2.micro-integrator">Micro Integrator for VS Code</a> extension installed.
 
     !!! Info
-        For more information on setting the `JAVA_HOME` environment variable for different operating systems, see the [Install and Setup]({{base_path}}/install-and-setup/install/installing-mi) documentation.
+        Follow the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode) documentation for a complete installation guide.
 
-3. Go to the [WSO2 Micro Integrator web page](https://wso2.com/integration/micro-integrator/#), click **Download**, and then click **Zip Archive** under the 'Latest Release' section to download the Micro Integrator distribution as a ZIP file.
-4. In the same page click on **Integration Studio** under the 'Other Components' section to download WSO2 Integration Studio.
-
-    !!! Info
-        For more information, see the [installation instructions]({{base_path}}/install-and-setup/install-and-setup-overview/#installing_1).
-
-5. Download the [sample files]({{base_path}}/assets/attachments/quick-start-guide/mi-qsg-home.zip). From this point onwards, let's refer to this directory as `<mi-qsg-home>`.
-6. Download [curl](https://curl.haxx.se/) or a similar tool that can call an HTTP endpoint.
+After completing the step above, follow the instructions below to create your first integration solution:
 
 ## What you'll build
 
-This is a simple service orchestration scenario. The scenario is about a basic healthcare system where the Micro Integrator is used to integrate two back-end hospital services to provide information to the client.
+Let’s try a simple scenario where the client sends a request to a `HelloWorld` API deployed in the WSO2 Micro Integrator and the API calls a backend service and returns its response. The backend service responds a `Hello World!!!` message, and the API deployed in the WSO2 Micro Integrator forwards this response to the client.
 
-Most healthcare centers have a system that is used to make doctor appointments. To check the availability of the doctors for a particular time, users typically need to visit the hospitals or use each and every online system that is dedicated to a particular healthcare center. Here, we are making it easier for patients by orchestrating those isolated systems for each healthcare provider and exposing a single interface to the users.
+<a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"></a>
 
-<a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.png"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.png"></a>
+You can use the following HelloWorld service as the backend service.
 
-!!! Tip
-    You may export` <mi-qsg-home>/HealthcareIntegrationProject` to Integration Studio to view the project structure.
+<table>
+    <tr>
+        <td>URL</td>
+        <td>
+            <code>https://apis.wso2.com/zvdz/mi-qsg/v1.0</code>
+        </td>
+    </tr>
+    <tr>
+        <td>HTTP Method</td>
+        <td>
+            <code>GET</code> 
+        </td>
+    </tr>
+</table>
 
-In the above scenario, the following takes place:
+## Step 1 - Create a new integration project
 
-1. The client makes a call to the Healthcare API created using Micro Integrator.
+To develop the above scenario, let's get started with creating an integration project in the Micro Integrator extension installed VS Code.
 
-2. The Healthcare API calls the Pine Valley Hospital back-end service and gets the queried information.
+1. Launch VS Code with the Micro Integrator extension installed.
 
-3. The Healthcare API calls the Grand Oak Hospital back-end service and gets the queried information.
+2. Click on the Micro Integrator icon on the Activity Bar of the VS Code editor.
 
-4. The response is returned to the client with the required information.
+    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/mi-vscode-extension.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/mi-vscode-extension.png" alt="MI VS Code Extension" width="70%"></a>
 
-Both Grand Oak Hospital and Pine Valley Hospital have services exposed over the HTTP protocol.
+3. Click **Create New Project** on **Design View**. For more options to create a new integration project, see [Create an Integration Project]({{base_path}}/develop/create-integration-project).
 
-The Pine Valley Hospital service accepts a POST request in the following service endpoint URL.
+4. In the **Project Creation Form**, enter `HelloWorld` as the **Project Name**.
 
-```bash
-http://<HOST_NAME>:<PORT>/pineValley/doctors
+5. Provide a location under the **Select Project Directory**.
+ 
+    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-project.png" alt="Create New Project" width="70%"></a>
+
+6. Click **Create**.
+
+## Step 2 - Create an API
+
+Now the integration project is ready to add an API. In this scenario, the API calls a backend service and responds to the client. First, let's create an API.
+
+1. Go to **Micro Integrator Project Explorer** > **APIs.**
+
+2. Hover over **APIs** and click the **+** icon that appears to open the **Create API** form.
+
+3. Enter `HelloWorldAPI` as the API **Name**. The API **Context** field will be automatically populated with the same value. 
+
+    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-api.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-api.png" alt="Create New API" width="70%"></a>
+
+4. Click **Create**.
+
+Once you create the API, a default resource will be automatically generated. You'll use this resource in this tutorial. To learn how to add a new resource to an API, see the [Add new resource]({{base_path}}/develop/creating-artifacts/creating-an-api/#add-new-api-resources) documentation.
+
+## Step 3 - Design the integration
+
+Now it is time to design your API. This is the underlying logic that is executed behind the scenes when an API request is made. In this scenario first, you need to call the backend service. For that, you have to add an [endpoint]({{base_path}}/reference/synapse-properties/endpoint-properties).
+
+1. Navigate to the **MI Project Explorer** > **Endpoints**.
+
+2. Hover over Endpoints and click the + icon that appears.
+
+3. Select **HTTP Endpoint** from the **Create Endpoint** interface.
+
+4. Specify the following values to create the HTTP endpoint for the [backend service](#what-youll-build).
+
+     <table>
+     <tr>
+         <th>Parameter</th>
+         <th>Value</th>
+     </tr>
+     <tr>
+         <td>Endpoint Name</td>
+         <td>
+             <code>HelloWorldEp</code>
+         </td>
+     </tr>
+     <tr>
+         <td>URI Template</td>
+         <td>
+             <code>https://apis.wso2.com/zvdz/mi-qsg/v1.0</code>
+         </td>
+     </tr>
+     <tr>
+         <td>HTTP Method</td>
+         <td>
+             <code>GET</code> 
+         </td>
+     </tr>
+     </table>
+
+5. Click  **Create**.
+
+    Now you have to add a [Call Mediator]({{base_path}}/reference/mediators/call-mediator) to call the backend service.
+
+6. Open the **Resource View** of the API resource.
+
+    1. Go to **MI Project Explorer** > **APIs**.
+
+    2. Under `HelloWorldAPI`, click the default API resource to open the **Resource View** of the API resource.
+
+7. Click on the **+** icon to open the mediator palette.
+
+8. Select **Call Endpoint** mediator under **Mediators** > **Generic**.
+
+9. Under **Endpoint**, select the created `HelloWorldEp` endpoint from the dropdown. 
+
+10. Click  **Submit**.
+    
+    Now let's add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond the message to the client.
+
+11. Click on the **+** icon placed just after the Call mediator to open the mediator palette.
+
+12. Select **Respond** mediator under **Mediators** > **Generic**. 
+
+13. Click **Submit**.
+
+    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/design-api.gif"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/design-api.gif" alt="Design API" width="70%"></a>
+
+Following is what you'll see in the **Source View** of the VS Code.
+
+!!! info
+    You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<api context="/helloworldapi" name="HelloWorldAPI" xmlns="http://ws.apache.org/ns/synapse">
+    <resource methods="GET" uri-template="/">
+        <inSequence>
+            <call>
+                <endpoint key="HelloWorldEp"/>
+            </call>
+            <respond/>
+        </inSequence>
+        <faultSequence>
+        </faultSequence>
+    </resource>
+</api>
 ```
 
-The Grand Oak Hospital service accepts a GET request in the following service endpoint URL.
+## Step 4 - Add MI server to run integration
 
-```bash
-http://<HOST_NAME>:<PORT>/grandOak/doctors/<DOCTOR_TYPE>
-```
+You need to [configure]({{base_path}}/develop/using-remote-micro-integrator) the downloaded and extracted WSO2 MI server in the Micro Integrator extension installed VS Code to run the integration solution. Let's proceed with the following steps.
 
-The expected payload should be in the following JSON format:
+1. Open the VS Code **Command Palette** by selecting **View** > **Command Palette** from the menu, or by using the shortcut `Command`+`Shift`+`P` on macOS or `Ctrl`+`Shift`+`P` on Windows.
 
-```bash
-{
-        "doctorType": "<DOCTOR_TYPE>"
-}
-```
+2. Select **MI: Add MI server** from the list of available commands.
 
-Let’s implement a simple integration solution that can be used to query the availability of doctors for a particular category from all the available healthcare centers.
+3. Click **Add MI server** to add a Micro Integrator server.
 
- 
-### Step 1 - Set up the workspace
+4. Select the folder where `<MI_HOME>` is located. This will be set as the **current server path**.
 
-To set up the integration workspace for this quick start guide, we will use an integration project that was built using WSO2 Integration Studio:
+    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/configure-mi-server.gif"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/configure-mi-server.gif" alt="Configure MI Server" width="70%"></a>
 
-1. Extract the downloaded WSO2 Micro Integrator and sample files into the same directory location.
+## Step 5 - Run the integration artifacts
 
-2. Navigate to the `<mi-qsg-home>` directory. 
-The following project files and executable back-end services are available in the `<mi-qsg-home>`.
+Now that you have developed an integration using the Micro Integrator Visual Studio Code plugin. It is time to deploy the integration to the Micro Integrator server runtime.
 
-- **HealthcareIntegrationProject/HealthcareIntegrationProjectConfigs**: This is the ESB Config module with the integration artifacts for the healthcare service. This service consists of the following REST API:
+Click the **Build and Run** icon located in the top right corner of VS Code.
 
-      <img src="{{base_path}}/assets/img/integrate/quick-start-guide/qsg-api.png">
+<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png" alt="Build and run" width="70%"></a>
 
-      <details>
-                <summary>HealthcareAPI.xml</summary>
-            ```xml
-            <?xml version="1.0" encoding="UTF-8"?>
-            <api context="/healthcare" name="HealthcareAPI" xmlns="http://ws.apache.org/ns/synapse">
-                <resource methods="GET" uri-template="/doctor/{doctorType}">
-                    <inSequence>
-                        <clone>
-                            <target>
-                                <sequence>
-                                    <call>
-                                        <endpoint key="GrandOakEndpoint"/>
-                                    </call>
-                                </sequence>
-                            </target>
-                            <target>
-                                <sequence>
-                                    <payloadFactory media-type="json">
-                                        <format>{
-                                        "doctorType": "$1"
-                                        }</format>
-                                        <args>
-                                            <arg evaluator="xml" expression="$ctx:uri.var.doctorType"/>
-                                        </args>
-                                    </payloadFactory>
-                                    <call>
-                                        <endpoint key="PineValleyEndpoint"/>
-                                    </call>
-                                </sequence>
-                            </target>
-                        </clone>
-                        <aggregate>
-                            <completeCondition>
-                                <messageCount max="-1" min="-1"/>
-                            </completeCondition>
-                            <onComplete aggregateElementType="root" expression="json-eval($.doctors.doctor)">
-                                <respond/>
-                            </onComplete>
-                        </aggregate>
-                    </inSequence>
-                    <outSequence/>
-                    <faultSequence/>
-                </resource>
-            </api>
-            ```    
-      </details>
-      
-      
-      It also contains the following two files in the metadata folder.
-      
-      
-    !!! Tip
-        This data is used later in this guide by the API management runtime to generate the managed API proxy.
-  
-      
-      <table>
-          <tr>
-              <th>
-                  HealthcareAPI_metadata.yaml
-              </th>
-              <td>
-                  This file contains the metadata of the integration service. 
-                  The default **serviceUrl** is configured as `http://localhost:8290/healthcare`.
-                  If you are running Micro Integrator on a different host and port, you may have to change these values.
-              </td>
-          </tr>
-          <tr>
-              <th>
-                  HealthcareAPI_swagger.yaml
-              </th>
-              <td>
-                  This Swagger file contains the OpenAPI definition of the integration service.
-              </td>
-          </tr>
-      </table>
+## Step 6 - Test the integration service
 
-- **HealthcareIntegrationProject/HealthcareIntegrationProjectCompositeExporter**: This is the Composite Application Project folder, which contains the packaged CAR file of the healthcare service.
+Now, let's test the integration service. For that, you can use the inbuilt try-it functionality in the MI for VS Code extension. 
 
-- **Backend**: This contains an executable .jar file that contains mock back-end service implementations for the Pine Valley Hospital and Grand Oak Hospital.
+When you run the integration artifact as in [Step 5](#step-5-run-the-integration-artifacts), the **Runtime Services** interface is opened up. You can see all the available services. 
 
-- **bin**: This contains a script to copy artifacts and run the backend service.
+Select `HelloWorldAPI` that you have developed and test the resource.
 
-### Step 2 - Running the integration artifacts
+<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif" alt="Test API" width="70%"></a>
 
-Follow the steps given below to run the integration artifacts we developed on a Micro Integrator instance that is installed on a VM.
+Congratulations!
+Now, you have created your first integration service.
 
-1. Run `run.sh/run.bat` script in `<mi-qsg-home>/bin` based on your operating system to start up the workspace.
-    1. Open a terminal and navigate to the `<mi-qsg-home>/bin` folder.
-    2. Execute the relevant OS specific command:
- 
-        === "On MacOS/Linux/CentOS"
-            ```bash 
-            sh run.sh 
-            ```
-        === "On Windows"            
-            ```bash 
-            run.bat 
-            ```  
-      
-        !!! Tip
-            The script assumes `MI_HOME` and `<mi-qsg-home>` are located in the same directory. It carries out the following steps.
+Additionally, you can use the [Integration Control Plane (ICP)]({{base_path}}/observe-and-manage/working-with-integration-control-plane) to observe details of the deployed artifacts.
 
-            - Start the back-end services.
-
-                - Two mock hospital information services are available in the `DoctorInfo.jar` file located in the `<mi-qsg-home>/Backend/` directory. 
-    
-                - To manually start the service, open a terminal window, navigate to the `<mi-qsg-home>/Backend/` folder, and use the following command to start the services:
-    
-                ```bash
-                java -jar DoctorInfo.jar
-                ```
-   
-            - Deploy the Healthcare service.
-
-                - Copy the CAR file of the Healthcare service (HealthcareIntegrationProjectCompositeExporter_1.0.0-SNAPSHOT.car) from the `<mi-qsg-home>/HealthcareIntegrationProject/HealthcareIntegrationProjectCompositeExporter/target/` directory to the `<MI_HOME>/repository/deployment/server/carbonapps` directory.
-              
-2. Start the Micro Integrator.
-
-    1. Execute the relevant command in a terminal based on the OS:
-       
-      === "On MacOS/Linux/CentOS"
-      ```bash 
-      sh micro-integrator.sh
-      ```
-      === "On Windows"          
-      ```bash 
-      micro-integrator.bat
-      ```
-
-4. (Optional) Start the Dashboard.
-
-    If you want to view the integration artifacts deployed in the Micro Integrator, you can start the dashboard. The instructions on running the MI dashboard is given in the installation guide:
-
-    1.  [Install the MI dashboard]({{base_path}}/install-and-setup/install/installing-mi-dashboard).
-    2.  [Start the MI dashboard]({{base_path}}/install-and-setup/install/running-the-mi-dashboard).
-    
- You can now test the **HealthcareIntegrationService** that you just generated.
- 
-### Step 3 - Testing the integration service
-
-1. Invoke the healthcare service.
-
-    Open a terminal and execute the following curl command to invoke the service:
-
-    ```bash
-    curl -v http://localhost:8290/healthcare/doctor/Ophthalmologist
-    ```
-
-    Upon invocation, you should be able to observe the following response:
-
-    ```bash
-    [ 
-       [ 
-          { 
-             "name":"John Mathew",
-             "time":"03:30 PM",
-             "hospital":"Grand Oak"
-          },
-          { 
-             "name":"Allan Silvester",
-             "time":"04:30 PM",
-             "hospital":"Grand Oak"
-          }
-       ],
-       [ 
-          { 
-             "name":"John Mathew",
-             "time":"07:30 AM",
-             "hospital":"pineValley"
-          },
-          { 
-             "name":"Roma Katherine",
-             "time":"04:30 PM",
-             "hospital":"pineValley"
-          }
-       ]
-    ]
-    ```
-    **Congratulations!**
-    Now you have created your first integration service. Optionally, you can follow the steps given below to expose the service as a Managed API in API Manager.
-
-   
 ## What's next?
 
-- [Develop your first integration solution]({{base_path}}/get-started/development-kickstart/).
-- [Learn more..]({{base_path}}/learn/learn-overview/).
+Try more [tutorials and examples]({{base_path}}/learn/learn-overview/).

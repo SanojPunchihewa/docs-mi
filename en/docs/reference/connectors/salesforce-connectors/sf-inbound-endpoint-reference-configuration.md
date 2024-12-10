@@ -2,95 +2,89 @@
 
 The following configurations allow you to configure Salesforce Inbound Endpoint for your scenario. 
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg th{font-family:Arial, sans-serif;font-size:20px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:black;}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-</style>
-<table class="tg">
+<table>
   <tr>
-    <th class="tg-0pky">Parameter</th>
-    <th class="tg-0pky">Description</th>
-    <th class="tg-0pky">Required</th>
-    <th class="tg-0pky">Possible Values</th>
-    <th class="tg-0pky">Default Value</th>
+    <th>Parameter</th>
+    <th>Description</th>
+    <th>Required</th>
+    <th>Example Values</th>
+    <th>Default Value</th>
   </tr>
   <tr>
-    <td class="tg-0pky">sequential</td>
-    <td class="tg-0pky">Whether the messages should be polled and injected sequentially.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">true , false</td>
-    <td class="tg-0pky">TRUE</td>
+    <td><code>interval</code></td>
+    <td>The polling interval for the Salesforce inbound endpoint.</td>
+    <td>Yes</td>
+    <td>-</td>
+    <td>-</td>
   </tr>
   <tr>
-    <td class="tg-0pky">replay</td>
-    <td class="tg-0pky"> Enabling this will read the event ID stored in the Registry DB or from the text file stored in the local machine.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">enable or disable</td>
-    <td class="tg-0pky">false</td>
+    <td><code>connection.salesforce.salesforceObject</code></td>
+    <td>The name of the Push Topic or the Platform Event that is added to the Salesforce account.</td>
+    <td>Yes</td>
+    <td><code>/topic/Account</code></td>
+    <td>-</td>
   </tr>
   <tr>
-    <td class="tg-0pky">packageVersion</td>
-    <td class="tg-0pky">The version of the Salesforce API.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">37.0</td>
-    <td class="tg-0pky">-</td>
+    <td><code>connection.salesforce.packageVersion</code></td>
+    <td>The version of the Salesforce API.</td>
+    <td>Yes</td>
+    <td><code>37.0</code></td>
+    <td>-</td>
   </tr>
   <tr>
-    <td class="tg-0pky">salesforceObject</td>
-    <td class="tg-0pky">The name of the Push Topic or the Platform Event that is added to the Salesforce account.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">/topic/Account</td>
-    <td class="tg-0pky">-</td>
+    <td><code>connection.salesforce.userName</code></td>
+    <td>Salesforce login user name.</td>
+    <td>Yes</td>
+    <td>-</td>
+    <td>-</td>
   </tr>
   <tr>
-    <td class="tg-0pky">loginEndpoint</td>
-    <td class="tg-0pky">The Endpoint of the Salesforce account.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">https://login.salesforce.com</td>
-    <td class="tg-0pky">https://login.salesforce.com</td>
+    <td><code>connection.salesforce.password</code></td>
+    <td>Salesforce login password.</td>
+    <td>Yes</td>
+    <td><code>eitest123xxxxxxx</code></td>
+    <td>-</td>
   </tr>
   <tr>
-    <td class="tg-0pky">userName</td>
-    <td class="tg-0pky">The username for accessing the Salesforce account.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">-</td>
-    <td class="tg-0pky">-</td>
-  </tr> 
-  <tr>
-    <td class="tg-0pky">password</td>
-    <td class="tg-0pky"> The password provided here is a concatenation of the user password and the security token provided by Salesforce. For more information, see <a href="https://help.salesforce.com/articleView?id=user_security_token.htm&type=5">Information on creating a security token in Salesforce</a></td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">eitest123xxxxxxx</td>
-    <td class="tg-0pky">-</td>
+    <td><code>connection.salesforce.loginEndpoint</code></td>
+    <td>The Endpoint of the Salesforce account.</td>
+    <td>Yes</td>
+    <td><code>https://login.salesforce.com</code></td>
+    <td><code>https://login.salesforce.com</code></td>
   </tr>
   <tr>
-    <td class="tg-0pky">waitTime</td>
-    <td class="tg-0pky">The time to wait to connect to the Salesforce account.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">5000</td>
-    <td class="tg-0pky">5 * 1000 ms</td>
-  </tr> 
-  <tr>
-    <td class="tg-0pky">connectionTimeout</td>
-    <td class="tg-0pky">The time to wait to connect to the client.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">20000</td>
-    <td class="tg-0pky">20 * 1000 ms</td>
-  </tr> 
-  <tr>
-    <td class="tg-0pky">soapApiVersion</td>
-    <td class="tg-0pky">The version of the Salesforce SOAP API.</td>
-    <td class="tg-0pky">Yes</td>
-    <td class="tg-0pky">22.0</td>
-    <td class="tg-0pky">-</td>
+    <td><code>connection.salesforce.soapApiVersion</code></td>
+    <td>The version of the Salesforce SOAP API.</td>
+    <td>No</td>
+    <td><code>22.0</code></td>
+    <td><code>22.0</code></td>
   </tr>
   <tr>
-    <td class="tg-0pky">EventIDStoredFilePath</td>
-    <td class="tg-0pky">When replay is enabled, do not define any value for this property (i.e., keep it blank), to replay from the last event ID stored in the config Registry DB (property- name of the Salesforce object (follow the example below for more understanding) resource path - connector/salesforce/event). When replay is enabled, specify the directory path of a text file to start replaying from the event ID stored in it.</td>
-    <td class="tg-0pky">No</td>
-    <td class="tg-0pky">/home/kasun/Documents/SalesForceConnector/a.txt</td>
-    <td class="tg-0pky">-</td>
-  </tr>   
+    <td><code>connection.salesforce.connectionTimeout</code></td>
+    <td>The time to wait to connect to the client.</td>
+    <td>No</td>
+    <td><code>20000</code></td>
+    <td><code>20000</code></td>
+  </tr>
+  <tr>
+    <td><code>connection.salesforce.waitTime</code></td>
+    <td>The time to wait to connect to the Salesforce account.</td>
+    <td>No</td>
+    <td><code>5000</code></td>
+    <td><code>5000</code></td>
+  </tr>
+  <tr>
+    <td><code>connection.salesforce.replay</code></td>
+    <td>Enabling this will read the event ID stored in the Registry or from the text file provided via the event ID file path.</td>
+    <td>No</td>
+    <td>-</td>
+    <td><code>False</code></td>
+  </tr>
+  <tr>
+    <td><code>connection.salesforce.EventIDStoredFilePath</code></td>
+    <td>This field is visible only if replay is enabled. When enabled, specify the directory path of a text file to replay from the event ID stored in it, or leave it blank to replay from the last event ID stored in the config Registry DB.</td>
+    <td>No</td>
+    <td><code>/home/kasun/Documents/SalesForceConnector/a.txt</code></td>
+    <td>-</td>
+  </tr>
 </table>

@@ -1,4 +1,4 @@
-# Using the HTTP Inbound Endpoint
+# How to Use an HTTP Inbound Endpoint
 This sample demonstrates how an HTTP inbound endpoint can act as a
 dynamic http listener. Many http listeners can be added without
 restarting the server. When a message arrives at a port it will bypass
@@ -40,8 +40,7 @@ Following are the integration artifacts that we can used to implement this scena
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio]({{base_path}}/develop/installing-wso2-integration-studio).
-2. [Create an integration project]({{base_path}}/develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
+{!includes/build-and-run.md!}
 3. Create a [mediation sequence]({{base_path}}/develop/creating-artifacts/creating-reusable-sequences) and [inbound endpoint]({{base_path}}/develop/creating-artifacts/creating-an-inbound-endpoint) with configurations given in the above example.
 4. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
 
@@ -52,7 +51,7 @@ Set up the back-end service:
 3. Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
 4. Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
  
-    === "On MacOS/Linux/CentOS"  
+    === "On MacOS/Linux"  
           ```bash 
           sh axis2server.sh
           ```
@@ -69,7 +68,7 @@ Accept-Encoding: gzip,deflate
 Content-Type: text/xml;charset=UTF-8
 SOAPAction: "urn:getQuote"
 Content-Length: 492
-Host: localhost:8290
+Host: localhost:8085
 Connection: Keep-Alive
 User-Agent: Apache-HttpClient/4.1.1 (java 1.5)
 

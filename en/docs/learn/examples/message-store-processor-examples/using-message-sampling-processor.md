@@ -1,4 +1,5 @@
-# Using the Message Sampling Processor
+# How to Use a Message Sampling Processor
+
 This example demonstrates the usage of the message sampling processor.
 
 ## Synapse configuration
@@ -7,18 +8,11 @@ Following are the artifact configurations that we can use to implement this scen
 
 === "Send Sequence"
     ```xml  
-    <sequence xmlns="http://ws.apache.org/ns/synapse" name="send_seq">
-        <send>
-            <endpoint>
-                <address uri="http://localhost:9000/services/SimpleStockQuoteService">
-                    <suspendOnFailure>
-                    <errorCodes>-1</errorCodes>
-                    <progressionFactor>1.0</progressionFactor>
-                    </suspendOnFailure>
-                </address>
-            </endpoint>
-        </send>
-    </sequence>           
+    <sequence name="send_seq"  trace="disable"  xmlns="http://ws.apache.org/ns/synapse">
+        <call>
+            <endpoint key="SimpleStockQuoteServiceEndpoint"/>
+        </call>
+    </sequence>       
     ```
 === "Proxy Service"    
     ```xml  
@@ -31,15 +25,12 @@ Following are the artifact configurations that we can use to implement this scen
                 <property name="OUT_ONLY" value="true"/>
                 <store messageStore="MyStore"/>
             </inSequence>
-            <outSequence>
-                 <send />
-            </outSequence>
         </target>
     </proxy>
     ```
 === "Message Store"    
-    ```xml 
-    <messageStore xmlns="http://ws.apache.org/ns/synapse" name="MyStore"/>
+    ```xml
+    <messageStore name="MyStore" class="org.apache.synapse.message.store.impl.memory.InMemoryStore" xmlns="http://ws.apache.org/ns/synapse" />
     ```
 === "Message Processor"    
     ```xml 
@@ -52,16 +43,28 @@ Following are the artifact configurations that we can use to implement this scen
     </messageProcessor> 
     ```
 
+=== "Endpoint"    
+```xml
+<endpoint name="SimpleStockQuoteServiceEndpoint" xmlns="http://ws.apache.org/ns/synapse">
+    <address uri="http://localhost:9000/services/SimpleStockQuoteService">
+        <suspendOnFailure>
+            <initialDuration>-1</initialDuration>
+            <progressionFactor>1</progressionFactor>
+        </suspendOnFailure>
+        <markForSuspension>
+            <retriesBeforeSuspension>0</retriesBeforeSuspension>
+        </markForSuspension>
+    </address>
+</endpoint>
+```
+
 ## Build and run
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio]({{base_path}}/develop/installing-wso2-integration-studio).
-2. [Create an integration project]({{base_path}}/develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
-3. Create the [proxy service]({{base_path}}/develop/creating-artifacts/creating-a-proxy-service), [mediation sequences]({{base_path}}/develop/creating-artifacts/creating-reusable-sequences), [message store]({{base_path}}/develop/creating-artifacts/creating-a-message-store), and [message processor]({{base_path}}/develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
-4. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
-
-[Configure the ActiveMQ broker]({{base_path}}/install-and-setup/setup/brokers/configure-with-activemq) and set up the JMS Sender.
+1. {!includes/build-and-run.md!}
+2. Create the [proxy service]({{base_path}}/develop/creating-artifacts/creating-a-proxy-service), [endpoint]({{base_path}}/develop/creating-artifacts/creating-endpoints), [mediation sequences]({{base_path}}/develop/creating-artifacts/creating-reusable-sequences), [message store]({{base_path}}/develop/creating-artifacts/creating-a-message-store), and [message processor]({{base_path}}/develop/creating-artifacts/creating-a-message-processor) with the configurations given above.
+3. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -70,7 +73,7 @@ Set up the back-end service:
 3. Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
 4. Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
 
-    === "On MacOS/Linux/CentOS"   
+    === "On MacOS/Linux"   
           ```bash
           sh axis2server.sh
           ```
@@ -82,7 +85,7 @@ Set up the back-end service:
 Send the following request to invoke the service:
 
 ```bash
-POST http://localhost:9090/services/StockQuoteProxy HTTP/1.1
+POST http://localhost:8290/services/StockQuoteProxy HTTP/1.1
 Accept-Encoding: gzip,deflate
 Content-Type: text/xml;charset=UTF-8
 SOAPAction: "urn:getQuote"

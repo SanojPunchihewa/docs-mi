@@ -1,4 +1,5 @@
-# Using a Simple Proxy Service
+# How to Use a Simple Proxy Service
+
 This example demonstrates how to use a simple proxy service to expose a back-end service. In this example, a request received by the proxy service is forwarded to the sample service hosted in the backend.
 
 ## Synapse configuration
@@ -10,12 +11,14 @@ An `inSequence` or `endpoint` or both of these would decide how the message woul
 ```xml
 <proxy name="StockQuoteProxy" startOnLoad="true" transports="http https" xmlns="http://ws.apache.org/ns/synapse">
     <target>
-        <endpoint>
-            <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
-        </endpoint>
-        <outSequence>
-            <send/>
-        </outSequence>
+        <inSequence>
+            <call>
+                <endpoint>
+                    <address uri="http://localhost:9000/services/SimpleStockQuoteService"/>
+                </endpoint>
+            </call>
+            <respond/>
+        </inSequence>
     </target>
     <publishWSDL uri="file:/path/to/sample_proxy_1.wsdl"/>
 </proxy>
@@ -25,8 +28,7 @@ An `inSequence` or `endpoint` or both of these would decide how the message woul
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio]({{base_path}}/develop/installing-wso2-integration-studio).
-2. [Create an integration project]({{base_path}}/develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
+{!includes/build-and-run.md!}
 3. [Create the proxy service]({{base_path}}/develop/creating-artifacts/creating-a-proxy-service) with the configurations given above.
 
     !!! Tip
@@ -50,7 +52,7 @@ Set up the back-end service:
 3. Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
 4. Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
       
-    === "On MacOS/Linux/CentOS"    
+    === "On MacOS/Linux"    
           ```bash 
           sh axis2server.sh
           ```

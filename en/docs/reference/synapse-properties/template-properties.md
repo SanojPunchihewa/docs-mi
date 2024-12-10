@@ -1,9 +1,9 @@
 # Template Properties
 ## Introduction
 
-A large number of configuration files in the form of [sequences]({{base_path}}/reference/synapse-properties/sequence-properties), [endpoints]({{base_path}}/reference/synapse-properties/endpoint-properties), [proxy services]({{base_path}}/reference/synapse-properties/proxy-service-properties), and transformations can be required to satisfy all the mediation requirements of your system. To keep your configurations manageable, it's important to avoid scattering configuration files across different locations and to avoid duplicating redundant configurations.
+A large number of configuration files in the form of [sequences]({{base_path}}/reference/mediation-sequences), [endpoints]({{base_path}}/reference/synapse-properties/endpoint-properties), [proxy services]({{base_path}}/reference/synapse-properties/proxy-service-properties), and transformations can be required to satisfy all the mediation requirements of your system. To keep your configurations manageable, it's important to avoid scattering configuration files across different locations and to avoid duplicating redundant configurations.
 
-Templates help minimize this redundancy by creating prototypes that users can use and reuse when needed. This is very much analogous to classes and instances of classes: a template is a class that can be used to wield instance objects such as [sequences]({{base_path}}/reference/synapse-properties/sequence-properties) and [endpoints]({{base_path}}/reference/synapse-properties/endpoint-properties). Thus, templates are an ideal way to improve reusability and readability of configurations/XMLs. Additionally, users can use predefined templates that reflect common enterprise integration patterns for rapid development of message/mediation flows.
+Templates help minimize this redundancy by creating prototypes that users can use and reuse when needed. This is very much analogous to classes and instances of classes: a template is a class that can be used to wield instance objects such as [sequences]({{base_path}}/reference/mediation-sequences) and [endpoints]({{base_path}}/reference/synapse-properties/endpoint-properties). Thus, templates are an ideal way to improve reusability and readability of configurations/XMLs. Additionally, users can use predefined templates that reflect common enterprise integration patterns for rapid development of message/mediation flows.
 
 <table>
     <tr>
@@ -86,7 +86,7 @@ The parameters available to [configure the Sequence Template]({{base_path}}/deve
         </td>
         <td>
             Set this parameter to 'true' if a value is required to be passed for the configuration.</br></br>
-            When this parameter is 'true', if a value is not passed from a Call Template mediator as shown below, the Micro Integrator will first check for a <a href="#defaultValue">defaultvalue</a>. If a <a href="#defaultValue">defaultValue</a> does not exist, the 'onError' sequence of the <a href="{{base_path}}/reference/synapse-properties/template-properties/call-Template-Mediator">Call Template mediator</a> will be called.</br></br>
+            When this parameter is 'true', if a value is not passed from a Call Template mediator as shown below, the Micro Integrator will first check for a <a href="#defaultValue">defaultvalue</a>. If a <a href="#defaultValue">defaultValue</a> does not exist, the 'onError' sequence of the <a href="{{base_path}}/reference/mediators/call-template-mediator">Call Template mediator</a> will be called.</br></br>
             If an empty value is passed in the Call Template mediator, the empty value will be used instead of using the default value.</br></br>
             See the <a href="{{base_path}}/learn/examples/template-examples/using-sequence-templates/">example use cases</a> for details.
         </td>

@@ -1,11 +1,8 @@
-# Routing Messages to a Static List of Recipients
-!!! Note
-    This documentation is currently under review. You might encounter some errors when trying out this sample in WSO2 Integration Studio. Please refer [this issue](https://github.com/wso2/integration-studio/issues/37) for details.
-
+# How to Route Messages to a Static List of Recipients
 This example demonstrates how messages can be routed to a list of static endpoints. This configuration routes a cloned copy of a message to each recipient defined within the static recipient list. The Micro Integrator will create cloned copies of the message and route to the three endpoints mentioned in the configuration. The back-end service prints the details of the placed order. 
 
 ## Synapse configuration
-Following is a sample proxy service configuration and mediation sequence that we can used to implement this scenario.
+Following is a sample proxy service configuration and mediation sequence that we can use to implement this scenario.
 
 === "Proxy Service"
     ```xml
@@ -31,23 +28,20 @@ Following is a sample proxy service configuration and mediation sequence that we
                 </call>
                 <respond/>
             </inSequence>
-            <outSequence>
-                <send/>
-            </outSequence>
             <faultSequence>
-                <sequence key="errorHandler"/>
-            </faultSequence
+                <sequence key="ErrorHandler"/>
+            </faultSequence>
         </target>
     </proxy>
     ```
 === "Error Handling Sequence"    
     ```xml
-    <sequence name="errorHandler">
-        <makefault response="true">
-            <code xmlns:tns="http://www.w3.org/2003/05/soap-envelope" value="tns:Receiver"/>
+    <sequence name="ErrorHandler" xmlns="http://ws.apache.org/ns/synapse">
+        <makefault response="true" version="soap12">
+            <code xmlns:soap12Env="http://www.w3.org/2003/05/soap-envelope" value="soap12Env:Receiver"/>
             <reason value="COULDN'T SEND THE MESSAGE TO THE SERVER."/>
         </makefault>
-        <send/>
+        <respond/>
     </sequence>
     ```
 

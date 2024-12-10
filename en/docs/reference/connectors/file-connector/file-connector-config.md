@@ -12,10 +12,11 @@ The File connector can be used to deal with two types of file systems:
     -   FTP
     -   FTPS
     -   SFTP
+    -   SMB2
     
 There are different connection configurations that can be used for the above protocols. They contain a common set of configurations and some additional configurations specific to the protocol.
 
-<img src="{{base_path}}/assets/img/integrate/connectors/filecon-reference-22.png" title="types of file connections" width="800" alt="types of file connections"/>
+<img src="{{base_path}}/assets/img/integrate/connectors/fileconnector-types.png" title="types of file connections" width="500" alt="types of file connections"/>
 
 
 !!! Note
@@ -42,6 +43,11 @@ There are different connection configurations that can be used for the above pro
         sftp://[ username[: password]@] hostname[: port][ relative-path]
         sftp://myusername:mypassword@somehost/pub/downloads/somefile.tgz
         ```
+    === "SMB2"         
+        ```bash 
+        smb2://[ username[: password]@] hostname[: port][ relative-path]
+        smb2://myusername:mypassword@somehost:445/SMBTesting
+        ```    
 
 !!! Tip
     There are instances where errors occur when using .csv files and the output is encoded. To overcome this, add the following configuration to the `<PRODUCT_HOME>/repository/conf/deployment.toml` file.
@@ -141,6 +147,9 @@ There are different connection configurations that can be used for the above pro
                 </li>
                 <li>
                     <b>SFTP</b>: Provides access to the files on an SFTP server (that is, an SSH or SCP server).
+                </li>
+                <li>
+                    <b>SMB2</b>: Provides access to the files on a Samba server.
                 </li>
             </ul>
         </td>
@@ -266,7 +275,7 @@ There are different connection configurations that can be used for the above pro
             String
         </td>
         <td>
-            User name used to connect with the file server.
+            The username used to connect with the file server. If the username contains special characters, you will need to use the URL encoded value.
         </td>
         <td>
             -
@@ -286,7 +295,7 @@ There are different connection configurations that can be used for the above pro
             String
         </td>
         <td>
-            Password to connect with the file server.
+            The password to connect with the file server. If the password contains special characters, you will need to use the URL encoded value.
         </td>
         <td>
             -
@@ -670,6 +679,323 @@ There are different connection configurations that can be used for the above pro
     </tr>
 </table>
 
+!!!info
+    The following SFTP connection parameters are available in File Connector version 4.0.21 and later.
+
+!!!note
+    The WSO2 File Connector uses connection pooling for enhanced performance. It uses the Apache Commons Pool as the base framework for connection pooling. For detailed information on the pooling mechanism, refer to the [Apache Commons Pool documentation](https://javadoc.io/doc/commons-pool/commons-pool/1.5.6/org/apache/commons/pool/impl/GenericObjectPool.html). The following parameters can be used to fine-tune the connection pool according to your requirements.
+    
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Element</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+           Connection Pool Aged Timeout
+        </td>
+        <td>
+           sftpPoolConnectionAgedTimeout
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           Interval to close connections in the connection pool in seconds.
+        </td>
+        <td>
+           Never
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Max Active Connections
+        </td>
+        <td>
+           maxActiveConnections
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           The maximum number of connections (including both idle and active/borrowed) that can exist within the pool at a given time.
+        </td>
+        <td>
+           8
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Max Idle Connections
+        </td>
+        <td>
+           maxIdleConnections
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           The maximum number of connections that can remain idle in the pool at any time, awaiting to be borrowed. Excess idle objects may be removed.
+        </td>
+        <td>
+           8
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Max Wait Time
+        </td>
+        <td>
+           maxWaitTime
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           This parameter determines how long the connector is willing to wait in the queue for a connection to become available. If the wait time exceeds the configured maximum wait time, the pool may throw an exception when it is exhausted and no connections are available.
+        </td>
+        <td>
+           indefinite (wait forever)
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Eviction Check Interval
+        </td>
+        <td>
+           evictionCheckInterval
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           This parameter specifies how frequently the evictor thread scans the pool for idle connections eligible for eviction. By configuring this interval, developers can control the frequency of resource checks, optimizing performance without unnecessary overhead.
+        </td>
+        <td>
+           Eviction doesn't run if this isn't defined.    
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Min Eviction Time
+        </td>
+        <td>
+           minEvictionTime
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           Connections in the pool must remain idle for at least this specified duration before the evictor considers them for removal. This ensures that only connections inactive beyond a defined threshold are evicted, preventing premature eviction of frequently used resources.
+        </td>
+        <td>
+           Eviction doesn't run if this and <code>evictionCheckInterval</code> aren't defined.
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Exhausted Action
+        </td>
+        <td>
+           exhaustedAction
+        </td>
+        <td>
+           String
+        </td>
+        <td>
+           Determines the action to take when the <code>borrowObject()</code> method is called, but the pool is exhausted.
+        </td>
+        <td>
+           <code>WHEN_EXHAUSTED_BLOCK</code>
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+</table>
+
+### SMB connection configs
+
+!!!info
+    The following SMB connection parameters are available in File Connector version 4.0.26 and later.
+
+!!!note
+    - The WSO2 File Connector uses connection pooling for enhanced performance. It uses the Apache Commons Pool as the base framework for connection pooling. For detailed information on the pooling mechanism, refer to the [Apache Commons Pool documentation](https://javadoc.io/doc/commons-pool/commons-pool/1.5.6/org/apache/commons/pool/impl/GenericObjectPool.html). The following parameters can be used to fine-tune the connection pool according to your requirements.
+    - SMB2 servers will close idle connections forcefully based on their configurations. In such cases, the Micro Integrator may throw connection errors. To avoid these errors, you can fine-tune the connection eviction configurations to remove idle connections from the pool.
+    
+<table>
+    <tr>
+        <th>Parameter Name</th>
+        <th>Element</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Default Value</th>
+        <th>Required</th>
+    </tr>
+    <tr>
+        <td>
+           Connection Pool Aged Timeout
+        </td>
+        <td>
+           sftpPoolConnectionAgedTimeout
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           Interval to close connections in the connection pool in seconds.
+        </td>
+        <td>
+           Never
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Max Active Connections
+        </td>
+        <td>
+           maxActiveConnections
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           The maximum number of connections (including both idle and active/borrowed) that can exist within the pool at a given time.
+        </td>
+        <td>
+           8
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Max Idle Connections
+        </td>
+        <td>
+           maxIdleConnections
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           The maximum number of connections that can remain idle in the pool at any time, awaiting to be borrowed. Excess idle objects may be removed.
+        </td>
+        <td>
+           8
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Max Wait Time
+        </td>
+        <td>
+           maxWaitTime
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           This parameter determines how long the connector is willing to wait in the queue for a connection to become available. If the wait time exceeds the configured maximum wait time, the pool may throw an exception when it is exhausted and no connections are available.
+        </td>
+        <td>
+           indefinite (wait forever)
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Eviction Check Interval
+        </td>
+        <td>
+           evictionCheckInterval
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           This parameter specifies how frequently the evictor thread scans the pool for idle connections eligible for eviction. By configuring this interval, developers can control the frequency of resource checks, optimizing performance without unnecessary overhead.
+        </td>
+        <td>
+           Eviction doesn't run if this isn't defined.    
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Min Eviction Time
+        </td>
+        <td>
+           minEvictionTime
+        </td>
+        <td>
+           Integer
+        </td>
+        <td>
+           Connections in the pool must remain idle for at least this specified duration before the evictor considers them for removal. This ensures that only connections inactive beyond a defined threshold are evicted, preventing premature eviction of frequently used resources.
+        </td>
+        <td>
+           Eviction doesn't run if this and <code>evictionCheckInterval</code> aren't defined.
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+    <tr>
+        <td>
+           Exhausted Action
+        </td>
+        <td>
+           exhaustedAction
+        </td>
+        <td>
+           String
+        </td>
+        <td>
+           Determines the action to take when the <code>borrowObject()</code> method is called, but the pool is exhausted.
+        </td>
+        <td>
+           <code>WHEN_EXHAUSTED_BLOCK</code>
+        </td>
+        <td>
+           No
+        </td>
+    </tr>
+</table>
+
 ## Operations
 
 The following operations allow you to work with the File Connector version 4. Click an operation name to see parameter details and samples on how to use it.
@@ -726,6 +1052,22 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+
+    **Sample configuration**
+    ```xml
+    <file.createDirectory configKey="CONNECTION_NAME">
+        <directoryPath>{$ctx:directoryPath}</directoryPath>
+    </file.createDirectory>
+    ```
+
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "directoryPath":"/home/vive/Desktop/file",
+        }
+    ```
 
     **Response**
 
@@ -788,6 +1130,22 @@ The following operations allow you to work with the File Connector version 4. Cl
         </tr>
     </table>
 
+    **Sample configuration**
+    ```xml
+    <file.checkExist configKey="CONNECTION_NAME">
+        <path>{$ctx:path}</path>
+    </file.checkExist>
+    ```
+
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "path":"/home/vive/Desktop/file/append.txt",
+        }
+    ```
+
     **Response**
 
     ```xml
@@ -799,6 +1157,7 @@ The following operations allow you to work with the File Connector version 4. Cl
 
 ??? note "compress"
     Archives a file or a directory.
+
     <table>
         <tr>
             <th>Parameter Name</th>
@@ -889,6 +1248,25 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.compress configKey="CONNECTION_NAME">
+        <sourceDirectoryPath>{$ctx:sourceDirectoryPath}</sourceDirectoryPath>
+        <targetFilePath>{$ctx:targetFilePath}</targetFilePath>
+        <includeSubDirectories>{$ctx:includeSubDirectories}</includeSubDirectories>
+    </file.compress>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "sourceDirectoryPath":"/home/vive/Desktop/file",
+            "targetFilePath":"/home/user/test/file.zip"
+        }
+    ```
 
     **Response**
 
@@ -1062,7 +1440,71 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+        <tr>
+            <td>
+                Max Retries	
+            </td>
+            <td>
+                maxRetries
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The maximum number of retries to be done in case of a failure.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Retry Interval	
+            </td>
+            <td>
+                retryDelay
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The time interval between retries in milliseconds.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.copy configKey="CONNECTION_NAME">
+        <sourcePath>{$ctx:sourcePath}</sourcePath>
+        <targetPath>{$ctx:targetPath}</targetPath>
+        <sourceFilePattern>{$ctx:sourceFilePattern}</sourceFilePattern>
+        <includeParent>{$ctx:includeParent}</includeParent>
+        <overwrite>{$ctx:overwrite}</overwrite>
+        <renameTo>{$ctx:renameTo}</renameTo>
+        <maxRetries>{$ctx:maxRetries}</maxRetries>
+        <retryDelay>{$ctx:retryDelay}</retryDelay>
+    </file.copy>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "sourcePath":"/home/vive/Desktop/file/append.txt",
+            "targetPath":"/home/user/test/file"
+        }
+    ```
 
     **Response**
 
@@ -1085,7 +1527,7 @@ The following operations allow you to work with the File Connector version 4. Cl
 ??? note "move"
     Moves the file or folder specified by the source path to the target directory. The source can be a file or a folder. If it is a folder, the moving is recursive.
     
-    The move operation can only move a file/folder within the same server. For example, you can move a file/folder from one local location to another local location, or from one remote location to another remote location on the same server. You cannot use the move operation to move a file/folder between different servers. If you want to move a file/folder from a local location to a remote location or vice versa, use the <b>copy</b> operation followed by <b>delete</b> operation.
+    The move operation can only move a file/folder within the same server. For example, you can move a file/folder from one local location to another local location, or from one remote location to another remote location on the same server. You cannot use the move operation to move a file/folder between different servers.
 
     <table>
         <tr>
@@ -1258,7 +1700,72 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+                <tr>
+            <td>
+               Is Source Mounted
+            </td>
+            <td>
+                isSourceMounted
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Whether the source path is a mounted path or not.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Is Target Mounted
+            </td>
+            <td>
+                isTargetMounted
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Whether the target path is a mounted path or not.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.move configKey="CONNECTION_NAME">
+        <sourcePath>{$ctx:sourcePath}</sourcePath>
+        <targetPath>{$ctx:targetPath}</targetPath>
+        <createParentDirectories>{$ctx:createParentDirectories}</createParentDirectories>
+        <includeParent>{$ctx:includeParent}</includeParent>
+        <overwrite>{$ctx:overwrite}</overwrite>
+        <renameTo>{$ctx:renameTo}</renameTo>
+        <filePattern>{$ctx:filePattern}</filePattern>
+        <isSourceMounted>{$ctx:isSourceMounted}</isSourceMounted>
+        <isTargetMounted>{$ctx:isTargetMounted}</isTargetMounted>
+    </file.move>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "sourcePath":"/home/vive/Desktop/file/append.txt",
+            "targetPath":"/home/user/test/file"
+        }
+    ```
 
     **Response**
 
@@ -1547,10 +2054,10 @@ The following operations allow you to work with the File Connector version 4. Cl
                 String
             </td>
             <td>
-                Available file reading modes: Read complete file, between lines, from line, upto line, single line, metadata only.
+                Available file reading modes: <code>Complete File</code>, <code>Between Lines</code>, <code>Starting From Line</code>, <code>Up To Line</code>, and <code>Specific Line</code>.
             </td>
             <td>
-                Reads complete file.
+                Complete File.
             </td>
             <td>
                 Yes
@@ -1610,7 +2117,7 @@ The following operations allow you to work with the File Connector version 4. Cl
                 Specific line to read.
             </td>
             <td>
-                When the reading mode is <code>SINGLE_LINE</code>.
+                When the reading mode is <code>Specific Line</code>.
             </td>
             <td>
                 No
@@ -1696,7 +2203,77 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+        <tr>
+            <td>
+                Max Retries	
+            </td>
+            <td>
+                maxRetries
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The maximum number of retries to be done in case of a failure.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Retry Interval	
+            </td>
+            <td>
+                retryDelay
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The time interval between retries in milliseconds.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.read configKey="CONNECTION_NAME">
+        <path>{$ctx:path}</path>
+        <filePattern>{$ctx:filePattern}</filePattern>
+        <includeResultTo>{$ctx:includeResultTo}</includeResultTo>
+        <resultPropertyName>{$ctx:resultPropertyName}</resultPropertyName>
+        <readMode>{$ctx:readMode}</readMode>
+        <startLineNum>{$ctx:startLineNum}</startLineNum>
+        <endLineNum>{$ctx:endLineNum}</endLineNum>
+        <lineNum>{$ctx:lineNum}</lineNum>
+        <contentType>{$ctx:contentType}</contentType>
+        <encoding>{$ctx:encoding}</encoding>
+        <enableStreaming>{$ctx:enableStreaming}</enableStreaming>
+        <enableLock>{$ctx:enableLock}</enableLock>
+        <maxRetries>{$ctx:maxRetries}</maxRetries>
+        <retryDelay>{$ctx:retryDelay}</retryDelay>
+    </file.read>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "path":"/home/vive/Desktop/file/read.txt",
+            "readMode":"Complete File"
+        }
+    ```
 
     **Response**
 
@@ -1822,6 +2399,25 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.rename configKey="CONNECTION_NAME">
+        <path>{$ctx:path}</path>
+        <renameTo>{$ctx:renameTo}</renameTo>
+        <overwrite>{$ctx:overwrite}</overwrite>
+    </file.rename>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "path":"/home/vive/Desktop/file/read.txt",
+            "renameTo":"test"
+        }
+    ```
 
     **Response**
 
@@ -1913,7 +2509,66 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+        <tr>
+            <td>
+                Max Retries	
+            </td>
+            <td>
+                maxRetries
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The maximum number of retries to be done in case of a failure.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Retry Interval	
+            </td>
+            <td>
+                retryDelay
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The time interval between retries in milliseconds.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.delete configKey="CONNECTION_NAME">
+        <path>{$ctx:path}</path>
+        <matchingPattern>{$ctx:matchingPattern}</matchingPattern>
+        <maxRetries>{$ctx:maxRetries}</maxRetries>
+        <retryDelay>{$ctx:retryDelay}</retryDelay>
+    </file.delete>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "path":"/home/vive/Desktop/file/read.txt"
+        }
+    ```
 
     **Response** 
 
@@ -2009,6 +2664,24 @@ The following operations allow you to work with the File Connector version 4. Cl
     </table>
 
     > NOTE: The latest File connector (v4.0.7 onwards) supports decompressing the .gz files.
+    
+     **Sample configuration**
+    ```xml
+    <file.unzip configKey="CONNECTION_NAME">
+        <sourceFilePath>{$ctx:sourceFilePath}</sourceFilePath>
+        <targetDirectory>{$ctx:targetDirectory}</targetDirectory>
+    </file.unzip>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "sourceFilePath":"/home/vive/Desktop/file/test.zip",
+            "targetDirectory":"/home/user/test/file"
+        }
+    ```
 
     **Response** 
 
@@ -2211,6 +2884,28 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+    
+     **Sample configuration**
+    ```xml
+    <file.splitFile configKey="CONNECTION_NAME">
+        <sourceFilePath>{$ctx:sourceFilePath}</sourceFilePath>
+        <targetDirectory>{$ctx:targetDirectory}</targetDirectory>
+        <splitMode>{$ctx:splitMode}</splitMode>
+        <xpathExpression>{$ctx:xpathExpression}</xpathExpression>
+    </file.splitFile>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "sourceFilePath":"/home/vive/Desktop/file/test.txt",
+            "targetDirectory":"/home/user/test/file",
+            "splitMode":"Linecount",
+            "lineCount":"10"
+        }
+    ```
 
     **Response** 
 
@@ -2385,7 +3080,70 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+        <tr>
+            <td>
+                Max Retries	
+            </td>
+            <td>
+                maxRetries
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The maximum number of retries to be done in case of a failure.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Retry Interval	
+            </td>
+            <td>
+                retryDelay
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The time interval between retries in milliseconds.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.listFiles configKey="CONNECTION_NAME">
+        <directoryPath>{$ctx:directoryPath}</directoryPath>
+        <matchingPattern>{$ctx:matchingPattern}</matchingPattern>
+        <recursive>{$ctx:recursive}</recursive>
+        <sortingAttribute>{$ctx:sortingAttribute}</sortingAttribute>
+        <sortingOrder>{$ctx:sortingOrder}</sortingOrder>
+        <responseFormat>{$ctx:responseFormat}</responseFormat>
+        <maxRetries>{$ctx:maxRetries}</maxRetries>
+        <retryDelay>{$ctx:retryDelay}</retryDelay>
+    </file.listFiles>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "directoryPath":"/home/vive/Desktop/file"
+        }
+    ```
 
     **Response** 
 
@@ -2459,6 +3217,22 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.exploreZipFile configKey="CONNECTION_NAME">
+        <zipFilePath>{$ctx:directoryPath}</zipFilePath>
+    </file.exploreZipFile>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "zipFilePath":"/home/vive/Desktop/file/test.zip"
+        }
+    ```
 
     **Response** 
 
@@ -2603,6 +3377,28 @@ The following operations allow you to work with the File Connector version 4. Cl
             </td>
         </tr>
     </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.mergeFiles configKey="CONNECTION_NAME">
+        <sourceDirectoryPath>{$ctx:sourceDirectoryPath}</sourceDirectoryPath>
+        <targetFilePath>{$ctx:targetFilePath}</targetFilePath>
+        <filePattern>{$ctx:filePattern}</filePattern>
+        <writeMode>{$ctx:writeMode}</writeMode>
+    </file.mergeFiles>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "sourceDirectoryPath":"/home/vive/Desktop/file",
+            "targetFilePath":"/home/user/test/file",
+            "writeMode":"Overwrite",
+
+        }
+    ```
 
     **Response** 
 
@@ -2888,7 +3684,7 @@ The following operations allow you to work with the File Connector version 4. Cl
                 -
             </td>
             <td>
-                Yes (If <b>Add Restul To</b> is "Message Property")
+                Yes (If <b>Add Result To</b> is "Message Property")
             </td>
         </tr>
         <tr>
@@ -2902,7 +3698,7 @@ The following operations allow you to work with the File Connector version 4. Cl
                 Boolean
             </td>
             <td>
-                Specify whether to update the last modified timestamp of the file. This is avalable from version 4.0.4.</br>
+                Specify whether to update the last modified timestamp of the file. This is available from version 4.0.4.</br>
             </td>
             <td>
                 true
@@ -2911,7 +3707,76 @@ The following operations allow you to work with the File Connector version 4. Cl
                 No
             </td>
         </tr>
+        <tr>
+            <td>
+                Max Retries	
+            </td>
+            <td>
+                maxRetries
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The maximum number of retries to be done in case of a failure.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Retry Interval	
+            </td>
+            <td>
+                retryDelay
+            </td>
+            <td>
+                Integer
+            </td>
+            <td>
+                The time interval between retries in milliseconds.
+            </td>
+            <td>
+                0
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
     </table>
+
+    **Sample configuration**
+    ```xml
+    <file.write configKey="CONNECTION_NAME">
+        <filePath>{$ctx:filePath}</filePath>
+        <contentOrExpression>{$ctx:contentOrExpression}</contentOrExpression>
+        <mimeType>{$ctx:mimeType}</mimeType>
+        <writeMode>{$ctx:writeMode}</writeMode>
+        <appendNewLine>{$ctx:appendNewLine}</appendNewLine>
+        <encoding>{$ctx:encoding}</encoding>
+        <compress>{$ctx:compress}</compress>
+        <enableStreaming>{$ctx:enableStreaming}</enableStreaming>
+        <enableLock>{$ctx:enableLock}</enableLock>
+        <includeResultTo>{$ctx:includeResultTo}</includeResultTo>
+        <resultPropertyName>{$ctx:resultPropertyName}</resultPropertyName>
+        <updateLastModified>{$ctx:updateLastModified}</updateLastModified>
+        <maxRetries>{$ctx:maxRetries}</maxRetries>
+        <retryDelay>{$ctx:retryDelay}</retryDelay>
+    </file.write>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "filePath":"/home/vive/Desktop/file.test.txt"
+        }
+    ```
 
     **Response** 
 
@@ -2931,3 +3796,181 @@ The following operations allow you to work with the File Connector version 4. Cl
        <detail>Target file already exists. Path = file:///Users/hasitha/temp/file-connector-test/copy/kandy/hasitha.txt</detail>
     </writeResult>
     ```
+
+??? note "fetchDirectoryContent"
+    Read the content of files in a given folder to a base64 encoded files stream list. Available in file-connector <b>v4.0.22</b> and above.
+    
+    <table>
+        <tr>
+            <th>Parameter Name</th>
+            <th>Element</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Default Value</th>
+            <th>Required</th>
+        </tr>
+        <tr>
+            <td>
+                File Connection
+            </td>
+            <td>
+                name
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The name of the file connection configuration to use.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Directory Path
+            </td>
+            <td>
+                directoryPath
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                The path to the directory to list files.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Matching Pattern
+            </td>
+            <td>
+                matchingPattern
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Pattern to match when listing files.
+            </td>
+            <td>
+                All Files
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Recursive
+            </td>
+            <td>
+                recursive
+            </td>
+            <td>
+                Boolean
+            </td>
+            <td>
+                Whether to list files in sub-directories.
+            </td>
+            <td>
+                false
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                File Sort Attribute
+            </td>
+            <td>
+                sortingAttribute
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Sort files when listing.
+            </td>
+            <td>
+                Name
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Sort Order
+            </td>
+            <td>
+                sortingOrder
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                File sorting order.
+            </td>
+            <td>
+                Ascending
+            </td>
+            <td>
+                No
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Property Name
+            </td>
+            <td>
+                resultPropertyName
+            </td>
+            <td>
+                String
+            </td>
+            <td>
+                Name of property to add the list of base64 encoded files operation result.
+            </td>
+            <td>
+                -
+            </td>
+            <td>
+                Yes
+            </td>
+        </tr>
+    </table>
+    
+    **Sample configuration**
+    ```xml
+    <file.fetchDirectoryContent configKey="CONNECTION_NAME">
+        <directoryPath>{$ctx:directoryPath}</directoryPath>
+        <matchingPattern>{$ctx:matchingPattern}</matchingPattern>
+        <recursive>{$ctx:recursive}</recursive>
+        <sortingAttribute>{$ctx:sortingAttribute}</sortingAttribute>
+        <sortingOrder>{$ctx:sortingOrder}</sortingOrder>
+        <resultPropertyName>{$ctx:resultPropertyName}</resultPropertyName>
+    </file.fetchDirectoryContent>
+    ```
+    
+    **Sample request**
+
+    Following is a sample REST/JSON request that can be handled by the append operation.
+    ```json
+        {
+            "directoryPath":"/home/vive/Desktop",
+            "sortingAttribute":"Name",
+            "resultPropertyName":"fetchDirectoryContent"
+        }
+    ```
+    

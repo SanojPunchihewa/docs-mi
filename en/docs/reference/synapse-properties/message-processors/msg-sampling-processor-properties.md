@@ -1,6 +1,6 @@
 # Message Sampling Processor Properties
 ## Introduction
-The message sampling processor consumes messages in a <a href="#list-of-message-stores">message store</a> and sends them to a configured <a href="{{base_path}}/reference/synapse-properties/sequence-properties">sequence</a>. This process happens at a preconfigured interval. This message processor does not ensure reliable messaging.
+The message sampling processor consumes messages in a <a href="#list-of-message-stores">message store</a> and sends them to a configured <a href="{{base_path}}/reference/mediation-sequences">sequence</a>. This process happens at a preconfigured interval. This message processor does not ensure reliable messaging.
 
 ## Properties
 
@@ -62,7 +62,7 @@ Following are the additional parameters you can set when [adding a message sampl
             <p>Quartz Configuration File Path ( <code>quartz.conf             </code> )</p>
          </td>
          <td>
-            <p>Quartz configuration file path. This properties file contains the Quartz configuration parameters for fine tuning the Quartz engine. More details of the configuration can be found at <a href="http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain">http://quartz-scheduler.org/documentation/quartz-2.x/configuration/ConfigMain</a> .
+            <p>Quartz configuration file path. This properties file contains the Quartz configuration parameters for fine tuning the Quartz engine. More details of the configuration can be found at <a href="https://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/ConfigMain.html">https://www.quartz-scheduler.org/documentation/quartz-2.1.7/configuration/ConfigMain.html</a> .
             </p>
          </td>
       </tr>

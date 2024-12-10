@@ -1,9 +1,10 @@
-# Using the JDBC Message Store
+# How to Use a JDBC Message Store
+
 In this sample, the client sends requests to a proxy service. The proxy service stores the messages in a JDBC message store. The back-end service is invoked by a message forwarding processor, which picks the messages stored in the JDBC message store.
 
 ## Prerequisites
 
-Setup the database. Use one of the following DB scripts depending on which database type you want to use. 
+Set up the database. Use one of the following DB scripts depending on which database type you want to use. 
 
 === "MySQL"
     ```SQL
@@ -89,10 +90,9 @@ The WSDL URI needs to be updated with the path to the `sample_proxy_1.wsdl` file
 
 Create the artifacts:
 
-1. [Set up WSO2 Integration Studio]({{base_path}}/develop/installing-wso2-integration-studio).
-2. [Create an integration project]({{base_path}}/develop/create-integration-project) with an <b>ESB Configs</b> module and an <b>Composite Exporter</b>.
-3. Create the [proxy service]({{base_path}}/develop/creating-artifacts/creating-a-proxy-service), [message store]({{base_path}}/develop/creating-artifacts/creating-a-message-store), [message processor]({{base_path}}/develop/creating-artifacts/creating-a-message-processor), and [endpoint]({{base_path}}/develop/creating-artifacts/creating-endpoints) with the configurations given above.
-4. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
+1. {!includes/build-and-run.md!}
+2. Create the [proxy service]({{base_path}}/develop/creating-artifacts/creating-a-proxy-service), [JDBC message store]({{base_path}}/develop/creating-artifacts/creating-a-message-store), [message processor]({{base_path}}/develop/creating-artifacts/creating-a-message-processor), and [endpoint]({{base_path}}/develop/creating-artifacts/creating-endpoints) with the configurations given above.
+3. [Deploy the artifacts]({{base_path}}/develop/deploy-artifacts) in your Micro Integrator.
 
 Set up the back-end service:
 
@@ -101,7 +101,7 @@ Set up the back-end service:
 3. Open a terminal, navigate to the `axis2Server/bin/` directory inside the extracted folder.
 4. Execute the following command to start the axis2server with the SimpleStockQuote back-end service:
  
-    === "On MacOS/Linux/CentOS"  
+    === "On MacOS/Linux"  
           ```bash 
           sh axis2server.sh
           ```
@@ -113,7 +113,7 @@ Set up the back-end service:
 Send the following request to invoke the sample proxy service:
 
 ```xml
-POST http://localhost:9090/services/MessageStoreProxy HTTP/1.1
+POST http://localhost:8290/services/MessageStoreProxy HTTP/1.1
 Accept-Encoding: gzip,deflate
 Content-Type: text/xml;charset=UTF-8
 SOAPAction: "urn:getQuote"
