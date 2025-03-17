@@ -238,3 +238,35 @@ function hasUserAcceptedCookies() {
     }
     return false;
 }
+// Define the exact displayed names for "Build your first integration" steps
+const integrationSteps = [
+    "Introduction",
+    "Develop an API Service",
+    "Route and Transform messages",
+    "Connect to SaaS or B2B Systems",
+    "Implement Unit Tests",
+    "Monitor and Manage Integrations"
+];
+
+document.querySelectorAll("label.md-nav__title").forEach(label => {
+    if (label.textContent.trim() === "Build your first integration") {
+        const ul = label.nextElementSibling;
+        if (ul && ul.tagName === "UL") {
+            ul.classList.add("custom-integration-list");
+            const listItems = ul.querySelectorAll("li");
+            count = 1;
+            listItems.forEach(li => {
+                const link = li.querySelector("a.md-nav__link");
+                if (link) {
+                    const linkText = link.textContent.trim();
+                    if (integrationSteps.includes(linkText)) {
+                        // Remove any existing numbers (if script runs again)
+                        link.innerHTML = link.innerHTML.replace(/^\d+\.\s*/, "");
+                        link.innerHTML = `<span class="custom-number">${count}</span> ${link.innerHTML}`;
+                        count++;
+                    }
+                }
+            });
+        }
+    }
+});

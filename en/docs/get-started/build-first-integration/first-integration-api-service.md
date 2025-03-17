@@ -1,40 +1,27 @@
-# Quick Start Guide
+# Develop an API service
 
-Welcome to the WSO2 Micro Integrator Quick Start Guide, your step-by-step tutorial for getting started with WSO2 Micro Integrator (MI). WSO2 MI enables you to build, deploy, and manage integration solutions with ease, providing flexibility and scalability to connect applications, services, and systems.
-
-In this guide, you'll learn the basics of setting up and using WSO2 MI to create and deploy a basic integration flow with minimal hassle.
+In this tutorial, you'll learn the basics of setting up and using WSO2 MI to create and deploy an Integration API service with minimal hassle.
 
 ## Prerequisites
 
 You need Visual Studio Code (VS Code) with the <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=WSO2.micro-integrator">Micro Integrator for VS Code</a> extension installed.
 
 !!! Info
-    See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode) documentation to learn how to install Micro Integrator for VS Code.
+    See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-Follow the instructions below to create your first integration solution:
+Follow the instructions below to create your first API service.
+
+## What you'll learn
+
+- How to create an integration project.
+- How to create an API service.
+- How to deploy and test.
 
 ## What you'll build
 
-Let’s try a simple scenario where the client sends a request to a `HelloWorld` API deployed in the WSO2 Micro Integrator and the API calls a backend service and returns its response. The backend service responds a `Hello World!!!` message, and the API deployed in the WSO2 Micro Integrator forwards this response to the client.
+Let’s try a simple scenario where the client sends a request to the `Bank` API deployed in the WSO2 Micro Integrator and receives a `Welcome to O2 Bank !!` greeting response.
 
 <a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"></a>
-
-You can use the following `HelloWorld` service as the backend service.
-
-<table>
-    <tr>
-        <td>URL</td>
-        <td>
-            <code>https://apis.wso2.com/zvdz/mi-qsg/v1.0</code>
-        </td>
-    </tr>
-    <tr>
-        <td>HTTP Method</td>
-        <td>
-            <code>GET</code> 
-        </td>
-    </tr>
-</table>
 
 ## Step 1 - Create a new integration project
 
@@ -48,7 +35,7 @@ To develop the above scenario, let's get started with creating an integration pr
 
 3. Click **Create New Project** on **Micro Integrator Project Explorer**. For more options for creating a new integration project, see [Create an Integration Project]({{base_path}}/develop/create-integration-project).
 
-4. In the **Project Creation Form**, enter `HelloWorld` as the **Project Name**.
+4. In the **Project Creation Form**, enter `Bank` as the **Project Name**.
 
 5. Ensure `4.4.0` is selected as the **Micro Integrator runtime version**.
 
@@ -88,11 +75,11 @@ To develop the above scenario, let's get started with creating an integration pr
 
 ## Step 2 - Create an API
 
-Now the integration project is ready to add an API. In this scenario, the API calls a backend service and responds to the client. First, let's create an API.
+Now the integration project is ready to add an API. In this scenario, the API responds to the client with a greeting message. First, let's create an API.
 
 1. In the **Add Artifact** interface, under **Create an Integration**, click on **API**. This opens the **API Form**.
 
-2. Enter `HelloWorldAPI` as the API **Name**. The API **Context** field will be automatically populated with the same value.
+2. Enter `BankAPI` as the API **Name**. The API **Context** field will be automatically populated with the same value.
 
     <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-api.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-api.png" alt="Create New API" width="80%"></a>
 
@@ -102,7 +89,10 @@ Once you create the API, a default resource will be automatically generated. You
 
 ## Step 3 - Design the integration
 
-Now it's time to design your API. This is the underlying logic that's executed behind the scenes when an API request is made. In this scenario first, you need to call the backend service. For that, you have to add an [HTTP connection]({{base_path}}/reference/connectors/http-connector/http-connector-overview). Follow the below steps to create an HTTPS connection.
+Now it's time to design your API. This is the underlying logic that's executed behind the scenes when an API request is made. In this scenario, you need to send back a greeting message to the client. For that, you have to add a [Payload]({{base_path}}/reference/mediators/payloadfactory-mediator/) mediator. Follow the below steps to add a Payload mediator.
+
+!!! Tip "What is a mediator?"
+    Mediators are the core building blocks of message processing in WSO2 Micro Integrator (MI). They define how messages are transformed and routed as they pass through an integration flow. To explore mediators in detail and understand how they work, see the [Mediator documentation]({{base_path}}/reference/mediators/about-mediators/).
 
 1. Open the **Resource View** of the API resource by clicking the `GET` resource under **Available resources** on **Service Designer**.
 
@@ -112,38 +102,23 @@ Now it's time to design your API. This is the underlying logic that's executed b
 
     <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/open-palette.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/open-palette.png" alt="Add new connection" width="80%"></a>
 
-3. Under **Mediators** > **HTTP** select the **GET** operation .
+3. Under **Mediators**, select the **Payload** mediator.
 
     <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-get-operation.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-get-operation.png" alt="Add new connection" width="80%"></a>
 
-4. In the **Add Get** pane that appears, click **Add new connection**.
+4. In the **Add Payload** pane that appears, provide the following as the payload.
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-new-connection.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-new-connection.png" alt="Add new connection" width="40%"></a>
+    ```json
+    {
+        "greetings":"Welcome to O2 Bank !!"
+    }
+    ```
 
-5. Under **Add New Connection**, select **HTTPS**.
-
-6. Specify the following values:
-
-    | Property            | Value                   |
-    |---------------------|-------------------------|
-    | **Connection Name** | `HelloWorldConn`        |
-    | **Base URL**        | `https://apis.wso2.com` |
-
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/hello-world-connection.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/hello-world-connection.png" alt="Add new connection" width="80%"></a>
-
-7. Click **Add**.
-
-    You'll be directed to the **Add Get** pane again.
-
-8. Enter `/zvdz/mi-qsg/v1.0` as the **Relative Path**.
-
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-get.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-get.png" alt="Add new connection" width="40%"></a>
-
-9. Click **Submit**.
+5. Click **Add** to add the Payload mediator to the integration flow.
 
     Now let's add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond the message to the client.
 
-10. Click on the **+** icon placed just after the HTTPS GET operation to open the palette.
+6. Click on the **+** icon placed just after the Payload mediator to open the palette.
 
 11. Select **Respond** mediator under **Mediators**.
 
@@ -179,7 +154,7 @@ Following is what you'll see in the **Source View** of the VS Code.
 </api>
 ```
 
-## Step 4 - Run the integration artifacts
+## Step 4 - Run the API service
 
 Now that you have developed an integration using the Micro Integrator for the Visual Studio Code plugin, it's time to deploy the integration to the Micro Integrator server runtime.
 
@@ -187,21 +162,25 @@ Click the **Build and Run** icon located in the top right corner of VS Code.
 
 <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png" alt="Build and run" width="80%"></a>
 
-## Step 5 - Test the integration service
+## Step 5 - Test the API service
 
-Now, let's test the integration service. For that, you can use the inbuilt try-it functionality in the MI for VS Code extension.
+Now, let's test the API service. For that, you can use the inbuilt try-it functionality in the MI for VS Code extension.
 
-When you run the integration artifact as in [Step 4](#step-4-run-the-integration-artifacts), the **Runtime Services** interface is opened up. You can see all the available services.
+When you run the integration as in [Step 4](#step-4-run-the-integration-artifacts), the **Runtime Services** interface is opened up. You can see all the available services.
 
-Select `HelloWorldAPI` that you have developed and test the resource.
+Select `BankAPI` that you have developed and test the resource.
 
 <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif" alt="Test API" width="80%"></a>
 
 Congratulations!
-Now, you have created your first integration service.
+Now, you have created your first API service.
 
-Additionally, you can use the [Integration Control Plane (ICP)]({{base_path}}/observe-and-manage/working-with-integration-control-plane) to observe details of the deployed artifacts.
+## What's Next?  
 
-## What's next?
+So far, we have responded to the client with a mock payload. Next, we will explore how to route and transform the payload effectively.
 
-Try more [tutorials and examples]({{base_path}}/learn/learn-overview/).
+Click on the **Next** button below to continue to the next tutorial.
+
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px;">
+  <a href="{{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/" class="md-button md-button--primary">Next →</a>
+</div>
