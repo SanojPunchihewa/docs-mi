@@ -210,11 +210,11 @@ You have now learned how to integrate with an email SaaS provider using connecto
 
 ## What's Next?  
 
-So far, you have learned how to route and transform the payload efficiently and integrate with an email SaaS provider using connectors. Next, you'll explore how to write unit tests for your integration to ensure its reliability and correctness.  
+So far, you have learned how to route and transform payloads efficiently and integrate with an email SaaS provider using connectors. Next, you'll explore how to monitor and manage your integrations using the Integration Control Plane (ICP).
 
 Click on the **Next** button below to continue to the next tutorial.
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 100px; margin-top: 20px;">
   <a href="{{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/" class="md-button">← Previous</a>
-  <a href="{{base_path}}/get-started/build-first-integration/first-integration-develop-test/" class="md-button md-button--primary">Next →</a>
+  <a href="{{base_path}}/get-started/build-first-integration/first-integration-monitor-icp/" class="md-button md-button--primary">Next →</a>
 </div>

@@ -1,6 +1,6 @@
 # Monitor and Manage Integrations
 
-In the previous tutorial, you learned how to implement unit tests to automate testing and ensure the reliability and correctness of your integration in WSO2 MI. Now, let's explore how to monitor the integrations using the [Integration Control Plane]() (ICP).
+In the previous tutorial, you learned how to route and transform messages, connect to a SaaS provider, deploy, and test integrations in WSO2 MI. Now, let's explore how to monitor the integrations using the [Integration Control Plane]() (ICP).
 
 !!! Tip "What is Integration Control Plane?"  
     The Integration Control Plane provides a centralized interface for monitoring and managing deployed integrations. It allows users to track integration statuses, view logs, and manage services efficiently. To learn more, see the [Integration Control Plane documentation]({{base_path}}/observe-and-manage/working-with-integration-control-plane/).
@@ -12,7 +12,7 @@ In the previous tutorial, you learned how to implement unit tests to automate te
     !!! Info
         See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-2. You must have completed the **Connect to SaaS or B2B Systems** tutorial under **Build Your First Integration** before proceeding. Start the [Connect to SaaS or B2B Systems]() tutorial if you haven’t completed it yet. While the **Implement Unit Tests** tutorial is not required for this tutorial, completing it will help you better understand automated testing in WSO2 MI.
+2. You must have completed the **Connect to SaaS or B2B Systems** tutorial under **Build Your First Integration** before proceeding. Start the [Connect to SaaS or B2B Systems]() tutorial if you haven’t completed it yet.
 
 3. You need to have the **Integration Control Plane (ICP)** installed.
 

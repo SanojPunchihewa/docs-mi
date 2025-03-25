@@ -424,7 +424,7 @@ header>.md-grid {
     display: flex;
     align-items: center;
     gap: 10px; /* Ensures proper spacing between icon and text */
-    color: #6c6c6c;
+    color: var(--md-primary-fg-color-header-text-active);
 }
 
 /* Default empty circle (not completed) */
@@ -436,7 +436,7 @@ header>.md-grid {
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: #f57c00;
+    background-color: #8a7d6f;
     width: 20px;
     height: 20px;
     min-width: 20px;
@@ -445,6 +445,10 @@ header>.md-grid {
     text-align: center;
     flex-shrink: 0;
     padding: 5px;
+}
+
+.custom-integration-list .md-nav__link--completed .custom-number {
+    background-color: #f57c00;
 }
 
 /* Completed step with checkmark inside orange circle */

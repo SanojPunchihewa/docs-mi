@@ -244,7 +244,6 @@ const integrationSteps = [
     "Develop an API Service",
     "Route and Transform messages",
     "Connect to SaaS or B2B Systems",
-    "Implement Unit Tests",
     "Monitor and Manage Integrations"
 ];
 
@@ -255,6 +254,7 @@ document.querySelectorAll("label.md-nav__title").forEach(label => {
             ul.classList.add("custom-integration-list");
             const listItems = ul.querySelectorAll("li");
             count = 1;
+            completed = true;
             listItems.forEach(li => {
                 const link = li.querySelector("a.md-nav__link");
                 if (link) {
@@ -264,6 +264,13 @@ document.querySelectorAll("label.md-nav__title").forEach(label => {
                         link.innerHTML = link.innerHTML.replace(/^\d+\.\s*/, "");
                         link.innerHTML = `<span class="custom-number">${count}</span> ${link.innerHTML}`;
                         count++;
+                        if (completed) {
+                            li.classList.add("md-nav__link--completed");
+                        }
+                        if (li.classList.contains("md-nav__item--active")) {
+                            console.log("active");
+                            completed = false;
+                        }
                     }
                 }
             });

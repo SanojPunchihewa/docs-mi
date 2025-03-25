@@ -4,7 +4,7 @@ In this tutorial, you'll learn the basics of setting up and using WSO2 MI to cre
 
 ## Prerequisites
 
-You need Visual Studio Code (VS Code) with the <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=WSO2.micro-integrator">Micro Integrator for VS Code</a> extension installed.
+You need Visual Studio Code (VS Code) with the <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=WSO2.micro-integrator">Micro Integrator for VS Code</a> extension installed. The MI for VS Code extension is the official developer tool for designing, developing, and testing integration solutions with WSO2 Micro Integrator.
 
 !!! Info
     See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
@@ -33,15 +33,17 @@ To develop the above scenario, let's get started with creating an integration pr
 
     <a href="{{base_path}}/assets/img/develop/mi-for-vscode/mi-vscode-extension.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/mi-vscode-extension.png" alt="MI VS Code Extension" width="80%"></a>
 
-3. Click **Create New Project** on **Micro Integrator Project Explorer**. For more options for creating a new integration project, see [Create an Integration Project]({{base_path}}/develop/create-integration-project).
+3. Click **Create New Project** on **Design View**. For more options for creating a new integration project, see [Create an Integration Project]({{base_path}}/develop/create-integration-project).
 
-4. In the **Project Creation Form**, enter `Bank` as the **Project Name**.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/create_new_project_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/create_new_project_btn.png" alt="Create New Project" width="80%"></a>
+
+4. In the **Project Creation Form**, enter `BankIntegration` as the **Project Name**.
 
 5. Ensure `4.4.0` is selected as the **Micro Integrator runtime version**.
 
 6. Provide a location for the integration project under **Project Directory**.
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-project.png" alt="Create New Project" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/create_new_project.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/create_new_project.png" alt="Create New Project" width="80%"></a>
 
 7. Click **Create**.
 
@@ -79,9 +81,11 @@ Now the integration project is ready to add an API. In this scenario, the API re
 
 1. In the **Add Artifact** interface, under **Create an Integration**, click on **API**. This opens the **API Form**.
 
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_artifact_api.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_artifact_api.png" alt="Create New Project" width="80%"></a>
+
 2. Enter `BankAPI` as the API **Name**. The API **Context** field will be automatically populated with the same value.
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-api.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/new-api.png" alt="Create New API" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/create_bank_api.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/create_bank_api.png" alt="Create New Project" width="80%"></a>
 
 3. Click **Create**.
 
@@ -96,63 +100,65 @@ Now it's time to design your API. This is the underlying logic that's executed b
 
 1. Open the **Resource View** of the API resource by clicking the `GET` resource under **Available resources** on **Service Designer**.
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/get-resource.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/get-resource.png" alt="Add new connection" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_get_resource.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_get_resource.png" alt="Create New Project" width="80%"></a>
 
-2. Once you open the **Resource View**, click on the **+** icon on the canvas to open the palette.
+2. Once you open the **Resource View**, click on the **+** icon on the canvas to open the **Mediator Palette**.
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/open-palette.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/open-palette.png" alt="Add new connection" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_new_mediator.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_new_mediator.png" alt="Create New Project" width="80%"></a>
 
 3. Under **Mediators**, select the **Payload** mediator.
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-get-operation.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/add-get-operation.png" alt="Add new connection" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_mediator.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_mediator.png" alt="Create New Project" width="80%"></a>
 
-4. In the **Add Payload** pane that appears, provide the following as the payload.
+4. In the **Add Payload Mediator** pane that appears, provide the following as the payload.
 
     ```json
     {
         "greetings":"Welcome to O2 Bank !!"
     }
     ```
+ 
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/set_greeting_payload.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/set_greeting_payload.png" alt="Create New Project" width="80%"></a>
 
 5. Click **Add** to add the Payload mediator to the integration flow.
 
     Now let's add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond the message to the client.
 
-6. Click on the **+** icon placed just after the Payload mediator to open the palette.
+6. Click on the **+** icon placed just after the Payload mediator to open the **Mediator Palette**.
 
-11. Select **Respond** mediator under **Mediators**.
+7. Select the **Respond** mediator from the **Mediator Palette**, and click **Add** to add it to the integration flow.
 
-12. Click **Add**.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_respond_mediator.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_respond_mediator.png" alt="Create New Project" width="80%"></a>
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/design-api.gif"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/design-api.gif" alt="Design API" width="80%"></a>
+You may refer to the following API configuration for reference,
 
-Following is what you'll see in the **Source View** of the VS Code.
+??? "Bank API"
 
-!!! info
-    You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
+    !!! info
+        You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
 
-```xml
-<?xml version="1.0" encoding="UTF-8"?>
-<api context="/helloworldapi" name="HelloWorldAPI" xmlns="http://ws.apache.org/ns/synapse">
-    <resource methods="GET" uri-template="/">
-        <inSequence>
-            <http.get configKey="HelloWorldConn">
-                <relativePath>/zvdz/mi-qsg/v1.0</relativePath>
-                <headers>[]</headers>
-                <forceScAccepted>false</forceScAccepted>
-                <disableChunking>false</disableChunking>
-                <forceHttp10>false</forceHttp10>
-                <noKeepAlive>false</noKeepAlive>
-                <responseVariable>http_get_1</responseVariable>
-                <overwriteBody>true</overwriteBody>
-            </http.get>
-            <respond/>
-        </inSequence>
-        <faultSequence>
-        </faultSequence>
-    </resource>
-</api>
-```
+    === "Design View"
+        <a href="{{base_path}}/assets/img/get-started/build-first-integration/greeting_api_completed.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/greeting_api_completed.png" alt="Create New Project" width="70%"></a>
+
+    === "Source View"
+        ```yaml
+        <?xml version="1.0" encoding="UTF-8"?>
+        <api context="/bankapi" name="BankAPI" xmlns="http://ws.apache.org/ns/synapse">
+            <resource methods="GET" uri-template="/">
+                <inSequence>
+                    <payloadFactory media-type="json" template-type="default">
+                        <format>{
+                            "greetings":"Welcome to O2 Bank !!"
+                            }
+                        </format>
+                    </payloadFactory>
+                    <respond/>
+                </inSequence>
+                <faultSequence>
+                </faultSequence>
+            </resource>
+        </api>
+        ```
 
 ## Step 4 - Run the API service
 
@@ -160,17 +166,17 @@ Now that you have developed an integration using the Micro Integrator for the Vi
 
 Click the **Build and Run** icon located in the top right corner of VS Code.
 
-<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png" alt="Build and run" width="80%"></a>
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn.png" alt="Create New Project" width="80%"></a>
 
 ## Step 5 - Test the API service
 
 Now, let's test the API service. For that, you can use the inbuilt try-it functionality in the MI for VS Code extension.
 
-When you run the integration as in [Step 4](#step-4-run-the-integration-artifacts), the **Runtime Services** interface is opened up. You can see all the available services.
+When you run the integration as in [Step 4](#step-4-run-the-api-service), the **Runtime Services** interface is opened up. You can see all the available services.
 
 Select `BankAPI` that you have developed and test the resource.
 
-<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif" alt="Test API" width="80%"></a>
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_greeting.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_greeting.gif" alt="Test API" width="80%"></a>
 
 Congratulations!
 Now, you have created your first API service.
