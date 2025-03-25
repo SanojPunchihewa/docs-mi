@@ -1,6 +1,6 @@
 # Route and transform messages
 
-In the previous tutorial, we learned how to develop, deploy, and test our first integration in WSO2 MI. In this tutorial, you'll learn how to dynamically build a payload and call an HTTP backend service.
+In the previous tutorial, we learned how to develop, deploy, and test our first integration in WSO2 MI. In this tutorial, you'll learn how to call an HTTP backend service and dynamically build a payload.
 
 ## Prerequisites
 
@@ -22,7 +22,7 @@ Follow the instructions below to modify the API service to call an HTTP endpoint
 
 ## What you'll build
 
-Let's consider a scenario where a client sends a request to the `Bank` API deployed in WSO2 Micro Integrator. The API checks the currency type, and if it is not `USD`, it calls a currency converter service to convert the amount before responding with the updated value.
+Let's consider a scenario where a client sends a request to the `Bank` API deployed in WSO2 Micro Integrator. The API checks the currency type, and if it is not `USD`, it invokes a currency converter service to convert the amount. It then responds to the client with the updated, converted value.
 
 <a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"></a>
 
@@ -76,7 +76,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_ifelse.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_ifelse.png" alt="Create New Project" width="80%"></a>
 
-    We will use an expression to define the condition for the **If Else** mediator. This condition checks whether the currency is USD or not and then determines which flow to execute. If the currency is not USD, the flow will call a currency converter service. The expression used for this check is: `payload.currency != 'USD'`.
+    We will use an expression to define the condition for the **If Else** mediator. This condition checks whether the currency is USD or not and then determines which flow to execute. If the currency is not USD, the flow will call a currency converter service. The expression used for this check is: `payload.currency == 'USD'`.
 
     !!! Tip "What is an expression?"
         Expressions in WSO2 Micro Integrator (MI) allow you to dynamically access, evaluate, and manipulate message content during processing. To explore expressions in detail, see the [Expressions documentation]({{base_path}}/reference/synapse-properties/synapse-expressions/).
@@ -85,25 +85,40 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
 7. Select **Payload** → **currency** to extract the currency attribute from the payload.
 
-8. Next, type a space to display the list of operators. Select the `!=` (not equal) operator and enter `'USD'` to complete the condition.
+8. Next, type a space to display the list of operators. Select the `==` (equal) operator and enter `'USD'` to complete the condition.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_if_condition.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_if_condition.gif" alt="Create New Project" width="50%"></a>
 
 9. Finally, click **Add** to insert the **If Else** mediator into the integration flow.
 
-10. Click on the **+** icon in the **Else** branch on the canvas to open the **Mediator Palette**. This branch executes when the currency is `USD`.
-
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_else_branch.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_else_branch.png" alt="Create New Project" width="80%"></a>
-
-11. Under **Mediators**, select the **Log** mediator.
-
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_log_mediator.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_log_mediator.png" alt="Create New Project" width="80%"></a>
-
-12. Enter `No currency conversion is required.` as the message, then click **Add** to insert the **Log** mediator into the integration flow.
-
-13. Click on the **+** icon in the **Then** branch on the canvas to open the **Mediator Palette**. This branch executes when the currency is **not** `USD`.
+10. Click on the **+** icon in the **Then** branch on the canvas to open the **Mediator Palette**. This branch executes when the currency is `USD`.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_then_branch.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_then_branch.png" alt="Create New Project" width="80%"></a>
+
+11. Under **Mediators**, select the **Payload** mediator.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_then_branch.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_then_branch.png" alt="Create New Project" width="80%"></a>
+
+12. In the **Payload** box, enter the following sample JSON object. In the next step, we will use an inline expression to extract the amount from the incoming payload and insert it into this sample JSON.
+
+    ```json
+    {
+        "status": "successful",
+        "amountDeposited": 
+    }
+    ```
+
+13. In the JSON object, place your cursor in the corresponding location (next to `"amountDeposited": `), click on the inline expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/inline_expression_icon.png" alt="inline expression editor" class="inline-icon">) icon, then select **Payload** → **amount**, and click **Add** to insert the inline expression into the JSON object.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif">
+        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif" width="50%" alt="Add inline expression">
+    </a>
+
+14. Finally, click **Add** to insert the **Payload** mediator into the integration flow.
+
+15. Click on the **+** icon in the **Else** branch on the canvas to open the **Mediator Palette**. This branch executes when the currency is **not** `USD`.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_else_branch.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_else_branch.png" alt="Create New Project" width="80%"></a>
 
     To convert the amount from the given currency to USD, we need to call a currency converter service. You can use the following `Currency Converter` service as the backend.
 
@@ -133,15 +148,15 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
         </tr>
     </table>
 
-14. Search for `post` in the **Mediator Palette** to add the HTTP POST operation for currency conversion.
+16. Search for `post` in the **Mediator Palette** to add the HTTP POST operation for currency conversion.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/search_http_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/search_http_post.png" alt="Create New Project" width="80%"></a>
 
-15. Click **+ Add new connection** to create a new connection.
+17. Click **+ Add new connection** to create a new connection.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_new_connection_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_new_connection_btn.png" alt="Create New Project" width="80%"></a>
 
-16. Select `HTTPS` and fill in the following details to create a connection to `Currency Converter` service. Finally, click **Add** in the **Add New Connection** form to create the connection.
+18. Select `HTTPS` and fill in the following details to create a connection to `Currency Converter` service. Finally, click **Add** in the **Add New Connection** form to create the connection.
 
     | Property            | Value                   |
     |---------------------|-------------------------|
@@ -150,7 +165,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_new_connection_form.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_new_connection_form.png" alt="create connection" width="80%"></a>
 
-17. Provide `/currency-converter` as the **Relative Path**, and click **Submit** to insert the operation to the integration flow.
+19. Provide `/currency-converter` as the **Relative Path**, and click **Submit** to insert the operation to the integration flow.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_http_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_http_post.png" alt="geo http request" width="30%"></a>
 
@@ -158,58 +173,41 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
         Since we have completed most of the flow, let's verify everything up to this point. You can use the **Mediator TryOut** feature to execute the flow up to a specific mediator and inspect its input and output.  
         To explore this feature in detail, see the [Mediator TryOut documentation]({{base_path}}/develop/mediator-tryout/).
 
-        1. Click on the **If Else** mediator to open the **Edit** pane.<br>
-            <a href="{{base_path}}/assets/img/get-started/build-first-integration/click_if_else.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/click_if_else.png" alt="create connection" width="80%"></a>
+        1. Click on the **Payload** mediator to open the **Edit** pane, then select the **Tryout** tab.
+            <a href="{{base_path}}/assets/img/get-started/build-first-integration/click_payload.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/click_payload.png" alt="create connection" width="80%"></a>
 
-        2. Select the **Tryout** tab.<br>
-            <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_tab.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_tab.png" alt="create connection" width="30%"></a>
+        2. Once the data is loaded, click **Run** to execute the flow through this mediator and review the output. Expand the **Payload** section to view the JSON payload defined in step 12.<br>
+            <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif" alt="Create New Project" width="30%"></a>
 
-        3. Once the data is loaded, click **Run** to execute the flow through this mediator and review the output.
-        If you expand the **Payload** section, you will see the following JSON.
-        ```json
-        {
-            "currency":"USD",
-            "amount":100
-        }
-        ```
+        3. You can also use this feature to check the output of HTTP calls. In the canvas, click on the **HTTP POST** operation to open the **Edit** pane, then select the **Tryout** tab.<br>
 
-        4. Now, change the request to `sample2` under **Select a request to try out**, then click **Run** to execute the flow.
-        If you expand the **Payload** section, you will see the following JSON, which represents the converted amount received from the `Currency Converter` service.
-        ```json
-        {
-            "currency":"USD",
-            "amount":78
-        }
-        ```
+        4. Once the data is loaded, change the request to `sample2` under **Select a request to try out**, then click **Run** to execute the `else` branch, which contains the backend service invocation. Expand the **Payload** section to view the JSON response from the currency converter service.<br>
+            <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif" alt="Create New Project" width="30%"></a>
+
 
     Now that we have the currency amount in USD, let's send a response to the client, mentioning the amount deposited into the bank account.
 
-18. Click on the **+** icon just after the **If Else** mediator to open the **Mediator Palette**.
+20. Click on the **+** icon just after the **HTTP POST** operation to open the **Mediator Palette**.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_after_if.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_after_if.png" alt="Create New Project" width="80%"></a>
 
-19. Select **Payload** mediator under **Mediators**.
+21. Select **Payload** mediator under **Mediators**.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_mediator_transform.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_mediator_transform.png" alt="Create New Project" width="80%"></a>
 
-20. In the **Payload** box, enter the following sample JSON object. We will use an inline expression to extract the amount from the existing payload and insert it into this sample JSON object in the next step.
+22. In the **Payload** box, enter the following template to create a new payload using the converted value.
+
+    !!! Note
+        The `Currency Converter` service returns a JSON object with the exchange rate and the converted amount, where `convertedValue` holds the final result. This template uses that value to generate the response payload.
 
     ```json
     {
         "status": "successful",
-        "amountDeposited": 
+        "amountDeposited": ${payload.convertedValue}
     }
     ```
 
-21. In the JSON object, place your cursor in the corresponding location (next to `"amountDeposited": `), click on the inline expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/inline_expression_icon.png" alt="inline expression editor" class="inline-icon">) icon, then select **Payload** → **amount**, and click **Add** to insert the inline expression into the JSON object.
-
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif">
-        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif" width="50%" alt="Add inline expression">
-    </a>
-
-22. Finally, click **Add** to insert the **Payload** mediator into the integration flow.
-
-23. Click on the **+** icon placed just after the Payload mediator to open the **Mediator Palette** to add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond the message to the client.
+23. Click on the **+** icon placed just after the **If Else** mediator to open the **Mediator Palette** to add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond the message to the client.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_respond_deposit_flow.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_respond_deposit_flow.png" alt="Create New Project" width="80%"></a>
 
@@ -217,7 +215,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
 You may refer to the following API and HTTP connection for reference,
 
-??? "Weather API"
+??? "Bank API"
 
     !!! info
         You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
@@ -365,15 +363,15 @@ Click on the **Next** button below to continue to the next tutorial.
 </div>
 
 {% raw %}
-<!-- <style>
-.n {
-    color:rgb(108, 108, 108) !important;
+<style>
+.language-bash {
+    color: rgb(67, 163, 189) !important;
 }
-.o {
-    color: #ff7043 !important;
+.language-bash .hljs-string {
+    color: rgb(100, 100, 100) !important;
 }
-.s1 {
-    color: #569CD6 !important;
+.language-bash .hljs-variable {
+    color: rgb(255, 112, 67) !important;
 }
-</style> -->
+</style>
 {% endraw %}
