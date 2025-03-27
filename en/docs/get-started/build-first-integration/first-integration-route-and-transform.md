@@ -24,7 +24,7 @@ Follow the instructions below to modify the API service to call an HTTP endpoint
 
 Let's consider a scenario where a client sends a request to the `Bank` API deployed in WSO2 Micro Integrator. The API checks the currency type, and if it is not `USD`, it invokes a currency converter service to convert the amount. It then responds to the client with the updated, converted value.
 
-<a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"></a>
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/what_you_will_build_route.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/what_you_will_build_route.png" alt="Create New Project" width="60%"></a>
 
 ## Step 1 - Create a new API resource
 
@@ -38,11 +38,11 @@ To develop the above scenario, let's get started with creating a new API resourc
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_resource_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_resource_btn.png" alt="Create New Project" width="80%"></a>
 
-4. In the **Add API Resource** pane, set `/deposit` as the **Resource Path** and select the `POST` method.
+3. In the **Add API Resource** pane, set `/deposit` as the **Resource Path** and select the `POST` method.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane.png" alt="Create New Project" width="80%"></a>
 
-5. Finally, click **Create** to add the new API resource.
+4. Finally, click **Create** to add the new API resource.
 
 ## Step 2 - Design the integration
 
@@ -167,6 +167,9 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
 19. Provide `/currency-converter` as the **Relative Path**, and click **Submit** to insert the operation to the integration flow.
 
+    !!! Note  
+        Since the user sent request payload matches the expected format of the `CurrencyConverter` service, we can use the payload as-is in the request body of the HTTP POST operation.
+
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_http_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_http_post.png" alt="geo http request" width="30%"></a>
 
     !!! Tip
@@ -179,25 +182,24 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
         2. Once the data is loaded, click **Run** to execute the flow through this mediator and review the output. Expand the **Payload** section to view the JSON payload defined in step 12.<br>
             <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif" alt="Create New Project" width="30%"></a>
 
-        3. You can also use this feature to check the output of HTTP calls. In the canvas, click on the **HTTP POST** operation to open the **Edit** pane, then select the **Tryout** tab.<br>
+        3. You can also use this feature to check the output of HTTP connector. In the canvas, click on the **HTTP POST** operation to open the **Edit** pane, then select the **Tryout** tab.<br>
+            <a href="{{base_path}}/assets/img/get-started/build-first-integration/click_http_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/click_http_post.png" alt="create connection" width="80%"></a>
 
         4. Once the data is loaded, change the request to `sample2` under **Select a request to try out**, then click **Run** to execute the `else` branch, which contains the backend service invocation. Expand the **Payload** section to view the JSON response from the currency converter service.<br>
-            <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_payload.gif" alt="Create New Project" width="30%"></a>
+            <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_http.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_http.gif" alt="Create New Project" width="30%"></a>
 
 
     Now that we have the currency amount in USD, let's send a response to the client, mentioning the amount deposited into the bank account.
 
 20. Click on the **+** icon just after the **HTTP POST** operation to open the **Mediator Palette**.
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_after_if.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_after_if.png" alt="Create New Project" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_after_http.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_after_http.png" alt="Create New Project" width="80%"></a>
 
 21. Select **Payload** mediator under **Mediators**.
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_mediator_transform.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_payload_mediator_transform.png" alt="Create New Project" width="80%"></a>
+22. In the **Payload** box, enter the following template to create a new payload using the converted value, then click **Add** to insert the **Payload** mediator into the integration flow.
 
-22. In the **Payload** box, enter the following template to create a new payload using the converted value.
-
-    !!! Note
+    !!! Info
         The `Currency Converter` service returns a JSON object with the exchange rate and the converted amount, where `convertedValue` holds the final result. This template uses that value to generate the response payload.
 
     ```json
@@ -206,6 +208,8 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
         "amountDeposited": ${payload.convertedValue}
     }
     ```
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/payload_transform_after_http.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/payload_transform_after_http.png" alt="Create New Project" width="30%"></a>
 
 23. Click on the **+** icon placed just after the **If Else** mediator to open the **Mediator Palette** to add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond the message to the client.
 
@@ -242,8 +246,17 @@ You may refer to the following API and HTTP connection for reference,
             </resource>
             <resource methods="POST" uri-template="/deposit">
                 <inSequence>
-                    <filter xpath="${payload.currency != 'USD'}">
+                    <filter xpath="${payload.currency == 'USD'}">
                         <then>
+                            <payloadFactory media-type="json" template-type="default">
+                                <format>{
+                                    "status": "successful",
+                                    "amountDeposited": ${payload.amount}
+                                    }
+                                </format>
+                            </payloadFactory>
+                        </then>
+                        <else>
                             <http.post configKey="CurrencyConverter">
                                 <relativePath>/currency-converter</relativePath>
                                 <headers>[]</headers>
@@ -257,19 +270,15 @@ You may refer to the following API and HTTP connection for reference,
                                 <responseVariable>http_post_1</responseVariable>
                                 <overwriteBody>true</overwriteBody>
                             </http.post>
-                        </then>
-                        <else>
-                            <log category="INFO" logMessageID="false" logFullPayload="false">
-                                <message>No currency conversion is required.</message>
-                            </log>
+                            <payloadFactory media-type="json" template-type="default">
+                                <format>{
+                                    "status": "successful",
+                                    "amountDeposited": ${payload.convertedValue}
+                                    }
+                                </format>
+                            </payloadFactory>
                         </else>
                     </filter>
-                    <payloadFactory media-type="json" template-type="default">
-                        <format>{
-                            "status": "successful",
-                            "amountDeposited": ${payload.amount}
-                            }</format>
-                    </payloadFactory>
                     <respond/>
                 </inSequence>
                 <faultSequence>
@@ -284,23 +293,23 @@ You may refer to the following API and HTTP connection for reference,
         You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
 
     === "Design View"
-        <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-http-connection.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-http-connection.png" alt="http connection config" width="40%"></a>
+        <a href="{{base_path}}/assets/img/get-started/build-first-integration/currency_http_connection.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/currency_http_connection.png" alt="http connection config" width="40%"></a>
         
     === "Source View"
         ```yaml
         <?xml version="1.0" encoding="UTF-8"?>
-        <localEntry key="OpenWeather" xmlns="http://ws.apache.org/ns/synapse">
-            <http.init>
-                <connectionType>HTTPS</connectionType>
-                <baseUrl>https://api.openweathermap.org/</baseUrl>
-                <authType>None</authType>
-                <timeoutAction>Never</timeoutAction>
-                <retryCount>0</retryCount>
-                <retryDelay>0</retryDelay>
-                <suspendInitialDuration>-1</suspendInitialDuration>
-                <suspendProgressionFactor>1</suspendProgressionFactor>
-                <name>OpenWeather</name>
-            </http.init>
+        <localEntry key="CurrencyConverter" xmlns="http://ws.apache.org/ns/synapse">
+        <http.init>
+            <connectionType>HTTPS</connectionType>
+            <baseUrl>https://apis.wso2.com/zvdz/mi-qsg/v1.0</baseUrl>
+            <authType>None</authType>
+            <timeoutAction>Never</timeoutAction>
+            <retryCount>0</retryCount>
+            <retryDelay>0</retryDelay>
+            <suspendInitialDuration>-1</suspendInitialDuration>
+            <suspendProgressionFactor>1</suspendProgressionFactor>
+            <name>CurrencyConverter</name>
+        </http.init>
         </localEntry>
         ```
 
@@ -310,15 +319,17 @@ Now that you have updated the integration, it's time to deploy the integration t
 
 Click the **Build and Run** icon located in the top right corner of VS Code.
 
-<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png" alt="Build and run" width="80%"></a>
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn_deposit.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn_deposit.png" alt="Create New Project" width="80%"></a>
 
 ## Step 5 - Test the integration service
 
 1. Once the **Runtime Services** interface is open, select the `BankAPI`, and click the **Try It** button.
 
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_bank_api_deposit.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_bank_api_deposit.png" alt="Create New Project" width="80%"></a>
+
 2. Select the `/deposit` resource and click **Try it Out** to test the API.
 
-    <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-op-try.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-op-try.png" alt="try out operation" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_deposit_resource.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_deposit_resource.png" alt="Create New Project" width="80%"></a>
 
 3. Provide a JSON payload and click the **Execute** button to invoke the API. You may use the following sample payloads to test the API.
 
@@ -340,13 +351,9 @@ Click the **Build and Run** icon located in the top right corner of VS Code.
     }
     ```
 
-    <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-swagger-exec.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-swagger-exec.png" alt="execute request" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/swagger_execute_deposit.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/swagger_execute_deposit.png" alt="Create New Project" width="80%"></a>
 
 4. Check the response received from the server and verify that the currency conversion has been applied correctly.
-
-<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif">
-<img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/test-api.gif" alt="Test API" style="display: block; max-width: 80%; margin: 0 auto;">
-</a>
 
 Congratulations!
 You have now learned how to create an API resource, use the HTTP connector, work with expressions, and test mediators using Mediator TryOut.
@@ -365,13 +372,14 @@ Click on the **Next** button below to continue to the next tutorial.
 {% raw %}
 <style>
 .language-bash {
-    color: rgb(67, 163, 189) !important;
+    color: var(--md-feedback-button-color) !important;
 }
 .language-bash .hljs-string {
-    color: rgb(100, 100, 100) !important;
+    color: var(--md-feedback-button-color) !important;
 }
 .language-bash .hljs-variable {
-    color: rgb(255, 112, 67) !important;
+    font-weight: 600;
+    color: rgb(45, 116, 215) !important;
 }
 </style>
 {% endraw %}

@@ -1,6 +1,6 @@
 # Connect to SaaS or B2B Systems
 
-In the previous tutorial, you learned how to route and transform messages, deploy, and test integrations in WSO2 MI. Now, let's enhance the existing deposit flow by adding an email notification feature.
+In the previous tutorial, you learned how to route and transform messages, deploy, and test integrations in WSO2 Micro Integrator (MI). In this tutorial, you’ll learn how to create a loan review email notification flow that sends an email based on the client's loan status.
 
 ## Prerequisites
 
@@ -9,9 +9,9 @@ In the previous tutorial, you learned how to route and transform messages, deplo
     !!! Info
         See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-2. You must have completed the **Route and Transform messages** tutorial under **Build your first integration** before proceeding. Start the [Route and Transform messages]() tutorial if you haven’t completed it yet.
+2. You must have completed the **Route and Transform messages** tutorial under **Build your first integration** before proceeding. Start the [Route and Transform messages]({{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/) tutorial if you haven’t completed it yet.
 
-Follow the instructions below to modify the API service so it sends an email to the client with the bank deposit status.
+Follow the instructions below to modify the API service so it sends an email to the client with the loan status.
 
 ## What you'll learn
 
@@ -19,15 +19,60 @@ Follow the instructions below to modify the API service so it sends an email to 
 
 ## What you'll build
 
-Let's consider a scenario where a client sends a request to the `Bank` API deployed in WSO2 Micro Integrator. After processing the request, the API sends an email notification to the client with the bank deposit status using a SaaS-based email service. In this example, we use <a target="_blank" href="https://developers.google.com/gmail/imap/imap-smtp">Gmail's SMTP service</a> as the email provider.
+Let's consider a scenario where a client sends a loan request to the `Bank` API deployed in WSO2 Micro Integrator. Upon receiving the request, the API sends an email notification to the client indicating that the loan request has been received and is under review. This is done using a SaaS-based email service.
 
-<a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"></a>
+In this example, we use <a target="_blank" href="https://developers.google.com/gmail/imap/imap-smtp">Gmail's SMTP service</a> as the email provider.
 
-## Step 1 - Design the integration
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/what_you_will_build_saas.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/what_you_will_build_saas.png" alt="Create New Project" width="60%"></a>
 
-Now, it's time to design the email notification flow. Follow the steps below to create the email notification integration. Since we will be updating the integration from the [Route and Transform Messages]() tutorial, make sure you have it open in VS Code.
+Now, it's time to design the email notification flow. Follow the steps below to create the email notification integration.
 
-1. Click on the **+** icon just after the **Payload** mediator to open the **Mediator Palette**.
+## Step 1 - Create a new API resource
+
+To develop the above scenario, let's get started with creating a new API resource in the `Bank` API.
+
+1. Click on the Service Designer (<img src="{{base_path}}/assets/img/get-started/build-first-integration/service_designer_icon.png" alt="inline expression editor" class="inline-icon">) icon of the `Bank` API in the **Micro Integrator Project Explorer** to open the Service Designer.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/service_designer_icon_bank_api_3.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/service_designer_icon_bank_api_3.png" alt="Create New Project" width="80%"></a>
+
+2. In the Service Designer, click the **+ Resource** button to add a new API resource.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_resource_btn_3.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_resource_btn_3.png" alt="Create New Project" width="80%"></a>
+
+3. In the **Add API Resource** pane, set `/loan-review` as the **Resource Path** and select the `POST` method.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane_loan_review_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane_loan_review_post.png" alt="Create New Project" width="80%"></a>
+
+4. Finally, click **Create** to add the new API resource.
+
+## Step 2 - Design the integration
+
+1. Open the **Resource View** of the newly created API resource by clicking the `POST /loan-review` resource under **Available resources** in the **Service Designer**.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_loan_review_post_resource.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_loan_review_post_resource.png" alt="Create New Project" width="80%"></a>
+
+2. After opening the **Resource View**, click on the **Start** node on the canvas to set an input payload for the integration flow.
+
+    !!! Note
+        Setting an input payload for the integration flow is not mandatory. However, it is recommended, as it will be used to enable expression suggestions, which you will explore in later steps of this tutorial.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/click_start_node_3.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/click_start_node_3.png" alt="Create New Project" width="80%"></a>
+
+3. TODO: Click **Add Request**, provide the following details, and then click **Add** and Finally, click **Save**.
+
+    | Name            | Request body                   |
+    |-----------------|--------------------------------|
+    | `sample1` | `{ "currency":"USD", "amount":100 }` |
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_start_payload.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_start_payload.gif" alt="Create New Project" width="80%"></a>
+
+4. Click on the **+** icon on the canvas to open the **Mediator Palette**.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_new_mediator_loan_review_1.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_new_mediator_loan_review_1.png" alt="Create New Project" width="80%"></a>
+
+5. Select **Variable** mediator under **Mediators**.
+
+5. Click on the **+** icon just after the **Payload** mediator to open the **Mediator Palette**.
 
 2. Search for `email` in the **Mediator Palette**, then click the download (<img src="{{base_path}}/assets/img/get-started/build-first-integration/connector_download_icon.png" alt="inline expression editor" class="inline-icon">) icon to add the [email connector]() to the project. In the confirmation pane, select **Yes** to add the required dependencies.
 

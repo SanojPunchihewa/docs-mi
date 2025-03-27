@@ -21,7 +21,7 @@ Follow the instructions below to create your first API service.
 
 Let’s try a simple scenario where the client sends a request to the `Bank` API deployed in the WSO2 Micro Integrator and receives a `Welcome to O2 Bank !!` greeting response.
 
-<a href="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"><img src="{{base_path}}/assets/img/integrate/quick-start-guide/mi-quick-start-guide.gif"></a>
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/what_you_will_build_greeting.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/what_you_will_build_greeting.png" alt="Create New Project" width="40%"></a>
 
 ## Step 1 - Create a new integration project
 

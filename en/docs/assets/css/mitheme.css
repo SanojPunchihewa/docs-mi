@@ -409,7 +409,7 @@ header>.md-grid {
     vertical-align: middle;
     outline: none !important;
     box-shadow: none !important;
-    max-height: 30px;
+    max-height: 28px;
 }
 
 /* Target only "Build your first integration" list */
