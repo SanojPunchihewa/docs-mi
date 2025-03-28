@@ -1,4 +1,4 @@
-# Develop an API service
+# Develop an Integration API
 
 In this tutorial, you'll learn the basics of setting up and using WSO2 MI to create and deploy an Integration API service with minimal hassle.
 
@@ -9,12 +9,12 @@ You need Visual Studio Code (VS Code) with the <a target="_blank" href="https://
 !!! Info
     See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-Follow the instructions below to create your first API service.
+Follow the instructions below to create your first Integration API.
 
 ## What you'll learn
 
 - How to create an integration project.
-- How to create an API service.
+- How to create an Integration API.
 - How to deploy and test.
 
 ## What you'll build
@@ -160,7 +160,7 @@ You may refer to the following API configuration for reference,
         </api>
         ```
 
-## Step 4 - Run the API service
+## Step 4 - Run the Integration API
 
 Now that you have developed an integration using the Micro Integrator for the Visual Studio Code plugin, it's time to deploy the integration to the Micro Integrator server runtime.
 
@@ -168,18 +168,18 @@ Click the **Build and Run** icon located in the top right corner of VS Code.
 
 <a href="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn.png" alt="Create New Project" width="80%"></a>
 
-## Step 5 - Test the API service
+## Step 5 - Test the Integration API
 
-Now, let's test the API service. For that, you can use the inbuilt try-it functionality in the MI for VS Code extension.
+Now, let's test the Integration API. For that, you can use the inbuilt try-it functionality in the MI for VS Code extension.
 
-When you run the integration as in [Step 4](#step-4-run-the-api-service), the **Runtime Services** interface is opened up. You can see all the available services.
+When you run the integration as in [Step 4](#step-4-run-the-integration-api), the **Runtime Services** interface is opened up. You can see all the available services.
 
 Select `BankAPI` that you have developed and test the resource.
 
 <a href="{{base_path}}/assets/img/get-started/build-first-integration/tryout_greeting.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/tryout_greeting.gif" alt="Test API" width="80%"></a>
 
 Congratulations!
-Now, you have created your first API service.
+Now, you have created your first Integration API.
 
 ## What's Next?  
 

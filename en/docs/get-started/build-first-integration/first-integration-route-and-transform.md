@@ -9,9 +9,9 @@ In the previous tutorial, we learned how to develop, deploy, and test our first 
     !!! Info
         See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-2. You must have completed the **Develop an API service** tutorial under **Build your first integration** before proceeding. Start the [Develop an API service]({{base_path}}/get-started/build-first-integration/first-integration-api-service/)  tutorial if you haven’t completed it yet.
+2. You must have completed the **Develop an Integration API** tutorial under **Build your first integration** before proceeding. Start the [Develop an Integration API]({{base_path}}/get-started/build-first-integration/first-integration-api-service/)  tutorial if you haven’t completed it yet.
 
-Follow the instructions below to modify the API service to call an HTTP endpoint and dynamically build a payload.
+Follow the instructions below to modify the API to call an HTTP endpoint and dynamically build a payload.
 
 ## What you'll learn
 
@@ -40,7 +40,7 @@ To develop the above scenario, let's get started with creating a new API resourc
 
 3. In the **Add API Resource** pane, set `/deposit` as the **Resource Path** and select the `POST` method.
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane.png" alt="Create New Project" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane.png" alt="Create New Project" width="30%"></a>
 
 4. Finally, click **Create** to add the new API resource.
 
@@ -120,7 +120,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_else_branch.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_mediator_else_branch.png" alt="Create New Project" width="80%"></a>
 
-    To convert the amount from the given currency to USD, we need to call a currency converter service. You can use the following `Currency Converter` service as the backend.
+    To convert the amount from the given currency to USD, we need to call a currency converter service. You can use the following currency converter service as the backend.
 
     <table>
         <tr>
@@ -156,7 +156,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_new_connection_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_new_connection_btn.png" alt="Create New Project" width="80%"></a>
 
-18. Select `HTTPS` and fill in the following details to create a connection to `Currency Converter` service. Finally, click **Add** in the **Add New Connection** form to create the connection.
+18. Select `HTTPS` and fill in the following details to create a connection to currency converter service. Finally, click **Add** in the **Add New Connection** form to create the connection.
 
     | Property            | Value                   |
     |---------------------|-------------------------|
@@ -168,7 +168,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 19. Provide `/currency-converter` as the **Relative Path**, and click **Submit** to insert the operation to the integration flow.
 
     !!! Note  
-        Since the user sent request payload matches the expected format of the `CurrencyConverter` service, we can use the payload as-is in the request body of the HTTP POST operation.
+        Since the user sent request payload matches the expected format of the currency converter service, we can use the payload as-is in the request body of the HTTP POST operation.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_http_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_http_post.png" alt="geo http request" width="30%"></a>
 
@@ -200,7 +200,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
 22. In the **Payload** box, enter the following template to create a new payload using the converted value, then click **Add** to insert the **Payload** mediator into the integration flow.
 
     !!! Info
-        The `Currency Converter` service returns a JSON object with the exchange rate and the converted amount, where `convertedValue` holds the final result. This template uses that value to generate the response payload.
+        The currency converter service returns a JSON object with the exchange rate and the converted amount, where `convertedValue` holds the final result. This template uses that value to generate the response payload.
 
     ```json
     {
@@ -313,7 +313,7 @@ You may refer to the following API and HTTP connection for reference,
         </localEntry>
         ```
 
-## Step 4 - Run the integration
+## Step 3 - Run the integration
 
 Now that you have updated the integration, it's time to deploy the integration to the Micro Integrator server runtime.
 
@@ -321,7 +321,7 @@ Click the **Build and Run** icon located in the top right corner of VS Code.
 
 <a href="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn_deposit.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn_deposit.png" alt="Create New Project" width="80%"></a>
 
-## Step 5 - Test the integration service
+## Step 4 - Test the integration service
 
 1. Once the **Runtime Services** interface is open, select the `BankAPI`, and click the **Try It** button.
 

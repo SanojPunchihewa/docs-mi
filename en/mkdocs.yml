@@ -76,7 +76,7 @@ nav:
       - Key Concepts: get-started/key-concepts.md
       - Build your first integration:
           - get-started/build-first-integration/index.md
-          - Develop an API Service: get-started/build-first-integration/first-integration-api-service.md
+          - Develop an Integration API: get-started/build-first-integration/first-integration-api-service.md
           - Route and Transform messages: get-started/build-first-integration/first-integration-route-and-transform.md
           - Connect to SaaS or B2B Systems: get-started/build-first-integration/first-integration-connect-saas.md
           - Monitor and Manage Integrations: get-started/build-first-integration/first-integration-monitor-icp.md

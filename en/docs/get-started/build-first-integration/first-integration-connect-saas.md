@@ -11,7 +11,7 @@ In the previous tutorial, you learned how to route and transform messages, deplo
 
 2. You must have completed the **Route and Transform messages** tutorial under **Build your first integration** before proceeding. Start the [Route and Transform messages]({{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/) tutorial if you haven’t completed it yet.
 
-Follow the instructions below to modify the API service so it sends an email to the client with the loan status.
+Follow the instructions below to modify the API so it sends an email to the client with the loan status.
 
 ## What you'll learn
 
@@ -41,7 +41,7 @@ To develop the above scenario, let's get started with creating a new API resourc
 
 3. In the **Add API Resource** pane, set `/loan-review` as the **Resource Path** and select the `POST` method.
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane_loan_review_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane_loan_review_post.png" alt="Create New Project" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane_loan_review_post.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_api_resource_pane_loan_review_post.png" alt="Create New Project" width="30%"></a>
 
 4. Finally, click **Create** to add the new API resource.
 
@@ -58,36 +58,39 @@ To develop the above scenario, let's get started with creating a new API resourc
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/click_start_node_3.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/click_start_node_3.png" alt="Create New Project" width="80%"></a>
 
-3. TODO: Click **Add Request**, provide the following details, and then click **Add** and Finally, click **Save**.
+3. Click **Add Request**, provide the following JSON payload, then click **Add**. Finally, click **Save** to complete the input payload setup.
 
-    | Name            | Request body                   |
-    |-----------------|--------------------------------|
-    | `sample1` | `{ "currency":"USD", "amount":100 }` |
+    ```json
+    {
+    "customerId": "C567",
+    "name": "Jane Smith",
+    "email": "jane.smith@example.com",
+    "amount": 25000
+    }
+    ```
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_start_payload.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_start_payload.gif" alt="Create New Project" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_start_payload_saas.gif"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_start_payload_saas.gif" alt="Create New Project" width="80%"></a>
 
 4. Click on the **+** icon on the canvas to open the **Mediator Palette**.
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_new_mediator_loan_review_1.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_new_mediator_loan_review_1.png" alt="Create New Project" width="80%"></a>
 
-5. Select **Variable** mediator under **Mediators**.
-
-5. Click on the **+** icon just after the **Payload** mediator to open the **Mediator Palette**.
-
-2. Search for `email` in the **Mediator Palette**, then click the download (<img src="{{base_path}}/assets/img/get-started/build-first-integration/connector_download_icon.png" alt="inline expression editor" class="inline-icon">) icon to add the [email connector]() to the project. In the confirmation pane, select **Yes** to add the required dependencies.
+5. Search for `email` in the **Mediator Palette**, then click the download (<img src="{{base_path}}/assets/img/get-started/build-first-integration/connector_download_icon.png" alt="inline expression editor" class="inline-icon">) icon to add the [Email connector]({{base_path}}/reference/connectors/email-connector/email-connector-overview/) to the project. In the confirmation pane, select **Yes** to add the required dependencies.
 
     !!! Tip "What is a connector?"
         Connectors in WSO2 Micro Integrator (MI) enable seamless integration with external systems, cloud platforms, and messaging services without the need for custom implementations. They provide a standardized way to send, receive, and process data from third-party applications like Salesforce, Kafka, and AWS services. To explore connectors in detail, see the [Connector documentation]({{base_path}}/reference/connectors/connectors-overview/).
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/get-resource.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/get-resource.png" alt="Add new connection" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/download_email_connector.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/download_email_connector.png" alt="Create New Project" width="80%"></a>
 
-2. Once the connector is downloaded, select the `Send` operation from the **Mediator Palette**.
+6. Once the connector is downloaded, select the `Send` operation from the **Mediator Palette**.
 
-3. Click **+ Add new connection** to create a new connection.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/select_email_send.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/select_email_send.png" alt="Create New Project" width="80%"></a>
 
-    <a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/open-palette.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/open-palette.png" alt="Add new connection" width="80%"></a>
+7. Click **+ Add new connection** to create a new connection.
 
-4. Select `SMTP` and fill in the following details to create a connection to Gmail's SMTP service. Finally, click **Add** in the **Add New Connection** form to create the connection.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_add_new_connection_btn.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/email_add_new_connection_btn.png" alt="Create New Project" width="80%"></a>
+
+8. Select `SMTPS` and fill in the following details to create a connection to Gmail's SMTP service. Finally, click **Add** in the **Add New Connection** form to create the connection.
 
     !!! Tip
         If two-factor authentication is enabled, you need to obtain an app password by following the instructions <a target="_blank" href="https://support.google.com/accounts/answer/185833?hl=en">here</a>.
@@ -100,88 +103,158 @@ To develop the above scenario, let's get started with creating a new API resourc
     | **Username**        | Your email address |
     | **Password**        | Your email password or app password|
 
-    <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-connection.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-connection.png" alt="create connection" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_create_connection.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/email_create_connection.png" alt="Create New Project" width="80%"></a>
 
-5. After creating the connection, enter the following details in the **Add Send** form to compose the email.
+9. After creating the connection, set `Loan Application Received` as the **Subject** in the **Add Send** form.
 
-    | Property            | Value                   |
-    |---------------------|-------------------------|
-    | **To** | Some email address        |
-    | **Subject**        | `Bank Deposit Status` |
-    | **Content**        | `${payload}` |
+    In the next step, we will extract the recipient's email address from the incoming payload and assign it to the **To** field using an expression.
 
-6. Finally, click **Submit** to add the email operation to the integration flow.
+10. Click on the expression (<img src="{{base_path}}/assets/img/get-started/build-first-integration/enable_expression_icon.png" alt="inline expression editor" class="inline-icon">) icon to enable expression mode for the **To** field.
 
-You have successfully updated the integration flow to send an email with the deposit status. For reference, you can check the following API, HTTP connection, and Email connection.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/enable_expression_to.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/enable_expression_to.png" alt="Create New Project" width="80%"></a>
 
-??? "Weather API"
+11. Once expressions are enabled, click on the Expression Editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/expression_editor_icon.png" alt="inline expression editor" class="inline-icon">) icon to open the editor.
 
-    !!! info
-        You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
+12. Select **Payload** → **email** to extract the recipient's email address from the payload.
 
-    === "Design View"
-        <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-api.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-api.png" alt="ai datamapping api" width="70%"></a>
+    In the next step, we use a template with inline expressions to extract data from the incoming payload and construct the email body.
 
-    === "Source View"
-        ```yaml
-        <?xml version="1.0" encoding="UTF-8"?>
-        <api context="/weather" name="Weather"
-            xmlns="http://ws.apache.org/ns/synapse">
-            <resource methods="GET" uri-template="/?city={city}">
-                <inSequence>
-                    <variable name="API_KEY" type="STRING" value="REPLACE_API_KEY"/>
-                    <http.get configKey="OpenWeather">
-                        <relativePath>/geo/1.0/direct?q=${params.queryParams.city}&amp;limit=1&amp;appid=${vars.API_KEY}</relativePath>
-                        <headers>[]</headers>
-                        <forceScAccepted>false</forceScAccepted>
-                        <disableChunking>false</disableChunking>
-                        <forceHttp10>false</forceHttp10>
-                        <noKeepAlive>false</noKeepAlive>
-                        <responseVariable>http_get_1</responseVariable>
-                        <overwriteBody>true</overwriteBody>
-                    </http.get>
-                    <http.get configKey="OpenWeather">
-                        <relativePath>/data/2.5/weather?lat=${payload[0].lat}&amp;lon=${payload[0].lon}&amp;appid=${vars.API_KEY}</relativePath>
-                        <headers>[]</headers>
-                        <forceScAccepted>false</forceScAccepted>
-                        <disableChunking>false</disableChunking>
-                        <forceHttp10>false</forceHttp10>
-                        <noKeepAlive>false</noKeepAlive>
-                        <responseVariable>http_get_2</responseVariable>
-                        <overwriteBody>true</overwriteBody>
-                    </http.get>
-                    <datamapper config="resources:datamapper/weatherDataMapper/weatherDataMapper.dmc" inputSchema="resources:datamapper/weatherDataMapper/weatherDataMapper_inputSchema.json" outputSchema="resources:datamapper/weatherDataMapper/weatherDataMapper_outputSchema.json"/>
-                    <respond/>
-                </inSequence>
-                <faultSequence></faultSequence>
-            </resource>
-        </api>
+    !!! Tip
+        You can use the following pre-filled template in the **Body** field to skip the inline expression insertion steps and continue from **Step 16**.
+
+        ```text
+        Dear ${payload.name},
+
+        We have received your loan application for $ ${payload.amount}. Our team will review your application and contact you shortly.
+
+        Thank you,
+        O2 Bank
         ```
 
-??? "HTTP Connection"
+13. In the **Body** field, enter the following template.
+
+    ```text
+    Dear ,
+
+    We have received your loan application for $ . Our team will review your application and contact you shortly.
+
+    Thank you,
+    O2 Bank
+    ```
+
+14. In the template, place your cursor in the appropriate location (next to `Dear `), click on the inline expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/inline_expression_icon.png" alt="inline expression editor" class="inline-icon">) icon, then select **Payload** → **name**, and click **Add** to insert the inline expression into the template.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif">
+        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif" width="50%" alt="Add inline expression">
+    </a>
+
+15. Repeat the same steps to insert the loan **amount** after the `$` symbol in the template.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif">
+        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif" width="50%" alt="Add inline expression">
+    </a>
+
+16. Finally, click **Submit** to add the email operation to the integration flow.
+
+17. Click on the **+** icon located just after the **Send** operation to open the **Mediator Palette** to add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond to the client request.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_respond_loan_request_flow.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/add_respond_loan_request_flow.png" alt="Create New Project" width="80%"></a>
+
+18. Select **Respond** mediator under **Mediators**, and click **Add** to insert it to the integration flow.
+
+You have successfully updated the integration flow to send an email with the loan request status. For reference, you can review the configured API and Email connection.
+
+??? "Bank API"
 
     !!! info
         You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
 
     === "Design View"
-        <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-http-connection.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-http-connection.png" alt="http connection config" width="40%"></a>
-        
+        <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_api.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/email_api.png" alt="ai datamapping api" width="70%"></a>
+
     === "Source View"
         ```yaml
         <?xml version="1.0" encoding="UTF-8"?>
-        <localEntry key="OpenWeather" xmlns="http://ws.apache.org/ns/synapse">
-            <http.init>
-                <connectionType>HTTPS</connectionType>
-                <baseUrl>https://api.openweathermap.org/</baseUrl>
-                <authType>None</authType>
-                <timeoutAction>Never</timeoutAction>
-                <retryCount>0</retryCount>
-                <retryDelay>0</retryDelay>
-                <suspendInitialDuration>-1</suspendInitialDuration>
-                <suspendProgressionFactor>1</suspendProgressionFactor>
-                <name>OpenWeather</name>
-            </http.init>
-        </localEntry>
+        <api context="/bankapi" name="BankAPI" xmlns="http://ws.apache.org/ns/synapse">
+            <resource methods="GET" uri-template="/">
+                <inSequence>
+                    <payloadFactory media-type="json" template-type="default">
+                        <format>{
+                            "greetings":"Welcome to O2 Bank !!"
+                            }
+                        </format>
+                    </payloadFactory>
+                    <respond/>
+                </inSequence>
+                <faultSequence>
+                </faultSequence>
+            </resource>
+            <resource methods="POST" uri-template="/deposit">
+                <inSequence>
+                    <filter xpath="${payload.currency == 'USD'}">
+                        <then>
+                            <payloadFactory media-type="json" template-type="default">
+                                <format>{
+                                    "status": "successful",
+                                    "amountDeposited": ${payload.amount}
+                                    }
+                                </format>
+                            </payloadFactory>
+                        </then>
+                        <else>
+                            <http.post configKey="CurrencyConverter">
+                                <relativePath>/currency-converter</relativePath>
+                                <headers>[]</headers>
+                                <requestBodyType>JSON</requestBodyType>
+                                <requestBodyJson>{${payload}}</requestBodyJson>
+                                <forceScAccepted>false</forceScAccepted>
+                                <disableChunking>false</disableChunking>
+                                <forceHttp10>false</forceHttp10>
+                                <noKeepAlive>false</noKeepAlive>
+                                <forcePostPutNobody>false</forcePostPutNobody>
+                                <responseVariable>http_post_1</responseVariable>
+                                <overwriteBody>true</overwriteBody>
+                            </http.post>
+                            <payloadFactory media-type="json" template-type="default">
+                                <format>{
+                                    "status": "successful",
+                                    "amountDeposited": ${payload.convertedValue}
+                                    }
+                                </format>
+                            </payloadFactory>
+                        </else>
+                    </filter>
+                    <respond/>
+                </inSequence>
+                <faultSequence>
+                </faultSequence>
+            </resource>
+            <resource methods="POST" uri-template="/loan-review">
+                <inSequence>
+                    <email.send configKey="GmailConnection">
+                        <from>REPLACE</from>
+                        <personalName></personalName>
+                        <to>{${payload.email}}</to>
+                        <cc></cc>
+                        <bcc></bcc>
+                        <replyTo></replyTo>
+                        <subject>Loan Application Received</subject>
+                        <content>Dear ${payload.name},
+                                        We have received your loan application for $ ${payload.amount}. Our team will review your application and contact you shortly.
+                                        Thank you,
+                                        O2 Bank</content>
+                        <contentType>text/html</contentType>
+                        <encoding>UTF-8</encoding>
+                        <attachments></attachments>
+                        <inlineImages>[]</inlineImages>
+                        <contentTransferEncoding>Base64</contentTransferEncoding>
+                    </email.send>
+                    <respond />
+                </inSequence>
+                <faultSequence>
+                </faultSequence>
+            </resource>
+        </api>
         ```
 
 ??? "Email Connection"
@@ -190,65 +263,55 @@ You have successfully updated the integration flow to send an email with the dep
         You can view the source view by clicking on the **Show Source** (`</>`) icon located in the top right corner of the VS Code.
 
     === "Design View"
-        <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-http-connection.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-data-mapping/ai-data-mapping-http-connection.png" alt="http connection config" width="40%"></a>
+        <a href="{{base_path}}/assets/img/get-started/build-first-integration/gmail_connection.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/gmail_connection.png" alt="http connection config" width="40%"></a>
         
     === "Source View"
         ```yaml
         <?xml version="1.0" encoding="UTF-8"?>
-        <localEntry key="OpenWeather" xmlns="http://ws.apache.org/ns/synapse">
-            <http.init>
-                <connectionType>HTTPS</connectionType>
-                <baseUrl>https://api.openweathermap.org/</baseUrl>
-                <authType>None</authType>
-                <timeoutAction>Never</timeoutAction>
-                <retryCount>0</retryCount>
-                <retryDelay>0</retryDelay>
-                <suspendInitialDuration>-1</suspendInitialDuration>
-                <suspendProgressionFactor>1</suspendProgressionFactor>
-                <name>OpenWeather</name>
-            </http.init>
+        <localEntry key="GmailConnection" xmlns="http://ws.apache.org/ns/synapse">
+            <email.init>
+                <connectionType>SMTPS</connectionType>
+                <host>smtp.gmail.com</host>
+                <port>465</port>
+                <username>REPLACE</username>
+                <password>REPLACE</password>
+                <name>GmailConnection</name>
+            </email.init>
         </localEntry>
         ```
 
-## Step 2 - Run the integration
+## Step 3 - Run the integration
 
 Now that you have updated the integration, it's time to deploy the integration to the Micro Integrator server runtime.
 
 Click the **Build and Run** icon located in the top right corner of VS Code.
 
-<a href="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png"><img src="{{base_path}}/assets/img/develop/mi-for-vscode/qsg/build-and-run-project.png" alt="Build and run" width="80%"></a>
+<a href="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn_email.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/build_and_run_btn_email.png" alt="Create New Project" width="80%"></a>
 
-## Step 5 - Test the integration service
+## Step 4 - Test the integration service
 
 1. Once the **Runtime Services** interface is open, select the `BankAPI`, and click the **Try It** button.
 
-2. Select the `/deposit` resource and click **Try it Out** to test the API.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_bank_api_email.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_bank_api_email.png" alt="Create New Project" width="80%"></a>
 
-    <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-op-try.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-op-try.png" alt="try out operation" width="80%"></a>
+2. Select the `/loan-review` resource and click **Try it Out** to test the API.
 
-3. Provide a JSON payload and click the **Execute** button to invoke the API. You may use the following sample payloads to test the API.
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_email_resource.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/swagger_select_email_resource.png" alt="Create New Project" width="80%"></a>
 
-    1. Amount in US dollar (USD)
-
-    ```json
-    {
-        "currency":"USD",
-        "amount":456
-    }
-    ```
-
-    2. Amount in Japanese yen (JPY)
+3. Provide a JSON payload and click the **Execute** button to invoke the API. You may use the following sample payload to test the API. Make sure to update the `name` and `email` fields with the actual recipient's information.
 
     ```json
     {
-        "currency":"JPY",
-        "amount":897
+        "customerId": "C567",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "amount": 45000
     }
     ```
 
-    <a href="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-swagger-exec.png"><img src="{{base_path}}/assets/img/get-started/how-to-guides/ai-code-gen/ai-code-gen-swagger-exec.png" alt="execute request" width="80%"></a>
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/swagger_execute_email.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/swagger_execute_email.png" alt="Create New Project" width="80%"></a>
 
-4. Check the response received from the server and confirm that the bank deposit status has been successfully sent to the email address.
+4. Check the response received from the server, and verify that the loan request status email has been successfully delivered by checking the recipient’s inbox.
 
 Congratulations!
 You have now learned how to integrate with an email SaaS provider using connectors to send emails as part of your integration flow.
@@ -263,3 +326,18 @@ Click on the **Next** button below to continue to the next tutorial.
   <a href="{{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/" class="md-button">← Previous</a>
   <a href="{{base_path}}/get-started/build-first-integration/first-integration-monitor-icp/" class="md-button md-button--primary">Next →</a>
 </div>
+
+{% raw %}
+<style>
+.language-bash {
+    color: var(--md-feedback-button-color) !important;
+}
+.language-bash .hljs-string, .hljs-keyword {
+    color: var(--md-feedback-button-color) !important;
+}
+.language-bash .hljs-variable {
+    font-weight: 600;
+    color: rgb(45, 116, 215) !important;
+}
+</style>
+{% endraw %}

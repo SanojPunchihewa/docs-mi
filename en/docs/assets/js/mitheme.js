@@ -240,8 +240,7 @@ function hasUserAcceptedCookies() {
 }
 // Define the exact displayed names for "Build your first integration" steps
 const integrationSteps = [
-    "Introduction",
-    "Develop an API Service",
+    "Develop an Integration API",
     "Route and Transform messages",
     "Connect to SaaS or B2B Systems",
     "Monitor and Manage Integrations"

@@ -4,13 +4,13 @@
 
 Modern businesses rely on seamless integration between applications, cloud platforms, and enterprise systems. WSO2 Micro Integrator (MI) provides a powerful, low-code environment to design, deploy, and manage integrations efficiently.
 
-In this tutorial series, you will build a complete integration flow step by step, learning how to create API services, route and transform messages, connect to external SaaS and B2B systems, and monitor integrations.
+In this tutorial series, you will build a complete integration flow step by step, learning how to create Integration APIs, route and transform messages, connect to external SaaS and B2B systems, and monitor integrations.
 
 ## What you’ll learn
 
 By following this series, you will gain hands-on experience in:
 
-- Developing an API Service – Expose an API service and handle requests.
+- Developing an Integration API – Expose an Integration API and handle requests.
 - Routing and Transforming Messages – Process and modify data dynamically.
 - Connecting to SaaS or B2B Systems – Integrate with external platforms like Gmail, Salesforce, or AWS.
 - Monitoring and Managing Integrations – Use the Integration Control Plane (ICP) to monitor and manage deployed artifacts.
