@@ -136,7 +136,7 @@ Now that the Integration Control Plane (ICP) is running, log in to the web porta
 
     You may explore the other artifacts on your own for reference.
 
-Congratulations! You have now learned how to monitor and manage integrations using the Integration Control Plane (ICP). You explored how to check the status of deployed MI nodes and view integration artifact details, including their source code.
+Congratulations! You have now learned how to monitor and manage integrations using the Integration Control Plane (ICP). You explored how to check the status of deployed MI nodes and view detailed information about integration artifacts, including their source code.
 
 ## What's Next?  
 

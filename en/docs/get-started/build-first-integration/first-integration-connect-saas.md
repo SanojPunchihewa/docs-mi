@@ -105,7 +105,10 @@ To develop the above scenario, let's get started with creating a new API resourc
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_create_connection.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/email_create_connection.png" alt="Create New Project" width="80%"></a>
 
-9. After creating the connection, set `Loan Application Received` as the **Subject** in the **Add Send** form.
+
+9. After creating the connection, enter your email address in the **From** field and set `Loan Application Received` as the **Subject** in the **Add Send** form.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_set_subject.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/email_set_subject.png" alt="Create New Project" width="30%"></a>
 
     In the next step, we will extract the recipient's email address from the incoming payload and assign it to the **To** field using an expression.
 
@@ -117,10 +120,14 @@ To develop the above scenario, let's get started with creating a new API resourc
 
 12. Select **Payload** → **email** to extract the recipient's email address from the payload.
 
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_set_to.gif">
+        <img src="{{base_path}}/assets/img/get-started/build-first-integration/email_set_to.gif" width="50%" alt="Add inline expression">
+    </a>
+
     In the next step, we use a template with inline expressions to extract data from the incoming payload and construct the email body.
 
     !!! Tip
-        You can use the following pre-filled template in the **Body** field to skip the inline expression insertion steps and continue from **Step 16**.
+        You can use the following pre-filled template in the **Content** field to skip the inline expression insertion steps and continue from **Step 16**.
 
         ```text
         Dear ${payload.name},
@@ -131,7 +138,7 @@ To develop the above scenario, let's get started with creating a new API resourc
         O2 Bank
         ```
 
-13. In the **Body** field, enter the following template.
+13. In the **Content** field, enter the following template.
 
     ```text
     Dear ,
@@ -144,17 +151,15 @@ To develop the above scenario, let's get started with creating a new API resourc
 
 14. In the template, place your cursor in the appropriate location (next to `Dear `), click on the inline expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/inline_expression_icon.png" alt="inline expression editor" class="inline-icon">) icon, then select **Payload** → **name**, and click **Add** to insert the inline expression into the template.
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif">
-        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif" width="50%" alt="Add inline expression">
-    </a>
-
 15. Repeat the same steps to insert the loan **amount** after the `$` symbol in the template.
 
-    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif">
-        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expression.gif" width="50%" alt="Add inline expression">
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expressions_email_body.gif">
+        <img src="{{base_path}}/assets/img/get-started/build-first-integration/add_inline_expressions_email_body.gif" width="50%" alt="Add inline expression">
     </a>
 
-16. Finally, click **Submit** to add the email operation to the integration flow.
+16. Ensure that **Overwrite Message Body** is checked, then click **Submit** to add the email operation to the integration flow.
+
+    <a href="{{base_path}}/assets/img/get-started/build-first-integration/email_send_configs.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/email_send_configs.png" alt="Create New Project" width="30%"></a>
 
 17. Click on the **+** icon located just after the **Send** operation to open the **Mediator Palette** to add a [Respond Mediator]({{base_path}}/reference/mediators/respond-mediator) to respond to the client request.
 
@@ -232,7 +237,7 @@ You have successfully updated the integration flow to send an email with the loa
             <resource methods="POST" uri-template="/loan-review">
                 <inSequence>
                     <email.send configKey="GmailConnection">
-                        <from>REPLACE</from>
+                        <from>ENTER_YOUR_EMAIL_HERE</from>
                         <personalName></personalName>
                         <to>{${payload.email}}</to>
                         <cc></cc>
@@ -248,6 +253,8 @@ You have successfully updated the integration flow to send an email with the loa
                         <attachments></attachments>
                         <inlineImages>[]</inlineImages>
                         <contentTransferEncoding>Base64</contentTransferEncoding>
+                        <responseVariable>email_send_1</responseVariable>
+                        <overwriteBody>true</overwriteBody>
                     </email.send>
                     <respond />
                 </inSequence>
