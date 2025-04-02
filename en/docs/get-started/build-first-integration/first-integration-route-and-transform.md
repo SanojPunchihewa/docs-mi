@@ -9,7 +9,7 @@ In the previous tutorial, we learned how to develop, deploy, and test our first 
     !!! Info
         See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-2. You must have completed the **Develop an Integration API** tutorial under **Build your first integration** before proceeding. Start the [Develop an Integration API]({{base_path}}/get-started/build-first-integration/first-integration-api-service/)  tutorial if you haven’t completed it yet.
+2. You must have completed the **Develop an Integration API** tutorial under **Build your first Integration** before proceeding. Start the [Develop an Integration API]({{base_path}}/get-started/build-first-integration/first-integration-api-service/)  tutorial if you haven’t completed it yet.
 
 Follow the instructions below to modify the API to call an HTTP endpoint and dynamically build a payload.
 

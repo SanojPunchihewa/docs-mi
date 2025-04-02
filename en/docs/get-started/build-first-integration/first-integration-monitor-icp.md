@@ -12,7 +12,7 @@ In the previous tutorial, you learned how to route and transform messages, conne
     !!! Info
         See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-2. You must have completed the **Connect to SaaS or B2B Systems** tutorial under **Build your first integration** before proceeding. Start the [Connect to SaaS or B2B Systems]({{base_path}}/get-started/build-first-integration/first-integration-connect-saas/) tutorial if you haven’t completed it yet.
+2. You must have completed the **Connect to SaaS or B2B Systems** tutorial under **Build your first Integration** before proceeding. Start the [Connect to SaaS or B2B Systems]({{base_path}}/get-started/build-first-integration/first-integration-connect-saas/) tutorial if you haven’t completed it yet.
 
 3. You need to have the **Integration Control Plane (ICP)** installed.
 

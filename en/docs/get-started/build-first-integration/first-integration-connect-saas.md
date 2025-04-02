@@ -9,7 +9,7 @@ In the previous tutorial, you learned how to route and transform messages, deplo
     !!! Info
         See the [Install Micro Integrator for VS Code]({{base_path}}/develop/mi-for-vscode/install-wso2-mi-for-vscode/) documentation to learn how to install Micro Integrator for VS Code.
 
-2. You must have completed the **Route and Transform messages** tutorial under **Build your first integration** before proceeding. Start the [Route and Transform messages]({{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/) tutorial if you haven’t completed it yet.
+2. You must have completed the **Route and Transform messages** tutorial under **Build your first Integration** before proceeding. Start the [Route and Transform messages]({{base_path}}/get-started/build-first-integration/first-integration-route-and-transform/) tutorial if you haven’t completed it yet.
 
 Follow the instructions below to modify the API so it sends an email to the client with the loan status.
 
@@ -62,10 +62,10 @@ To develop the above scenario, let's get started with creating a new API resourc
 
     ```json
     {
-    "customerId": "C567",
-    "name": "Jane Smith",
-    "email": "jane.smith@example.com",
-    "amount": 25000
+        "customerId": "C567",
+        "name": "Jane Smith",
+        "email": "jane.smith@example.com",
+        "amount": 25000
     }
     ```
 

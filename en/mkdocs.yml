@@ -74,12 +74,13 @@ nav:
   - Get Started:
       - Introduction: get-started/introduction.md
       - Key Concepts: get-started/key-concepts.md
-      - Build your first integration:
+      - Build your first Integration:
           - get-started/build-first-integration/index.md
           - Develop an Integration API: get-started/build-first-integration/first-integration-api-service.md
           - Route and Transform messages: get-started/build-first-integration/first-integration-route-and-transform.md
           - Connect to SaaS or B2B Systems: get-started/build-first-integration/first-integration-connect-saas.md
           - Monitor and Manage Integrations: get-started/build-first-integration/first-integration-monitor-icp.md
+      - Event-driven Integrations: get-started/event-driven-integrations.md
       - How-to Guides:
           - Generate integrations using AI: get-started/how-to-guides/ai-code-generation.md
           - Data Mapping using AI: get-started/how-to-guides/ai-data-mapping.md
