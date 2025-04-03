@@ -1,4 +1,4 @@
-# Build your first integration
+# Build your first Integration
 
 ## Introduction
 

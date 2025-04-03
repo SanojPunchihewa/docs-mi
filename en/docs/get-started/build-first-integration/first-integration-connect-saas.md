@@ -116,7 +116,7 @@ To develop the above scenario, let's get started with creating a new API resourc
 
     <a href="{{base_path}}/assets/img/get-started/build-first-integration/enable_expression_to.png"><img src="{{base_path}}/assets/img/get-started/build-first-integration/enable_expression_to.png" alt="Create New Project" width="80%"></a>
 
-11. Once expressions are enabled, click on the Expression Editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/expression_editor_icon.png" alt="inline expression editor" class="inline-icon">) icon to open the editor.
+11. Once expressions are enabled, click on the expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/expression_editor_icon.png" alt="inline expression editor" class="inline-icon">) icon to open the editor.
 
 12. Select **Payload** → **email** to extract the recipient's email address from the payload.
 

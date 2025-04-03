@@ -138,9 +138,9 @@ Now that the Integration Control Plane (ICP) is running, log in to the web porta
 
 Congratulations! You have now learned how to monitor and manage integrations using the Integration Control Plane (ICP). You explored how to check the status of deployed MI nodes and view detailed information about integration artifacts, including their source code.
 
-## What's Next?  
+## What's Next?
 
-You have now completed this tutorial series, where you learned how to build a complete integration flow step by step. Throughout this journey, you have explored how to create Integration APIs, route and transform messages, connect to external SaaS and B2B systems, and monitor integrations using the Integration Control Plane (ICP).  
+You have now completed this tutorial series, where you learned how to build a complete integration flow step by step. Throughout this journey, you have explored how to create Integration APIs, route and transform messages, connect to external SaaS and B2B systems, and monitor integrations using the Integration Control Plane (ICP).
 
 Now, you can explore advanced integration scenarios, applying what you’ve learned to real-world use cases and expanding your expertise in WSO2 Micro Integrator.
 

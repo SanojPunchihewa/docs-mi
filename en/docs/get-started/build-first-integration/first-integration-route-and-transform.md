@@ -81,7 +81,7 @@ Now, it's time to design the bank deposit flow. Follow the steps below to create
     !!! Tip "What is an expression?"
         Expressions in WSO2 Micro Integrator (MI) allow you to dynamically access, evaluate, and manipulate message content during processing. To explore expressions in detail, see the [Expressions documentation]({{base_path}}/reference/synapse-properties/synapse-expressions/).
 
-6. In the **Add If Else Mediator** pane that appears, click on the Expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/expression_editor_icon.png" alt="inline expression editor" class="inline-icon">) icon to open the editor.
+6. In the **Add If Else Mediator** pane that appears, click on the expression editor (<img src="{{base_path}}/assets/img/get-started/build-first-integration/expression_editor_icon.png" alt="inline expression editor" class="inline-icon">) icon to open the editor.
 
 7. Select **Payload** → **currency** to extract the currency attribute from the payload.
 

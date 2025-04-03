@@ -93,7 +93,7 @@ Once you create the API, a default resource will be automatically generated. You
 
 ## Step 3 - Design the integration
 
-Now it's time to design your API. This is the underlying logic that's executed behind the scenes when an API request is made. In this scenario, you need to send back a greeting message to the client. For that, you have to add a [Payload]({{base_path}}/reference/mediators/payloadfactory-mediator/) mediator. Follow the below steps to add a Payload mediator.
+Now it's time to design your API. This is the underlying logic that's executed behind the scenes when an API request is made. In this scenario, you need to send back a greeting message to the client. For that, you have to add a [Payload mediator]({{base_path}}/reference/mediators/payloadfactory-mediator/). Follow the below steps to add a Payload mediator.
 
 !!! Tip "What is a mediator?"
     Mediators are the core building blocks of message processing in WSO2 Micro Integrator (MI). They define how messages are transformed and routed as they pass through an integration flow. To explore mediators in detail and understand how they work, see the [Mediator documentation]({{base_path}}/reference/mediators/about-mediators/).

@@ -247,7 +247,7 @@ const integrationSteps = [
 ];
 
 document.querySelectorAll("label.md-nav__title").forEach(label => {
-    if (label.textContent.trim() === "Build your first integration") {
+    if (label.textContent.trim() === "Build your first Integration") {
         const ul = label.nextElementSibling;
         if (ul && ul.tagName === "UL") {
             ul.classList.add("custom-integration-list");
