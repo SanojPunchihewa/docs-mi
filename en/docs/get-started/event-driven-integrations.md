@@ -6,6 +6,9 @@ In addition to traditional API-based integrations, modern systems often need to 
 
 In this tutorial, you'll learn how to use <a target="_blank" href="https://kafka.apache.org/">Kafka</a> with MI to build a message-driven integration that listens to a Kafka topic, transforms the received data, and optionally publishes the result to another topic.
 
+!!! tip "New to WSO2 Micro Integrator?"
+    If you're just getting started, we recommend completing the [Build your first Integration]({{base_path}}/get-started/build-first-integration/) tutorial first. It will help you understand key integration concepts and get familiar with the developer tool features before diving into event-driven flows.
+
 ## Prerequisites
 
 You need Visual Studio Code (VS Code) with the <a target="_blank" href="https://marketplace.visualstudio.com/items?itemName=WSO2.micro-integrator">Micro Integrator for VS Code</a> extension installed. The MI for VS Code extension is the official developer tool for designing, developing, and testing integration solutions with WSO2 Micro Integrator.
