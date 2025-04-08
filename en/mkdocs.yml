@@ -81,6 +81,7 @@ nav:
           - Connect to SaaS or B2B Systems: get-started/build-first-integration/first-integration-connect-saas.md
           - Monitor and Manage Integrations: get-started/build-first-integration/first-integration-monitor-icp.md
       - Event-driven Integrations: get-started/event-driven-integrations.md
+      - Automations: get-started/automated-integrations.md
       - How-to Guides:
           - Generate integrations using AI: get-started/how-to-guides/ai-code-generation.md
           - Data Mapping using AI: get-started/how-to-guides/ai-data-mapping.md
