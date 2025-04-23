@@ -179,7 +179,7 @@ Now it's time to design your integration. This defines the underlying logic that
 4. Under **Mediators**, select the **Log** mediator.
 
     !!! Tip  
-        You can use the **Log** mediator to print the message content to the server logs. This is helpful for checking what data is being received and for debugging during development.
+        You can use the <a target="_blank" href="{{base_path}}/reference/mediators/log-mediator/">Log mediator</a> to print the message content to the server logs. This is helpful for checking what data is being received and for debugging during development.
 
     <a href="{{base_path}}/assets/img/get-started/event-integration/select_log_mediator.png"><img src="{{base_path}}/assets/img/get-started/event-integration/select_log_mediator.png" alt="Create New Project" width="80%"></a>
 
@@ -235,7 +235,7 @@ Now it's time to design your integration. This defines the underlying logic that
 
     <a href="{{base_path}}/assets/img/get-started/event-integration/kafka_add_new_connection_btn.png"><img src="{{base_path}}/assets/img/get-started/event-integration/kafka_add_new_connection_btn.png" alt="Create New Project" width="80%"></a>
 
-15. Select `KAFKA` and fill in the following details to create a connection to the Kafka broker. Finally, click **Add** in the **Add New Connection** form to complete the connection setup.
+15. Select `KAFKA` and fill in the following details to create a connection to the Kafka broker. Then, click **Add** in the **Add New Connection** form to complete the connection setup. In the next step, we will configure the operational-level parameters, such as the topic to which the messages will be published.
 
     | Property            | Value                   |
     |---------------------|-------------------------|
@@ -255,7 +255,7 @@ Now it's time to design your integration. This defines the underlying logic that
     | Property            | Value                   |
     |---------------------|-------------------------|
     | **Topic** | `bank-audit`        |
-    | **Partition Number**        | `1` |
+    | **Partition Number**        | `0` |
     | **Content-Type** | `application/json` |
 
     <a href="{{base_path}}/assets/img/get-started/event-integration/kafka_set_publish_params.png"><img src="{{base_path}}/assets/img/get-started/event-integration/kafka_set_publish_params.png" alt="Create New Project" width="30%"></a>
@@ -334,7 +334,7 @@ You have successfully completed the integration flow to listen to Kafka events a
             </payloadFactory>
             <kafkaTransport.publishMessages configKey="KafkaConnection">
                 <topic>bank-audit</topic>
-                <partitionNo>1</partitionNo>
+                <partitionNo>0</partitionNo>
                 <contentType>application/json</contentType>
                 <key></key>
                 <keySchema></keySchema>
@@ -415,7 +415,20 @@ Once the Micro Integrator runtime is up and running, follow the steps below to p
     [2025-04-03 09:49:23,029]  INFO {LogMediator} - Kafka event received, data = {"id":"TXN011","type":"withdraw","accountId":"ACC456","amount":1500}
     ```
 
-5. Verify that the command line prompt monitoring the `bank-audit` topic now displays a new entry with the transformed message.
+5. Verify that the command line prompt monitoring the `bank-audit` topic now displays a new entry with the transformed message. You may see a message similar to the following:
+
+    ```json
+    {
+        "eventType":"transaction",
+        "source":"bank-transactions",
+        "data":{
+            "id":"TXN011",
+            "type":"withdraw",
+            "accountId":"ACC456",
+            "amount":1500
+        }
+    }
+    ```
 
 Congratulations! You’ve now learned how to create an event-driven integration using Kafka and apply message transformation using WSO2 Micro Integrator. This is a powerful pattern for building scalable, real-time systems.
 
