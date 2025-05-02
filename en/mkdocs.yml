@@ -84,56 +84,29 @@ nav:
           - Data Mapping using AI: get-started/how-to-guides/ai-data-mapping.md
       - About this Release: get-started/about-this-release.md
   - Install and Setup:
-      - Overview: install-and-setup/install-and-setup-overview.md
-      - Install:
-          - MI Installation Prerequisites: install-and-setup/install/installation-prerequisites.md
-          - ICP Installation Prerequisites: install-and-setup/install/icp-installation-prerequisites.md
-          - Install the Micro Integrator (MI):
-              - Install MI: install-and-setup/install/installing-mi.md
-              - Run the MI Runtime: install-and-setup/install/running-the-mi.md
-              - Run the MI as a Windows Service: install-and-setup/install/installing-mi-as-a-windows-service.md
-              - Run the MI in Automation Mode: install-and-setup/install/running-the-mi-in-automation-mode.md
-              - Install Micro Integrator for VSCode: develop/mi-for-vscode/install-wso2-mi-for-vscode.md
-          - Install the Integration Control Plane:
-              - Install the Integration Control Plane: install-and-setup/install/installing-integration-control-plane.md
-              - Run the Integration Control Plane: install-and-setup/install/running-the-integration-control-plane.md
-              - Run the Integration Control Plane as a Windows Service: install-and-setup/install/running-the-integration-control-plane-as-windows-service.md
-          - Installation Options: install-and-setup/install/installation-options.md
-      - Migrate: install-and-setup/upgrading-wso2-mi.md
-      - Setup:
-          - Update WSO2 Micro Integrator: install-and-setup/setup/updating-mi.md
-          - User Stores:
-              - User Stores in MI:
-                  - Configure a User Store in MI: install-and-setup/setup/user-stores/setting-up-a-userstore-in-mi.md
-                  - Configure Databases:
-                      - MySQL Database: install-and-setup/setup/databases/setting-up-mysql.md
-                      - MSSQL Database: install-and-setup/setup/databases/setting-up-mssql.md
-                      - Oracle Database: install-and-setup/setup/databases/setting-up-oracle.md
-                      - PostgreSQL Database: install-and-setup/setup/databases/setting-up-postgresql.md
-                      - IBM Database: install-and-setup/setup/databases/setting-up-ibm-db2.md
-                  - Configure Secondary User Stores: install-and-setup/setup/user-stores/configuring-secondary-user-stores.md
-                  - Configure the File-Based Registry: install-and-setup/setup/deployment/file-based-registry.md
-              - User Stores in ICP:
-                  - Configure a User Store in ICP: install-and-setup/setup/user-stores/setting-up-a-userstore-in-icp.md
-          - Security:
-              - Set up Keystores:
-                  - Create New Keystores: install-and-setup/setup/security/creating-keystores.md
-                  - Add SSL certificates to keystores: install-and-setup/setup/security/importing-ssl-certificate.md
-                  - Renew a CA-signed Certificate: install-and-setup/setup/security/renewing-ca-signed-certificate-in-keystore.md
-                  - Configure Keystores: install-and-setup/setup/security/configuring-keystores.md
-              - Comply with GDPR:
-                  - GDPR for the WSO2 Micro Integrator: install-and-setup/setup/security/gdpr-ei.md
-                  - About the Identity Anonymization Tool: install-and-setup/setup/security/about-forgetme-tool.md
-              - Use Secrets:
-                  - Encrypt Secrets Using WSO2 Secure Vault: install-and-setup/setup/security/encrypting-plain-text.md
-                  - Use Hashicorp Secrets: install-and-setup/setup/security/using-hashicorp-secrets.md
-                  - Use Symmetric Encryption: install-and-setup/setup/security/single-key-encryption.md
-              - Secure the Management API: install-and-setup/setup/security/securing-management-api.md
-          - Message Brokers:
-              - AMQP (RabbitMQ):
+      - Micro Integrator for VSCode: develop/mi-for-vscode/install-wso2-mi-for-vscode.md
+      - Micro Integrator:
+          - Installation Prerequisites: install-and-setup/install/installation-prerequisites.md
+          - Download and Run: install-and-setup/install/installing-mi.md
+          - Configure:
+             - install-and-setup/setup/configure-mi.md
+             - User Store:
+                - install-and-setup/setup/user-stores/index.md
+                - Configure Databases:
+                    - MySQL Database: install-and-setup/setup/databases/setting-up-mysql.md
+                    - MSSQL Database: install-and-setup/setup/databases/setting-up-mssql.md
+                    - Oracle Database: install-and-setup/setup/databases/setting-up-oracle.md
+                    - PostgreSQL Database: install-and-setup/setup/databases/setting-up-postgresql.md
+                    - IBM Database: install-and-setup/setup/databases/setting-up-ibm-db2.md
+                - Configure Secondary User Stores: install-and-setup/setup/user-stores/configuring-secondary-user-stores.md
+             - Secure Vault: install-and-setup/setup/security/using-secure-vault.md
+             - Message Builders and Formatters: install-and-setup/setup/message-builders-formatters/message-builders-and-formatters.md
+             - Transports: install-and-setup/setup/transport-configurations/configuring-transports.md
+             - Message Brokers:
+                - AMQP (RabbitMQ):
                   - Deploy RabbitMQ: install-and-setup/setup/brokers/deploy-rabbitmq.md
                   - Connect to RabbitMQ: install-and-setup/setup/brokers/configure-with-rabbitmq.md
-              - JMS:
+                - JMS:
                   - Connect to ActiveMQ: install-and-setup/setup/brokers/configure-with-activemq.md
                   - Connect to Apache Artemis: install-and-setup/setup/brokers/configure-with-apache-artemis.md
                   - Connect to HornetQ: install-and-setup/setup/brokers/configure-with-hornetq.md
@@ -146,50 +119,34 @@ nav:
                   - Connect to Weblogic: install-and-setup/setup/brokers/configure-with-weblogic.md
                   - Connect to WSO2 MB: install-and-setup/setup/brokers/configure-with-wso2-mb.md
                   - Connect to Multiple Brokers: install-and-setup/setup/brokers/configure-with-multiple-brokers.md
-              - Kafka: install-and-setup/setup/feature-configs/configuring-kafka.md
-              - Azure Service Bus: install-and-setup/setup/brokers/configure-with-azureservicebus.md
-          - Transports: install-and-setup/setup/transport-configurations/configuring-transports.md
-          - Multi-HTTPS Transport: install-and-setup/setup/transport-configurations/multi-https-transport.md
-          - Message Builders and Formatters: install-and-setup/setup/message-builders-formatters/message-builders-and-formatters.md
-          - Message Relay: install-and-setup/setup/message-builders-formatters/message-relay.md
-          - Manage Configurations across Environments: install-and-setup/setup/dynamic-server-configurations.md
-          - Load Balancer and Proxy Server:
-              - Load Balancing: install-and-setup/setup/deployment/setting-up-lb.md
-              - Configure a Proxy Server: install-and-setup/setup/configuring-proxy-servers.md
-              - Enable SSL Tunneling through Proxy Server: install-and-setup/setup/enabling-ssl-tunneling-thru-proxy-server.md
-          - Time Stamp Conversion for RDBMS: install-and-setup/setup/feature-configs/configuring-timestamp-conversion-for-rdbms.md
-      - Deploy:
-          - Deploy the Micro Integrator:
-              - Configure a Micro Integrator Cluster: install-and-setup/setup/deployment/deploying-wso2-mi.md
-              - Deployment Synchronization: install-and-setup/setup/deployment/deployment-synchronization.md
-          - Deploy on Kubernetes:
-              - Micro Integrator Deployment Patterns on K8s: install-and-setup/setup/deployment/kubernetes-deployment-patterns.md
-              - Deploy Integrations Using Helm Resources: install-and-setup/setup/deployment/deploying-micro-integrator-with-helm.md
-          - Deployment Best Practices:
-              - Deployment Checklist: install-and-setup/setup/deployment-best-practices/production-deployment-guidelines.md
-              - Security Guidelines for a Production Deployment: install-and-setup/setup/deployment-best-practices/security-guidelines-for-production-deployment.md
-              - Basic Health Checks: install-and-setup/setup/deployment-best-practices/basic-health-checks.md
-              - Change the Hostname: install-and-setup/setup/deployment-best-practices/changing-the-hostname.md
-              - Change the Default Ports: install-and-setup/setup/deployment-best-practices/changing-the-default-ports-with-offset.md
-              - Backup and Recovery: install-and-setup/setup/deployment-best-practices/backup-recovery.md
-              - Performance Tuning:
-                  - Tuning JVM Performance: install-and-setup/setup/performance-tuning/tuning-jvm-performance.md
-                  - Tuning Network and OS Performance: install-and-setup/setup/performance-tuning/network-os-performance.md
-                  - Tuning JDBC Configurations: install-and-setup/setup/performance-tuning/jdbc-tuning.md
-                  - Tuning the HTTP Transport: install-and-setup/setup/performance-tuning/http-transport-tuning.md
-                  - Tuning the JMS Transport: install-and-setup/setup/performance-tuning/jms-transport-tuning.md
-                  - Tuning the VFS Transport: install-and-setup/setup/performance-tuning/tuning-the-vfs-transport.md
-                  - Tuning the RabbitMQ Transport: install-and-setup/setup/performance-tuning/rabbitmq-transport-tuning.md
-                  - Tuning the Inbound Endpoints: install-and-setup/setup/performance-tuning/tuning-inbound-endpoints.md
-      - CI/CD:
-          - CI/CD for Integrations - Overview: install-and-setup/setup/deployment/integration-cicd-overview.md
-          - Build a CI/CD Pipeline for Integrations (VM deployment): install-and-setup/setup/deployment/mi-cicd-vm.md
-          # - Build a CI/CD Pipeline for Integrations (K8s deployment): install-and-setup/setup/deployment/mi-cicd-k8s.md
-      - Reference:
-          - Common Runtime and Configuration Artifacts: install-and-setup/setup/reference/common-runtime-and-configuration-artifacts.md
-          - Default Product Ports: install-and-setup/setup/reference/default-product-ports.md
-          - Performance Test Results: install-and-setup/setup/deployment-best-practices/performance-test-results-mi.md
-          - Supported Cipher Suites: install-and-setup/setup/reference/supported-cipher-suites.md
+                - Kafka: install-and-setup/setup/feature-configs/configuring-kafka.md
+                - Azure Service Bus: install-and-setup/setup/brokers/configure-with-azureservicebus.md
+             - Configure a Proxy Server: install-and-setup/setup/configuring-proxy-servers.md
+             - Configure a Load Balancer: install-and-setup/setup/deployment/setting-up-lb.md
+          - Deploy:
+             - install-and-setup/setup/deploy-mi.md
+             - Run as a Windows Service: install-and-setup/setup/deployment/running-as-windows-service.md
+             - Run in Automation Mode: install-and-setup/setup/deployment/running-in-automation-mode.md
+             - Manage configurations across Environments: install-and-setup/setup/deployment/managing-configurations-across-environments.md
+             - Clustering: install-and-setup/setup/deployment/clustering.md
+             - Deploy in VM:
+                - index.md
+                - CI/CD for Integrations: install-and-setup/setup/deployment/integration-cicd-overview.md
+             - Deploy in Kubernetes:
+                - index.md
+                - CI/CD for Integrations: install-and-setup/setup/deployment/integration-cicd-overview.md
+             - Best Practices: install-and-setup/setup/deployment-best-practices/production-deployment-guidelines.md
+      - Integration Control Plane:
+          - Installation Prerequisites: install-and-setup/install/icp-installation-prerequisites.md
+          - Download and Run: install-and-setup/install/installing-integration-control-plane.md
+          - Configure:
+             - User Store: install-and-setup/setup/user-stores/setting-up-a-userstore-in-icp.md
+          - Deploy:
+             - install-and-setup/setup/deploy-icp.md
+             - Run as a Windows Service: install-and-setup/setup/deployment/running-as-windows-service.md
+             - Deploy in Kubernetes: install-and-setup/setup/deployment/deploying-integration-control-plane-in-kubernetes.md
+             - Best Practices: install-and-setup/setup/deployment-best-practices/production-deployment-guidelines.md
+      - Apply WSO2 Updates: install-and-setup/updates/apply-wso2-updates.md
   - Develop:
       - Develop Integration Solutions: develop/intro-integration-development.md
       - WSO2 MI for VSCode:
@@ -1086,6 +1043,6 @@ extra:
       version: 1.2.0-1
       git_tag: v1.2.0.1
   site_version: 4.4.0
-  #base_path: http://localhost:8000/en/latest
-  base_path: https://mi.docs.wso2.com/en/4.4.0
+  base_path: http://localhost:8000/en/latest
+  #base_path: https://mi.docs.wso2.com/en/4.4.0
   envoy_path: https://www.envoyproxy.io/docs/envoy/v1.24.1
