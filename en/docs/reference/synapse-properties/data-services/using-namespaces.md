@@ -133,7 +133,6 @@ the parent element will be overridden.
       </result>
 </query>
 ```
-
 ## Allowing an empty result namespace
 
 By default, if a `<result>` element's `defaultNamespace` is omitted or
