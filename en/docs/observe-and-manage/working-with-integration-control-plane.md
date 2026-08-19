@@ -74,7 +74,7 @@ Download the binary distribution of the product, and then follow the instruction
 
 Follow the steps given below to configure the MI servers to publish data to the ICP server.
 
-!!! Tip "Recommeded deployment"
+!!! Tip "Recommended deployment"
     Deploy the ICP server in the **same network as the MI nodes**, so that it can reach each node directly on the node's own IP address. Use the `management_hostname` and `management_port` overrides described below only when placing the ICP server in the same network is not possible.
 
 1.  To connect the MI servers with the ICP server, add the following configuration to the `deployment.toml` file (stored in the `<MI_HOME>/conf/` folder) of each server instance.
