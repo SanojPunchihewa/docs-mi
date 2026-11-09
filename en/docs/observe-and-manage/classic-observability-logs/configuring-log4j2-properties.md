@@ -510,13 +510,21 @@ Access Log V2 also introduces two additional pattern elements that are only avai
 |---------|-------------|
 | `%D`    | Request processing time in milliseconds — the total time taken to process the request and send the response. |
 | `%X`    | Correlation ID — the correlation ID associated with the request, useful for tracing a request across multiple services. |
-| `%w`    | Response content length inferred from the `Content-Length` header, excluding HTTP headers. Available from WSO2 Integrator: MI 4.6.0.16 onwards. |
+| `%w`    | Response body size in bytes, excluding HTTP headers. Taken from the `Content-Length` header, or, if the response has no `Content-Length` header (for example, a chunked response), the number of body bytes actually transferred. Available from WSO2 Integrator: MI 4.6.0.16 onwards. |
 
 **Example pattern using V2-specific elements:**
 
 ```properties
 access_log_pattern=%h %u %t "%r" %s %b %w "%{Referer}i" "%{User-Agent}i" %D %X
 ```
+
+!!! note "Request and response sizes in Access Log V2"
+    - `%b` logs the request body size and `%w` logs the response body size.
+    - If the message has a `Content-Length` header, its value is logged.
+    - If the message has no `Content-Length` header (for example, when `Transfer-Encoding: chunked` is used), the number of body bytes that WSO2 Integrator: MI actually read or wrote is logged. This count excludes HTTP headers and the chunked transfer encoding overhead.
+    - If the connection is closed before the body is fully transferred, the number of bytes transferred until then is logged.
+    - `%b` logs '-' when the request has no body. `%w` logs '-' when the response has neither a `Content-Length` header nor a body (for example, a `204 No Content` response).
+    - The entry for a request is written after the response body has been fully transferred, or when the connection is closed.
 
 #### Supported log pattern formats
 
@@ -538,7 +546,7 @@ access_log_pattern=%h %u %t "%r" %s %b %w "%{Referer}i" "%{User-Agent}i" %D %X
 </tr>
 <tr class="odd">
 <td><pre><code>%b</code></pre></td>
-<td><p>Content length inferred from the <code>Content-Length</code> header, excluding HTTP headers, or '-' if zero. In Access Log V2, this represents the request content length. To log the response content length, use the `%w` parameter.</p></td>
+<td><p>Content length inferred from the <code>Content-Length</code> header, excluding HTTP headers, or '-' if zero. In Access Log V2, this represents the request body size; if the request has no <code>Content-Length</code> header (for example, a chunked request), the number of request body bytes actually transferred is logged. To log the response body size, use the <code>%w</code> parameter.</p></td>
 </tr>
 <tr class="even">
 <td><pre><code>%B</code></pre></td>
@@ -634,7 +642,7 @@ access_log_pattern=%h %u %t "%r" %s %b %w "%{Referer}i" "%{User-Agent}i" %D %X
 </tr>
 <tr class="odd">
 <td><pre><code>%w</code></pre></td>
-<td><p>Response content length inferred from the <code>Content-Length</code> header, excluding HTTP headers, or '-' if the <code>Content-Length</code> header is not available (Access Log V2 only). Available from WSO2 Integrator: MI 4.6.0.16 onwards.</p></td>
+<td><p>Response body size inferred from the <code>Content-Length</code> header, excluding HTTP headers. If the response has no <code>Content-Length</code> header (for example, a chunked response), the number of response body bytes actually transferred is logged, or '-' if the response has no body (Access Log V2 only). Available from WSO2 Integrator: MI 4.6.0.16 onwards.</p></td>
 </tr>
 </tbody>
 </table>
